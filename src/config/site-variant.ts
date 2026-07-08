@@ -17,8 +17,11 @@ export function isProfessionalShell(variant: ShellVariant = 'default'): boolean 
   return resolveSiteVariant(variant) === 'professional';
 }
 
-/** Pfad unter /professional-it/* (Hauptseite, Legal, EN). */
+/** Professional-IT-Standalone-Routen (Root One-Pager). */
 export function isProfessionalRoute(pathname: string): boolean {
   const current = pathname.replace(/\/$/, '') || '/';
-  return current === '/professional-it' || current.startsWith('/professional-it/');
+  if (current === '/' || current === '/en' || current === '/impressum' || current === '/datenschutz') {
+    return true;
+  }
+  return current.startsWith('/en/');
 }

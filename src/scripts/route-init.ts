@@ -11,6 +11,6 @@ function matches(...prefixes: string[]): boolean {
   return prefixes.some((prefix) => path === prefix || path.startsWith(`${prefix}/`));
 }
 
-if (matches('/', '/professional-it')) {
+if (matches('/', '/en')) {
   void import('./bundles/profil-bundle.ts');
 }

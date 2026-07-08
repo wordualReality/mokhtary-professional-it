@@ -24,17 +24,17 @@ export const professionalNavItemsEn: ProfessionalNavItem[] = [
   { label: 'Contact', hash: '#kontakt' },
 ];
 
-export const professionalItEnHref = '/professional-it/en';
-export const professionalItDeHref = '/professional-it';
+export const professionalItEnHref = '/en';
+export const professionalItDeHref = '/';
 
 export const professionalLegalPaths = {
-  impressum: '/professional-it/impressum',
-  datenschutz: '/professional-it/datenschutz',
+  impressum: '/impressum',
+  datenschutz: '/datenschutz',
 } as const;
 
 export const professionalLegalPathsEn = {
-  imprint: '/professional-it/en/imprint',
-  privacy: '/professional-it/en/privacy',
+  imprint: '/en/imprint',
+  privacy: '/en/privacy',
 } as const;
 
 export const navLinkClass =
@@ -47,15 +47,13 @@ export const langLinkClass =
   'inline-flex items-center rounded-full border border-[var(--color-border-soft)] px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-primary)]/30 hover:text-[var(--color-base-dark)]';
 
 /**
- * Anker auf /professional-it; auf Legal-/Sub-Routen voller Pfad.
+ * Anker auf der Hauptseite; auf Legal-/Sub-Routen voller Pfad zur Sektion.
  */
 export function resolveProfessionalNavHref(hash: string, pathname: string, baseHref = professionalItHref): string {
   const current = pathname.replace(/\/$/, '') || '/';
-  if (current === baseHref) {
+  const base = baseHref.replace(/\/$/, '') || '/';
+  if (current === base) {
     return hash;
   }
-  if (current.startsWith(`${baseHref}/`)) {
-    return `${baseHref}${hash}`;
-  }
-  return `${baseHref}${hash}`;
+  return `${base}${hash}`;
 }

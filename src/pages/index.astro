@@ -1,15 +1,57 @@
 ---
 export const prerender = true;
+/**
+ * @file src/pages/index.astro
+ * @summary Deutsche Professional-IT-Hauptseite (Root One-Pager).
+ */
+import ProfilLaunchLayout from '../layouts/ProfilLaunchLayout.astro';
+import ContactSection from '../components/form/ContactSection.astro';
+import ProfilHero from '../components/profil/ProfilHero.astro';
+import ProfilStakeholderSection from '../components/profil/ProfilStakeholderSection.astro';
+import ProfilBioSection from '../components/profil/ProfilBioSection.astro';
+import ProfilSkillsSection from '../components/profil/ProfilSkillsSection.astro';
+import ProfilInsightsSection from '../components/profil/ProfilInsightsSection.astro';
+import { getProfilContent } from '../data/profil-content.locale';
+
+const content = getProfilContent('de');
+const { contact, contactForm } = content.profilPageCopy;
 ---
-<!DOCTYPE html>
-<html lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0;url=/professional-it/" />
-    <link rel="canonical" href="/professional-it/" />
-    <title>Aydin Mokhtary · Professional IT</title>
-  </head>
-  <body>
-    <p><a href="/professional-it/">Weiter zu Professional IT</a></p>
-  </body>
-</html>
+
+<ProfilLaunchLayout
+  locale="de"
+  title="Aydin Mokhtary · Senior IT Business Analyst · Requirements Engineer · Banking IT"
+  description="Senior IT Business Analyst und Requirements Engineer mit Banking-IT-Schwerpunkt. Stakeholder-Management, Enterprise-Integration und belastbare Abnahmen für Corporate und Freelance-Mandate."
+>
+  <main id="main-content" class="cluster-systems profil-page">
+    <ProfilHero />
+    <ProfilSkillsSection />
+    <ProfilBioSection />
+    <ProfilInsightsSection />
+    <ProfilStakeholderSection />
+    <ContactSection
+      tone="systems"
+      bgGradient="linear-gradient(180deg,#F4FAF1_0%,#FFFFFF_100%)"
+      ariaLabel="Kontakt Professional IT"
+      subjectPrefix="Professional IT"
+      kicker={contact.kicker}
+      headline={contact.headline}
+      introText={contact.introText}
+      showTrustChipLabel={false}
+      trustChips={[...contact.trustChips]}
+      interests={[...content.profilContactInterests]}
+      submitLabel={contact.submitLabel}
+      organizationPlaceholder={contact.organizationPlaceholder}
+      emailPlaceholder={contact.emailPlaceholder}
+      messagePlaceholder={contact.messagePlaceholder}
+      nameLabel={contactForm.nameLabel}
+      namePlaceholder={contactForm.namePlaceholder}
+      emailLabel={contactForm.emailLabel}
+      companyLabel={contactForm.companyLabel}
+      optionalLabel={contactForm.optionalLabel}
+      interestLabel={contactForm.interestLabel}
+      messageLabel={contactForm.messageLabel}
+      chipsAriaLabel={contactForm.chipsAriaLabel}
+      formNote={contactForm.formNote}
+    />
+  </main>
+</ProfilLaunchLayout>

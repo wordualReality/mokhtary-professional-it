@@ -42,7 +42,7 @@ export const navClusters: NavCluster[] = [
   },
 ];
 
-export const professionalItHref = '/professional-it';
+export const professionalItHref = '/';
 
 export function resolveActiveClusterId(pathname: string): NavCluster['id'] | null {
   const current = pathname.replace(/\/$/, '') || '/';

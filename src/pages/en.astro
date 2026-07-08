@@ -1,17 +1,17 @@
 ---
 export const prerender = true;
 /**
- * @file src/pages/professional-it/en.astro
- * @summary English Professional IT portfolio page.
+ * @file src/pages/en.astro
+ * @summary English Professional IT portfolio page (root).
  */
-import ProfilLaunchLayout from '../../layouts/ProfilLaunchLayout.astro';
-import ContactSection from '../../components/form/ContactSection.astro';
-import ProfilHero from '../../components/profil/ProfilHero.astro';
-import ProfilStakeholderSection from '../../components/profil/ProfilStakeholderSection.astro';
-import ProfilBioSection from '../../components/profil/ProfilBioSection.astro';
-import ProfilSkillsSection from '../../components/profil/ProfilSkillsSection.astro';
-import ProfilInsightsSection from '../../components/profil/ProfilInsightsSection.astro';
-import { getProfilContent } from '../../data/profil-content.locale';
+import ProfilLaunchLayout from '../layouts/ProfilLaunchLayout.astro';
+import ContactSection from '../components/form/ContactSection.astro';
+import ProfilHero from '../components/profil/ProfilHero.astro';
+import ProfilStakeholderSection from '../components/profil/ProfilStakeholderSection.astro';
+import ProfilBioSection from '../components/profil/ProfilBioSection.astro';
+import ProfilSkillsSection from '../components/profil/ProfilSkillsSection.astro';
+import ProfilInsightsSection from '../components/profil/ProfilInsightsSection.astro';
+import { getProfilContent } from '../data/profil-content.locale';
 
 const content = getProfilContent('en');
 const { contact, contactForm } = content.profilPageCopy;

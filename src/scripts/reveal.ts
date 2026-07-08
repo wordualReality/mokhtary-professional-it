@@ -9,7 +9,7 @@ const REVEAL_ATTR = 'data-reveal';
 const REVEAL_CLASS = 'is-revealed';
 
 const REVEAL_REPEAT_ATTR = 'data-reveal-repeat';
-const SKIP_REVEAL_REPEAT_PREFIXES = ['/professional-it', '/profil', '/social-media'];
+const SKIP_REVEAL_REPEAT_PREFIXES = ['/', '/en'];
 
 const REVEAL_READY_CLASS = 'js-reveal-ready';
 

@@ -1,12 +1,12 @@
 ---
 export const prerender = true;
 /**
- * @file src/pages/professional-it/datenschutz.astro
- * @summary Datenschutz im Professional-IT-Kontext (eigene Shell, kein Main-Business-Nav).
+ * @file src/pages/datenschutz.astro
+ * @summary Datenschutz im Professional-IT-Kontext.
  */
-import ProfilLaunchLayout from '../../layouts/ProfilLaunchLayout.astro';
-import LegalDatenschutzArticle from '../../components/legal/LegalDatenschutzArticle.astro';
-import { professionalLegalPaths } from '../../config/professional-navigation';
+import ProfilLaunchLayout from '../layouts/ProfilLaunchLayout.astro';
+import LegalDatenschutzArticle from '../components/legal/LegalDatenschutzArticle.astro';
+import { professionalLegalPaths } from '../config/professional-navigation';
 
 const title = 'Datenschutzerklärung · Aydin Mokhtary · Professional IT';
 const description =
