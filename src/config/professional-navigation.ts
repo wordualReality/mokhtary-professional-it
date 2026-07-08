@@ -1,6 +1,6 @@
 /**
  * @file src/config/professional-navigation.ts
- * @summary Section-Navigation für Professional IT.
+ * @summary Only allowed navigation surface for this standalone repo (section anchors, lang, legal).
  */
 
 import { professionalItHref } from './navigation';

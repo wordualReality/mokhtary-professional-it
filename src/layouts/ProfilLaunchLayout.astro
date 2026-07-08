@@ -1,7 +1,7 @@
 ---
 /**
  * @file src/layouts/ProfilLaunchLayout.astro
- * @summary Launch-Layout für Professional IT Root One-Pager: minimales Header/Footer ohne Cross-Links.
+ * @summary Standalone shell for mokhtary.de: header/footer, SEO, hreflang, schema — no cross-links.
  */
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
@@ -153,9 +153,9 @@ const webpage = {
   <body class="min-h-screen bg-[var(--color-background)] text-[var(--color-text-primary)] antialiased">
     <a href="#main-content" class="skip-to-content">{skipLabel}</a>
     <div class="flex min-h-screen flex-col">
-      <Header variant="launch" locale={locale} />
+      <Header locale={locale} />
       <slot />
-      <Footer variant="launch" locale={locale} />
+      <Footer locale={locale} />
     </div>
 
     <SchedulingDialog />

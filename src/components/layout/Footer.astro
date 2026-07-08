@@ -1,10 +1,8 @@
 ---
 /**
  * @file src/components/layout/Footer.astro
- * @summary UI-Komponente: layout/Footer — wiederverwendbarer Markup-Block.
+ * @summary Professional IT site footer: role claim and legal links only.
  */
-import { navClusters, professionalItHref } from '../../config/navigation';
-import { isProfessionalShell } from '../../config/site-variant';
 import {
   professionalLegalPaths,
   professionalLegalPathsEn,
@@ -12,24 +10,15 @@ import {
 import { professionalFooterCopyDe, professionalFooterCopyEn } from '../../data/professional-footer';
 
 interface Props {
-  variant?: 'default' | 'launch';
   locale?: 'de' | 'en';
 }
 
-const { variant = 'default', locale = 'de' } = Astro.props;
-const isProfessional = isProfessionalShell(variant);
-const clusters = navClusters;
+const { locale = 'de' } = Astro.props;
 
-const impressumHref = isProfessional
-  ? locale === 'en'
-    ? professionalLegalPathsEn.imprint
-    : professionalLegalPaths.impressum
-  : '/impressum';
-const datenschutzHref = isProfessional
-  ? locale === 'en'
-    ? professionalLegalPathsEn.privacy
-    : professionalLegalPaths.datenschutz
-  : '/datenschutz';
+const impressumHref =
+  locale === 'en' ? professionalLegalPathsEn.imprint : professionalLegalPaths.impressum;
+const datenschutzHref =
+  locale === 'en' ? professionalLegalPathsEn.privacy : professionalLegalPaths.datenschutz;
 const impressumLabel = locale === 'en' ? 'Imprint' : 'Impressum';
 const datenschutzLabel = locale === 'en' ? 'Privacy' : 'Datenschutz';
 const footerCopy = locale === 'en' ? professionalFooterCopyEn : professionalFooterCopyDe;
@@ -37,87 +26,20 @@ const footerCopy = locale === 'en' ? professionalFooterCopyEn : professionalFoot
 
 <footer class="border-t border-[var(--color-border-soft)] bg-white">
   <div class="mx-auto max-w-7xl px-6 py-14 lg:px-8">
-    {
-      isProfessional ? (
-        <div class="max-w-md">
-          <p class="inline-flex items-center gap-2 text-base font-semibold tracking-tight text-[var(--color-base-dark)]">
-            <span aria-hidden="true" class="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--color-primary)] text-xs font-semibold text-white">AM</span>
-            Aydin Mokhtary
-          </p>
-          <p class="mt-2 text-sm leading-6 text-[var(--color-text-secondary)]">
-            {footerCopy.role}
-          </p>
-          <div class="mt-4 flex flex-col gap-1 text-xs uppercase tracking-[0.2em] text-[var(--color-primary)]">
-            {footerCopy.claimLines.map((line) => (
-              <span>{line}</span>
-            ))}
-          </div>
-        </div>
-      ) : (
-        <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.85fr)_minmax(0,0.85fr)_minmax(0,0.85fr)]">
-          <div class="max-w-md">
-            <p class="inline-flex items-center gap-2 text-base font-semibold tracking-tight text-[var(--color-base-dark)]">
-              <span aria-hidden="true" class="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--color-primary)] text-xs font-semibold text-white">AM</span>
-              Aydin Mokhtary
-            </p>
-            <p class="mt-4 text-sm leading-7 text-[var(--color-text-secondary)]">
-              Aydin Mokhtary mit einem starken Team aus Technikern und kreativen Köpfen.
-              Wir bauen, was Sie wachsen lässt. Und was Ihnen Arbeit abnimmt.
-            </p>
-            <p class="mt-4 text-xs uppercase tracking-[0.2em] text-[var(--color-primary)]">
-              Mehr Kunden · Mehr Zeit · Klarheit
-            </p>
-          </div>
-
-          {
-            clusters.map((cluster) => (
-              <nav aria-label={`Footer ${cluster.label}`}>
-                <a
-                  href={cluster.hub}
-                  class="mb-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-primary)] transition-colors hover:text-[var(--color-primary-deep)]"
-                >
-                  <span
-                    aria-hidden="true"
-                    class={`h-1.5 w-1.5 rounded-full ${cluster.tone === 'growth' ? 'bg-[var(--growth-violet)]' : 'bg-[var(--systems-steel)]'}`}
-                  />
-                  {cluster.label}
-                </a>
-                <ul class="grid gap-3 text-sm text-[var(--color-text-secondary)]" role="list">
-                  {cluster.links.map((l) => (
-                    <li>
-                      <a
-                        href={l.href}
-                        class="inline-flex items-center gap-1 transition-colors hover:text-[var(--color-base-dark)]"
-                      >
-                        {l.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            ))
-          }
-          <nav aria-label="Footer Professional IT">
-            <a
-              href={professionalItHref}
-              class="mb-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-primary)] transition-colors hover:text-[var(--color-primary-deep)]"
-            >
-              <span aria-hidden="true" class="h-1.5 w-1.5 rounded-full bg-[var(--systems-steel)]" />
-              Professional IT
-            </a>
-            <p class="text-sm leading-7 text-[var(--color-text-secondary)]">
-              Business Analyse und Requirements Engineering mit belastbarem Projektmanagement.
-            </p>
-            <a
-              href={professionalItHref}
-              class="mt-3 inline-flex text-sm font-medium text-[var(--color-base-dark)] underline-offset-2 hover:underline"
-            >
-              Zur Seite
-            </a>
-          </nav>
-        </div>
-      )
-    }
+    <div class="max-w-md">
+      <p class="inline-flex items-center gap-2 text-base font-semibold tracking-tight text-[var(--color-base-dark)]">
+        <span aria-hidden="true" class="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--color-primary)] text-xs font-semibold text-white">AM</span>
+        Aydin Mokhtary
+      </p>
+      <p class="mt-2 text-sm leading-6 text-[var(--color-text-secondary)]">
+        {footerCopy.role}
+      </p>
+      <div class="mt-4 flex flex-col gap-1 text-xs uppercase tracking-[0.2em] text-[var(--color-primary)]">
+        {footerCopy.claimLines.map((line) => (
+          <span>{line}</span>
+        ))}
+      </div>
+    </div>
 
     <div class="mt-12 flex flex-col gap-4 border-t border-[var(--color-border-soft)] pt-6 sm:flex-row sm:items-center sm:justify-between">
       <p class="text-sm text-[var(--color-text-secondary)]">

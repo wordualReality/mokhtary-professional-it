@@ -17,6 +17,8 @@ Der Build muss mit Exit Code `0` enden.
 |---|---|
 | **Gesamter Inhalt** von `dist/` | Hostinger `public_html/` |
 
+Upload only the **contents** of `dist/` — not the `dist` folder wrapper, not `src/`, `node_modules/`, or `.git`.
+
 **Nicht hochladen:**
 
 - `src/`

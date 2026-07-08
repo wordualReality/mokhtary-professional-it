@@ -14,7 +14,7 @@
  *
  * ## History
  * - Öffnen ohne bestehenden Hash: `pushState({ profilScheduling: 1 })` → Browser-Zurück schließt Dialog.
- * - Deeplink `/professional-it#terminwahl`: kein Push; Schließen per `replaceState` Hash streichen.
+ * - Deeplink `/#terminwahl` or `/en#terminwahl`: no push; close clears hash via `replaceState`.
  * - `popstate`: Dialog schließen, wenn Hash nicht mehr `#terminwahl`.
  *
  * ## Manuelle Regression (Kurz)
