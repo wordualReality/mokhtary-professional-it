@@ -18,4 +18,6 @@ npm run package:hostinger
 
 Upload `release/professional-it-hostinger/` contents to Hostinger `public_html/`.
 
+Direkt-Deploy: nach `npm run build` den Inhalt von `dist/` nach `public_html/` hochladen.
+
 See [docs/HOSTINGER-STATIC-DEPLOY.md](docs/HOSTINGER-STATIC-DEPLOY.md).
