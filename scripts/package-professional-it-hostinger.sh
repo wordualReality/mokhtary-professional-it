@@ -151,6 +151,7 @@ done < <(find "$RELEASE/_astro" -name '*.css' -type f 2>/dev/null || true)
 while read -r rel; do
   [[ -z "$rel" ]] && continue
   rel="${rel#/}"
+  [[ "$rel" == "favicon.ico" ]] && continue
   if [[ ! -e "$RELEASE/$rel" ]]; then
     echo "ERROR: missing asset in release: /$rel" >&2
     MISSING=1
