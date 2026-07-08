@@ -1,0 +1,5 @@
+# Professional IT standalone — Hostinger Apache
+Redirect 301 /profil /professional-it
+Redirect 301 /it-consulting /professional-it
+Redirect 301 /seo /professional-it
+Redirect 302 / /professional-it/

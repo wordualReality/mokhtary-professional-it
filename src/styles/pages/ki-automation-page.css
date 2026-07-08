@@ -1,0 +1,58 @@
+  /* /ki-automation — Automation-Leistungsseite */
+
+  .ki-automation-page .ki-automation-hero__art {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .ki-automation-page .ki-automation-hero__art figure {
+    margin: 0;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--color-border-soft);
+    box-shadow: 0 30px 70px rgba(44, 51, 51, 0.12);
+    background: white;
+  }
+
+  .ki-automation-page .ki-automation-hero__image,
+  .ki-automation-page .ki-automation-hero__art .hero-mockup-media__poster,
+  .ki-automation-page .ki-automation-hero__art .hero-mockup-media__video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ki-automation-page .ki-automation-decision {
+    max-width: 42rem;
+    padding: 1.75rem 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--color-border-soft);
+    background: color-mix(in srgb, var(--systems-mint) 18%, white);
+  }
+
+  .ki-automation-page .ki-automation-decision__body {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+  }
+
+  .ki-automation-page .ki-automation-decision__link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .ki-automation-page .ki-automation-decision__link:hover {
+    color: color-mix(in srgb, var(--color-primary) 78%, var(--color-base-dark));
+  }
+
+  .ki-automation-page .ki-automation-decision__link:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--color-primary) 55%, white);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }

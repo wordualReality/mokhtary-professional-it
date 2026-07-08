@@ -1,0 +1,249 @@
+/**
+ * @file src/styles/components/site-band-motion.css
+ * @summary Live-Zustände für scroll-gesteuerte Marketing-Bänder (site-band-motion.ts).
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-motion-band='presence']:not(.is-band-live) .status-rotator__item,
+  [data-motion-band='presence']:not(.is-band-live) .status-dot,
+  [data-motion-band='presence']:not(.is-band-live) .sk-hero__image,
+  [data-motion-band='presence']:not(.is-band-live) .home-hero__image {
+    animation-play-state: paused;
+  }
+
+  [data-motion-band='presence'].is-presence-live .browser-frame {
+    box-shadow:
+      0 28px 56px rgba(44, 51, 51, 0.14),
+      0 0 0 1px color-mix(in srgb, var(--color-primary) 18%, var(--color-border-soft));
+  }
+
+  [data-motion-band='presence'].is-presence-live .status-dot {
+    animation-play-state: running;
+  }
+
+  [data-motion-band='presence'].is-presence-live .status-rotator__item {
+    animation-play-state: running;
+  }
+
+  [data-motion-band='bridge-glow'].is-band-live,
+  [data-motion-band='bridge-glow'].is-presence-live {
+    animation: site-bridge-glow 4.5s ease-in-out infinite;
+  }
+
+  [data-motion-band='bridge-glow'].is-band-live::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120px;
+    height: 120px;
+    transform: translate(-50%, -50%);
+    border-radius: 999px;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-primary) 22%, transparent) 0%,
+      transparent 70%
+    );
+    animation: bridge-connector-pulse 3.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes bridge-connector-pulse {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: translate(-50%, -50%) scale(0.85);
+    }
+    50% {
+      opacity: 0.85;
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+  }
+
+  .showroom-stack.is-band-live.is-stack-focus-front .showroom-stack__front {
+    transform: translate3d(-8px, -8px, 0) scale(1.01);
+  }
+  .showroom-stack:not(.showroom-stack--wachstum).is-band-live.is-stack-focus-back .showroom-stack__back {
+    transform: translate3d(14px, 12px, 0) scale(1.04);
+  }
+
+  [data-motion-band='contact-chips'].is-band-live .contact-card__chips li.is-chip-active {
+    transform: translateY(-2px);
+    background: color-mix(in srgb, var(--systems-mint) 28%, white);
+    color: var(--color-primary);
+    border-color: color-mix(in srgb, var(--color-primary) 32%, var(--color-border-soft));
+    box-shadow: 0 6px 16px rgba(44, 51, 51, 0.08);
+  }
+
+  /* Step rail */
+  .step-rail.is-band-live::before {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--cluster-accent, var(--color-primary)) 45%,
+      transparent 100%
+    );
+    opacity: 0.55;
+    animation: site-rail-line 2.8s ease-in-out infinite;
+  }
+
+  .step-rail.is-band-live .step-rail__item.is-step-active .step-numeric {
+    transform: scale(1.08);
+    color: var(--cluster-accent, var(--color-primary));
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--cluster-accent-soft, var(--color-accent-soft)) 55%, white);
+  }
+
+  .step-rail.is-band-live .step-rail__item.is-step-active .step-rail__label {
+    color: var(--cluster-accent, var(--color-primary));
+  }
+
+  .step-rail.is-band-live .step-rail__item:not(.is-step-active) {
+    opacity: 0.55;
+  }
+
+  .step-rail.is-band-live .step-rail__item.is-step-active .step-rail__note {
+    color: color-mix(in srgb, var(--cluster-accent, var(--color-primary)) 72%, var(--color-text-secondary));
+  }
+
+  /* SEO SERP */
+  .seo-serp.is-band-live {
+    box-shadow: 0 22px 48px rgba(44, 51, 51, 0.1);
+  }
+
+  .seo-serp.is-band-live .seo-serp__dot {
+    animation: site-dot-pulse 1.8s ease-in-out infinite;
+  }
+
+  .seo-serp__query.is-typing::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 0.9em;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    background: var(--growth-violet);
+    animation: site-caret 0.65s step-end infinite;
+  }
+
+  .seo-serp.is-band-live .seo-serp__item.is-serp-focus {
+    transform: translateX(4px);
+    border-color: color-mix(in srgb, var(--growth-violet) 35%, var(--color-border-soft));
+    box-shadow: 0 10px 24px rgba(108, 91, 123, 0.12);
+  }
+
+  .seo-serp.is-band-live .seo-serp__item--you.is-serp-focus {
+    border-color: color-mix(in srgb, var(--growth-violet) 48%, var(--color-border-soft));
+  }
+
+  /* Workflow */
+  .workflow.is-workflow-live .workflow__wires path {
+    stroke-dasharray: 4 3;
+    animation: site-wf-dash 1.4s linear infinite;
+  }
+
+  .workflow.is-workflow-live .workflow__node.is-node-hot {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 44px rgba(94, 132, 140, 0.16);
+    border-color: color-mix(in srgb, var(--systems-steel) 42%, white);
+  }
+
+  .workflow.is-workflow-live .workflow__node--core.is-node-hot .workflow__pulse {
+    opacity: 1;
+    animation: wf-pulse 1.6s ease-out infinite;
+  }
+
+  /* Card cycle (use cases, team, bausteine, show cards) */
+  [data-motion-band='card-cycle'].is-band-live .is-motion-active:not(.show-card),
+  [data-motion-band='route-cards'].is-band-live .is-route-active {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lifted, 0 20px 44px rgba(44, 51, 51, 0.1));
+  }
+
+  [data-motion-band='card-cycle'].is-band-live .show-card.is-motion-active .show-card__media,
+  [data-motion-band='card-cycle'].is-band-live .addon-card.is-motion-active {
+    transform: translateY(-5px);
+    box-shadow: 0 22px 48px rgba(44, 51, 51, 0.12);
+    border-color: color-mix(in srgb, var(--cluster-accent, var(--color-primary)) 22%, var(--color-border-soft));
+  }
+
+  [data-motion-band='card-cycle'].is-band-live .baustein.is-motion-active {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 48px rgba(44, 51, 51, 0.1);
+  }
+
+  [data-motion-band='route-cards'].is-band-live .is-route-active .route-card__media img {
+    transform: scale(1.03);
+  }
+
+  /* Faktum demo */
+  [data-motion-band='faktum-demo'].is-band-live .brand-faktum__slot[data-state='active'] {
+    transform: scale(1.06);
+    box-shadow: 0 6px 16px rgba(44, 51, 51, 0.14);
+  }
+
+  [data-motion-band='faktum-demo'].is-band-live .brand-faktum__nav-link[data-active='true'] {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+}
+
+@keyframes site-rail-line {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes site-dot-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes site-caret {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes site-wf-dash {
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
+@keyframes site-bridge-glow {
+  0%,
+  100% {
+    opacity: 0.92;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step-rail.is-band-live::before,
+  .seo-serp.is-band-live .seo-serp__dot,
+  .workflow.is-workflow-live .workflow__wires path,
+  .workflow.is-workflow-live .workflow__node--core.is-node-hot .workflow__pulse,
+  [data-motion-band='bridge-glow'].is-band-live {
+    animation: none !important;
+  }
+}

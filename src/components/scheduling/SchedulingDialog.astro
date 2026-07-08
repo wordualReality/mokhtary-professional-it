@@ -1,0 +1,76 @@
+---
+/**
+ * @file src/components/scheduling/SchedulingDialog.astro
+ * @summary Globales Terminwahl-Panel (`#profil-terminwahl-dialog`) — wird von allen `href="#terminwahl"`-Links geöffnet.
+ */
+import { terminMailHref, schedulingGoogleCalendarUrl } from '../../data/profil-content';
+
+const hasGoogleBooking = schedulingGoogleCalendarUrl.length > 0;
+---
+
+<dialog
+  id="profil-terminwahl-dialog"
+  class="profil-scheduling-dialog schedule-details__panel schedule-details__panel--profil-flyout w-[min(calc(100vw-2rem),24rem)] max-h-[min(80vh,28rem)] overflow-hidden rounded-2xl border border-[var(--color-border-soft)] bg-white p-0 text-[var(--color-text-primary)] shadow-[0_24px_60px_rgba(44,51,51,0.14)]"
+  aria-labelledby="profil-scheduling-title"
+  aria-modal="true"
+>
+  <div class="flex items-center justify-between gap-3 border-b border-[var(--color-border-soft)] px-4 py-3">
+    <h2 id="profil-scheduling-title" class="text-sm font-semibold text-[var(--color-base-dark)]">Terminwahl</h2>
+    <button
+      type="button"
+      class="inline-flex shrink-0 items-center justify-center rounded-lg p-1.5 text-[var(--systems-steel)] transition-colors hover:bg-[var(--color-surface-light)] hover:text-[var(--color-base-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
+      aria-label="Terminwahl schließen"
+      data-scheduling-close
+      autofocus
+    >
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <path d="M4.5 4.5 13.5 13.5M13.5 4.5 4.5 13.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+      </svg>
+    </button>
+  </div>
+  <div class="max-h-[min(80vh-4.5rem,24rem)] overflow-y-auto p-4" role="region" aria-label="Terminwahl Inhalt">
+    <p class="schedule-details__lead text-sm leading-relaxed text-[var(--color-text-secondary)]">
+      {
+        hasGoogleBooking
+          ? 'Ein Slot für das Erstgespräch: Standard ist Google Meet (Link in der Google-Bestätigung). Telefon geht nach den Hinweisen auf der Buchungsseite — oder per kontakt@mokhtary.de bzw. Kontaktformular.'
+          : 'Sobald der Google-Terminplan verknüpft ist, können Sie dort ein Erstgespräch buchen (Meet; Telefon siehe Beschreibung auf der Buchungsseite). Bis dahin: kontakt@mokhtary.de oder das Kontaktformular.'
+      }
+    </p>
+    <ul class="schedule-details__channels mt-4" role="list">
+      <li class="schedule-details__channel">
+        <span class="schedule-details__channel-label">Erstgespräch buchen</span>
+        {
+          schedulingGoogleCalendarUrl ? (
+            <a
+              class="schedule-details__channel-link"
+              href={schedulingGoogleCalendarUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Google: Erstgespräch wählen (öffnet neues Fenster)"
+            >
+              Termin wählen
+            </a>
+          ) : (
+            <button
+              type="button"
+              class="schedule-details__channel-btn"
+              disabled
+              aria-disabled="true"
+              title="Link wird noch eingetragen — bis dahin E-Mail oder Formular"
+            >
+              Folgt
+            </button>
+          )
+        }
+      </li>
+      <li class="schedule-details__channel">
+        <span class="schedule-details__channel-label">Terminanfrage per E-Mail</span>
+        <a class="schedule-details__channel-link" href={terminMailHref}>E-Mail öffnen</a>
+      </li>
+      <li class="schedule-details__channel">
+        <span class="schedule-details__channel-label">Kontaktformular</span>
+        <a class="schedule-details__channel-link" href="#kontakt">Zum Formular</a>
+      </li>
+    </ul>
+  </div>
+</dialog>

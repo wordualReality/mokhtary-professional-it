@@ -1,0 +1,63 @@
+---
+/**
+ * @file src/components/profil/ProfilMockupFrame.astro
+ * @summary Browser-Chrome + interaktives Overlay über HeroMockupMedia (Profil-Sections).
+ */
+import HeroMockupMedia from '../ui/HeroMockupMedia.astro';
+import {
+  getProfilMockupFrame,
+  type ProfilMockupFrameId,
+} from '../../data/profil-mockup-frames';
+
+interface Props {
+  frameId: ProfilMockupFrameId;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+}
+
+const { frameId, loading = 'lazy', fetchpriority } = Astro.props;
+const frame = getProfilMockupFrame(frameId);
+---
+
+<figure
+  class="profil-mockup-frame"
+  data-prof-mockup-frame={frame.frameId}
+  data-prof-mockup-chrome-default={frame.chromeLabel}
+>
+  <div class="profil-mockup-frame__chrome" aria-hidden="true">
+    <span class="profil-mockup-frame__chrome-dots">
+      <span></span><span></span><span></span>
+    </span>
+    <span class="profil-mockup-frame__chrome-label">{frame.chromeLabel}</span>
+  </div>
+  <HeroMockupMedia
+    id={frame.mockupId}
+    class="profil-mockup-frame__media"
+    imgClass="profil-mockup-frame__img"
+    loading={loading}
+    fetchpriority={fetchpriority}
+  />
+  <div class="profil-mockup-frame__overlay" data-prof-mockup-overlay role="presentation">
+    <div class="profil-mockup-frame__chips">
+      {
+        frame.chips.map((chip) => (
+          <button
+            type="button"
+            class="profil-mockup-frame__chip"
+            data-prof-mockup-chip={chip.id}
+          >
+            {chip.label}
+          </button>
+        ))
+      }
+    </div>
+    {
+      frame.checks.map((label) => (
+        <button type="button" class="profil-mockup-frame__check-row" data-prof-mockup-check>
+          <span class="profil-mockup-frame__check-box" aria-hidden="true"></span>
+          <span class="profil-mockup-frame__check-label">{label}</span>
+        </button>
+      ))
+    }
+  </div>
+</figure>

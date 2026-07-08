@@ -1,0 +1,73 @@
+---
+/**
+ * @file src/components/profil/ProfilStakeholderSection.astro
+ * @summary C-Level & Stakeholder — zentrierter Head + Mockup, Text links / Bullets rechts.
+ */
+import { getProfilContent, type ProfilLocale } from '../../data/profil-content.locale';
+import ProfilMockupFrame from './ProfilMockupFrame.astro';
+
+interface Props {
+  locale?: ProfilLocale;
+}
+
+const { locale = 'de' } = Astro.props;
+const { stakeholderSection } = getProfilContent(locale);
+const { kicker, headline, subheadline, bullets } = stakeholderSection;
+---
+
+<section
+  id="stakeholder"
+  aria-labelledby="profil-stakeholder-heading"
+  class="profil-band profil-band--deck border-b border-[var(--color-border-soft)]"
+>
+  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+    <div class="profil-visual-stack">
+      <header class="profil-visual-stack__head" data-reveal>
+        <div class="profil-section-accent profil-visual-stack__head-accent" aria-hidden="true"></div>
+        <p class="text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-primary)]">
+          {kicker}
+        </p>
+        <h2
+          id="profil-stakeholder-heading"
+          class="mt-3 text-3xl font-semibold tracking-tight text-[var(--color-base-dark)] md:text-4xl"
+        >
+          {headline}
+        </h2>
+      </header>
+
+      <aside
+        class="profil-visual-stack__stage"
+        aria-label="Executive IT Strategic Alignment: KPI, Security und ROI"
+        data-reveal
+        data-reveal-delay="120"
+      >
+        <div class="profil-stakeholder__figure">
+          <ProfilMockupFrame frameId="stakeholder" loading="lazy" />
+        </div>
+      </aside>
+
+      <div
+        class="profil-visual-stack__deck-grid"
+        data-reveal
+        data-reveal-delay="200"
+      >
+        <p class="profil-visual-stack__deck-copy text-base leading-8 text-[var(--color-text-secondary)] md:text-lg">
+          {subheadline}
+        </p>
+        <ul
+          class="profile-project-bullets profil-visual-stack__deck-bullets list-none space-y-3 text-sm leading-relaxed text-[var(--color-text-secondary)] sm:text-base"
+          role="list"
+        >
+          {bullets.map(({ title, text }) => (
+            <li class="flex gap-2.5">
+              <span class="profile-project-bullets__dot mt-2 shrink-0" aria-hidden="true"></span>
+              <span>
+                <strong class="text-[var(--color-base-dark)]">{title}</strong> · {text}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

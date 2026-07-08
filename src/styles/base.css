@@ -1,0 +1,53 @@
+/**
+ * @file src/styles/base.css
+ * @summary Globale Element-Basis (Body, Links, Fokus) nach Tokens.
+ */
+
+/* ---------- Base ---------- */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  background-color: var(--color-background);
+}
+
+/* ---------- Reduced Motion: global entschaerfen ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .status-rotator__item,
+  .status-dot,
+  .marquee__viewport {
+    animation: none !important;
+  }
+
+  .status-rotator__item {
+    opacity: 1;
+    position: static;
+  }
+
+  .status-rotator__item:not(:first-child) {
+    display: none;
+  }
+}

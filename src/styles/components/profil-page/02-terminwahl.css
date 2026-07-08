@@ -1,0 +1,113 @@
+/* --- Terminwahl: natives <dialog id="profil-terminwahl-dialog"> (global, Top-Layer) --- */
+/*
+ * Geschlossene <dialog>-Elemente sind per UA-Stylesheet unsichtbar (display:none).
+ * Kein `display:flex` o. Ä. auf dem Basis-Selektor setzen — sonst wird der Dialog
+ * im Dokumentfluss sichtbar (z. B. am unteren Rand der Section) und bricht das Layout.
+ */
+
+dialog#profil-terminwahl-dialog.profil-scheduling-dialog {
+  border: none;
+  padding: 0;
+  color: inherit;
+  background: #fff;
+}
+
+dialog#profil-terminwahl-dialog.profil-scheduling-dialog:not([open]) {
+  display: none;
+}
+
+dialog#profil-terminwahl-dialog.profil-scheduling-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: min(calc(100vw - 2rem), 24rem);
+  max-width: min(calc(100vw - 2rem), 24rem);
+  max-height: min(80vh, 28rem);
+}
+
+dialog#profil-terminwahl-dialog.profil-scheduling-dialog[open]::backdrop {
+  background: rgba(44, 51, 51, 0.38);
+}
+
+/* Keyframes: Terminwahl-Dialog (nur Skalierung — Zentrierung über margin:auto) */
+
+@keyframes profil-sched-panel-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  dialog#profil-terminwahl-dialog.profil-scheduling-dialog[open] {
+    animation: profil-sched-panel-in 0.34s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+.schedule-details__lead {
+  margin: 0;
+}
+.schedule-details__channels {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.schedule-details__channel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.35rem 0.75rem;
+  align-items: center;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+.schedule-details__channel:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.schedule-details__channel-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-base-dark);
+  line-height: 1.35;
+}
+.schedule-details__channel-btn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-soft);
+  background: color-mix(in srgb, var(--color-surface-light) 80%, white);
+  color: var(--color-text-secondary);
+  cursor: not-allowed;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+.schedule-details__channel-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 35%, var(--color-border-soft));
+  background: white;
+  color: var(--color-primary);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+.schedule-details__channel-link:hover {
+  background: color-mix(in srgb, var(--systems-mint) 22%, white);
+  border-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-border-soft));
+}
+.schedule-details__channel-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

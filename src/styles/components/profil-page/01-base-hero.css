@@ -1,0 +1,614 @@
+/* --- Basis: Reveal-Override, Sektions-Akzent, Hero (Mockup, Signale) --- */
+
+/* Profil: kein CSS-Blur bei Scroll-Reveal (nur Opacity/Transform aus interactions.css). */
+.profil-page [data-reveal] {
+  filter: none !important;
+}
+
+.profil-page .profil-section-accent {
+  height: 3px;
+  max-width: 14rem;
+  margin-bottom: 2.25rem;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-primary) 70%, transparent) 0%,
+    color-mix(in srgb, var(--systems-steel) 48%, transparent) 60%,
+    transparent 100%
+  );
+  opacity: 0.88;
+}
+
+.profil-page .profil-hero__head-accent,
+.profil-page .profil-visual-stack__head-accent {
+  width: 14rem;
+  max-width: 100%;
+  flex-shrink: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--systems-steel) 40%, transparent) 28%,
+    color-mix(in srgb, var(--color-primary) 70%, transparent) 50%,
+    color-mix(in srgb, var(--systems-steel) 40%, transparent) 72%,
+    transparent 100%
+  );
+}
+
+.profil-hero__aside-frame {
+  position: relative;
+  padding-top: 14px;
+}
+
+/* Hero: zentriert oben (Head) → Mockup → Deck links/rechts */
+.profil-page .profil-hero__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .profil-page .profil-hero__stack {
+    gap: 3rem;
+  }
+}
+
+.profil-page .profil-hero__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profil-page .profil-hero__head-accent {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profil-page .profil-hero__lead {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 42rem;
+  margin: 0;
+}
+
+.profil-page .profil-hero__cta-row {
+  display: flex;
+  width: 100%;
+  max-width: 38rem;
+  justify-content: center;
+}
+
+.profil-page .profil-hero__stage {
+  width: 100%;
+  max-width: 38rem;
+}
+
+.profil-page .profil-hero__deck-grid {
+  display: grid;
+  gap: 2rem 2.5rem;
+  max-width: 56rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .profil-page .profil-hero__deck-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem 3rem;
+  }
+}
+
+.profil-page .profil-hero__deck-copy {
+  text-align: left;
+}
+
+.profil-page .profil-hero__deck-grid .profil-hero__deck-bullets {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  text-align: left;
+}
+
+.profil-hero__tilt-wrap {
+  width: 100%;
+}
+
+/* Ruhigeres Parallax als globales data-tilt (kein Wackeln mit Frame-Breathe). */
+.profil-page .profil-hero__tilt-wrap.tilt-scene {
+  perspective: none;
+  transform-style: flat;
+}
+
+/* Nur leichte Verschiebung — keine rotateY/X, sonst wirkt das JPG beim Hover weich. */
+.profil-page .profil-hero__tilt-wrap .tilt-scene__layer {
+  transform: translate3d(calc(var(--tx, 0) * 5px), calc(var(--ty, 0) * 4px), 0);
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: auto;
+}
+
+.profil-page .profil-hero__mock-chrome__label.is-chip-active {
+  color: color-mix(in srgb, var(--systems-mint) 55%, white);
+}
+.profil-hero__deck {
+  margin: 0;
+}
+
+/* Profil-Hero: keine vertikale 50%-Linie aus page-signature--decision (nur horizontales Raster). */
+.profil-page #profil-hero-section.page-signature--decision::before {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 38px,
+    rgba(57, 91, 100, 0.05) 38px,
+    rgba(57, 91, 100, 0.05) 39px
+  );
+  opacity: 0.8;
+}
+
+.profil-hero__deck-wrap {
+  width: 100%;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profil-page .profil-hero__deck-grid .profil-hero__deck-intro {
+  margin: 0;
+  max-width: none;
+}
+
+.profil-hero__deck-bullets {
+  margin: 0;
+  padding: 0;
+  max-width: 36rem;
+}
+.profil-hero__bracket {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  border-color: color-mix(in srgb, var(--systems-steel) 45%, transparent);
+  border-style: solid;
+  opacity: 0.65;
+}
+.profil-hero__bracket--tl {
+  top: 40px;
+  left: 2px;
+  border-width: 2px 0 0 2px;
+  border-radius: 2px 0 0 0;
+}
+.profil-hero__bracket--br {
+  bottom: 54px;
+  right: 2px;
+  border-width: 0 2px 2px 0;
+  border-radius: 0 0 2px 0;
+}
+.profil-hero__figure {
+  position: relative;
+  isolation: isolate;
+}
+.profil-hero__mock-overlay {
+  position: absolute;
+  right: 0.65rem;
+  bottom: 0.65rem;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: min(52%, 11.5rem);
+  padding: 0.55rem 0.6rem;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--color-base-dark) 90%, transparent);
+  border: 1px solid color-mix(in srgb, white 14%, transparent);
+  pointer-events: auto;
+}
+
+.profil-hero__mock-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.28rem;
+  margin-bottom: 0.15rem;
+}
+
+.profil-hero__mock-chip {
+  border: 1px solid color-mix(in srgb, white 22%, transparent);
+  border-radius: 999px;
+  padding: 0.12rem 0.42rem;
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, white 82%, var(--systems-mint));
+  background: color-mix(in srgb, white 8%, transparent);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.profil-hero__mock-chip.is-active,
+.profil-hero__mock-chip:hover {
+  border-color: color-mix(in srgb, var(--systems-mint) 55%, white);
+  background: color-mix(in srgb, var(--systems-mint) 28%, transparent);
+}
+
+.profil-hero__check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.2rem 0;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: color-mix(in srgb, white 88%, var(--systems-mint));
+}
+
+.profil-hero__check-box {
+  flex-shrink: 0;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 3px;
+  border: 1.5px solid color-mix(in srgb, white 55%, transparent);
+  background: transparent;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.profil-hero__check-row.is-done .profil-hero__check-box {
+  border-color: var(--systems-mint);
+  background: var(--systems-mint);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, white 35%, transparent);
+}
+
+.profil-hero__check-row.is-done .profil-hero__check-box::after {
+  content: '';
+  display: block;
+  width: 0.28rem;
+  height: 0.48rem;
+  margin: 0.05rem auto 0;
+  border-right: 1.5px solid white;
+  border-bottom: 1.5px solid white;
+  transform: rotate(42deg) translate(-1px, -1px);
+}
+
+.profil-hero__check-label {
+  font-size: 0.58rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.profil-hero__mock-chrome {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  height: 36px;
+  padding: 0 12px 0 10px;
+  border-radius: 28px 28px 0 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-base-dark) 94%, transparent) 0%,
+    color-mix(in srgb, var(--color-base-dark) 76%, transparent) 100%
+  );
+  border-bottom: 1px solid color-mix(in srgb, white 10%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, white 16%, transparent),
+    0 10px 22px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+.profil-hero__mock-chrome__dots {
+  display: flex;
+  gap: 5px;
+}
+.profil-hero__mock-chrome__dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: color-mix(in srgb, white 22%, transparent);
+  border: 1px solid color-mix(in srgb, white 35%, transparent);
+}
+.profil-hero__mock-chrome__dots span:nth-child(1) {
+  background: color-mix(in srgb, #e57373 70%, transparent);
+}
+.profil-hero__mock-chrome__dots span:nth-child(2) {
+  background: color-mix(in srgb, #f0c36d 75%, transparent);
+}
+.profil-hero__mock-chrome__dots span:nth-child(3) {
+  background: color-mix(in srgb, var(--systems-mint) 55%, transparent);
+}
+.profil-hero__mock-chrome__label {
+  flex: 1;
+  min-width: 0;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, white 78%, var(--systems-mint));
+  opacity: 0.92;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 0 color-mix(in srgb, black 35%, transparent);
+}
+.profil-hero__mock-img,
+.profil-hero__figure .arch-diagram,
+.profil-hero__figure .hero-mockup-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.profil-hero__figure .hero-mockup-media {
+  border-radius: inherit;
+}
+
+.profil-hero__figure .hero-mockup-media__poster,
+.profil-hero__figure .hero-mockup-media__video {
+  border-radius: inherit;
+}
+
+.profil-hero__figure .arch-diagram__stage {
+  border-radius: inherit;
+}
+
+/* Keyframes: Hero-Mockup (Chrome-Label) */
+
+@keyframes profil-mock-label-soft {
+  0%,
+  100% {
+    opacity: 0.88;
+    letter-spacing: 0.1em;
+  }
+  50% {
+    opacity: 0.96;
+    letter-spacing: 0.12em;
+  }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .profil-page .profil-hero__stage:hover .profil-hero__mock-chrome__label {
+    animation: profil-mock-label-soft 12s ease-in-out infinite;
+  }
+}
+
+@media (min-width: 1024px) {
+  .profil-hero__aside-frame {
+    transform: translate(0, 0);
+    transform-origin: center center;
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .profil-page .profil-hero__stage:hover .profil-hero__aside-frame,
+  .profil-page .profil-hero__stage.is-hero-live .profil-hero__aside-frame {
+    transform: translate(0, -3px);
+  }
+}
+
+.profil-page .profil-hero__stage .mockup-glow {
+  animation: none;
+  opacity: 0.52;
+  transition: opacity 0.4s ease;
+}
+
+@media (hover: hover) {
+  .profil-page .profil-hero__stage:hover .mockup-glow,
+  .profil-page .profil-hero__stage.is-hero-live .mockup-glow {
+    animation: mockupGlowPulse 7s ease-in-out infinite alternate;
+    opacity: 0.68;
+  }
+}
+
+@keyframes hero-mock-chip-pop {
+  0% {
+    transform: scale(0.96);
+  }
+  55% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.profil-hero__mock-chip.is-active {
+  animation: hero-mock-chip-pop 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.profil-hero__figure.is-hero-ready .profil-hero__mock-overlay {
+  animation: hero-overlay-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+@keyframes hero-overlay-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profil-hero__figure.is-hero-ready .profil-hero__check-row {
+  animation: hero-check-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.profil-hero__figure.is-hero-ready .profil-hero__check-row:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.profil-hero__figure.is-hero-ready .profil-hero__check-row:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+.profil-hero__figure.is-hero-ready .profil-hero__check-row:nth-child(4) {
+  animation-delay: 0.36s;
+}
+
+@keyframes hero-check-in {
+  from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.profil-hero-signals-wrap {
+  position: relative;
+  z-index: 1;
+}
+.profil-hero-signals {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  width: 100%;
+}
+.profil-hero-signals__item {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28rem;
+  padding: 0.2rem 0.45rem 0.2rem 0.28rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--systems-steel) 22%, var(--color-border-soft));
+  background: color-mix(in srgb, white 94%, var(--systems-mint));
+  box-shadow: 0 3px 10px rgba(44, 51, 51, 0.04);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  text-align: left;
+  min-width: 0;
+  max-width: 100%;
+}
+.profil-hero-signals__item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(44, 51, 51, 0.07);
+}
+.profil-page .profil-hero-signals__item {
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, white 94%, var(--systems-mint)) 0%,
+    white 55%,
+    color-mix(in srgb, white 96%, var(--systems-steel)) 100%
+  );
+  border-color: color-mix(in srgb, var(--systems-steel) 26%, var(--color-border-soft));
+  box-shadow:
+    0 3px 10px rgba(44, 51, 51, 0.042),
+    inset 0 1px 0 color-mix(in srgb, white 72%, transparent);
+}
+.profil-page .profil-hero-signals__item:hover {
+  box-shadow:
+    0 8px 18px rgba(44, 51, 51, 0.065),
+    inset 0 1px 0 color-mix(in srgb, white 85%, transparent);
+}
+.profil-hero-signals__glyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: white;
+  color: var(--color-primary);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 14%, var(--color-border-soft));
+  box-shadow: 0 2px 6px rgba(44, 51, 51, 0.05);
+}
+.profil-hero-signals__svg {
+  width: 13px;
+  height: 13px;
+}
+.profil-hero-signals__label {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-base-dark) 92%, var(--systems-steel));
+  line-height: 1.15;
+  padding: 0;
+  white-space: nowrap;
+}
+
+/* Hero CTA: Termin vs. sekundär (Gradients, Hover-Shift) */
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .profil-page .profil-hero__cta-row a.profil-hero__cta-primary.cta-lift:hover {
+    background-position: 100% 50%;
+  }
+  .profil-page .profil-hero__cta-row a.cta-lift:not(.profil-hero__cta-primary):hover {
+    background-position: 100% 50%;
+  }
+}
+
+.profil-page .profil-hero__cta-row a.profil-hero__cta-primary.cta-lift {
+  background-image: linear-gradient(
+    118deg,
+    color-mix(in srgb, var(--color-primary) 52%, var(--accent-teal-soft)) 0%,
+    var(--color-primary) 45%,
+    color-mix(in srgb, var(--color-primary-deep) 78%, var(--color-primary)) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease),
+    background-position 0.55s var(--motion-ease);
+}
+
+.profil-page .profil-hero__cta-row a.cta-lift:not(.profil-hero__cta-primary) {
+  background-image: linear-gradient(
+    125deg,
+    #fff 0%,
+    color-mix(in srgb, var(--systems-sage) 55%, white) 55%,
+    color-mix(in srgb, white 92%, var(--systems-mint)) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease),
+    background-color var(--motion-fast) var(--motion-ease),
+    background-position 0.55s var(--motion-ease);
+}
+
+/* Keyframes: Hero Signal-Chips */
+
+@keyframes profil-signal-soft {
+  0%,
+  100% {
+    opacity: 0.86;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .profil-page .profil-hero-signals__item {
+    animation: profil-signal-soft 5.5s ease-in-out infinite;
+  }
+  .profil-page .profil-hero-signals__item:nth-child(2) {
+    animation-delay: -0.9s;
+  }
+  .profil-page .profil-hero-signals__item:nth-child(3) {
+    animation-delay: -1.8s;
+  }
+  .profil-page .profil-hero-signals__item:nth-child(4) {
+    animation-delay: -2.7s;
+  }
+}
+

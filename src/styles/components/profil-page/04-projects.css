@@ -1,0 +1,780 @@
+/* --- Projekte: Sektion, Board-Panel (pp-*), Bullet-Liste --- */
+
+.profil-projects-section {
+  position: relative;
+  background: linear-gradient(
+    165deg,
+    #fff 0%,
+    color-mix(in srgb, var(--systems-mint) 8%, white) 40%,
+    #fff 100%
+  );
+}
+/* Grid für .profil-projects-layout: Tailwind in ProfilProjectsSection.astro */
+
+.profil-projects-layout__main {
+  min-width: 0;
+}
+.profil-projects-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 1024px) {
+  .profil-projects-aside {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+.profil-projects-aside__bullets {
+  margin: 0;
+  padding: 0;
+}
+.profil-projects-panel {
+  position: relative;
+  width: 100%;
+  border-radius: 24px;
+  border: 1px solid var(--color-border-soft);
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, white 91%, var(--systems-mint)) 0%,
+    white 58%,
+    color-mix(in srgb, white 95%, var(--systems-steel)) 100%
+  );
+  box-shadow: 0 22px 50px rgba(44, 51, 51, 0.08);
+  padding: 1.55rem 1.45rem 1.4rem;
+  overflow: hidden;
+}
+.profil-projects-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-primary) 60%, transparent),
+    color-mix(in srgb, var(--systems-mint) 55%, transparent)
+  );
+  opacity: 0.95;
+  pointer-events: none;
+}
+.profil-projects-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    72% 55% at 92% 8%,
+    color-mix(in srgb, var(--systems-mint) 16%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+.profil-projects-panel__eyebrow,
+.profil-projects-panel__flow,
+.profil-projects-panel__board,
+.profil-projects-panel__note {
+  position: relative;
+  z-index: 2;
+}
+.profil-projects-panel__eyebrow {
+  margin: 0.5rem 0 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--systems-steel);
+}
+.profil-projects-panel__flow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  margin-bottom: 1.35rem;
+  min-height: 2.1rem;
+}
+
+.pp-flow__dot {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  z-index: 2;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--systems-mint) 48%, white),
+    0 4px 12px rgba(44, 51, 51, 0.16);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition:
+    left 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.profil-projects-panel__flow.is-flow-live .pp-flow__dot {
+  opacity: 1;
+}
+
+.profil-projects-panel__flow[data-pp-flow-index='0'] .pp-flow__dot {
+  left: 10%;
+}
+
+.profil-projects-panel__flow[data-pp-flow-index='1'] .pp-flow__dot {
+  left: 36%;
+}
+
+.profil-projects-panel__flow[data-pp-flow-index='2'] .pp-flow__dot {
+  left: 62%;
+}
+
+.profil-projects-panel__flow[data-pp-flow-index='3'] .pp-flow__dot {
+  left: 88%;
+}
+
+.pp-flow__node {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  min-width: 2.35rem;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-soft);
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-base-dark);
+  background: white;
+  box-shadow: 0 3px 10px rgba(44, 51, 51, 0.06);
+  cursor: pointer;
+  outline: none;
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.22s ease,
+    color 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.28s ease;
+}
+
+.pp-flow__node:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 55%, white);
+  outline-offset: 2px;
+}
+
+.pp-flow__node--accent {
+  color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-primary) 32%, var(--color-border-soft));
+  background: color-mix(in srgb, var(--systems-mint) 18%, white);
+}
+
+.pp-flow__segment {
+  flex: 1;
+  height: 3px;
+  min-width: 0.35rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-border-soft) 72%, white);
+  overflow: hidden;
+}
+
+.pp-flow__segment-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-primary) 55%, var(--systems-mint)),
+    color-mix(in srgb, var(--systems-mint) 48%, var(--color-primary))
+  );
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.profil-projects-panel__flow[data-pp-flow-index='1'] .pp-flow__segment:nth-child(3) .pp-flow__segment-fill,
+.profil-projects-panel__flow[data-pp-flow-index='2'] .pp-flow__segment:nth-child(3) .pp-flow__segment-fill,
+.profil-projects-panel__flow[data-pp-flow-index='3'] .pp-flow__segment:nth-child(3) .pp-flow__segment-fill {
+  transform: scaleX(1);
+}
+
+.profil-projects-panel__flow[data-pp-flow-index='2'] .pp-flow__segment:nth-child(5) .pp-flow__segment-fill,
+.profil-projects-panel__flow[data-pp-flow-index='3'] .pp-flow__segment:nth-child(5) .pp-flow__segment-fill {
+  transform: scaleX(1);
+}
+
+.profil-projects-panel__flow[data-pp-flow-index='3'] .pp-flow__segment:nth-child(7) .pp-flow__segment-fill {
+  transform: scaleX(1);
+}
+
+.pp-flow__node.is-done {
+  color: var(--systems-steel);
+  border-color: color-mix(in srgb, var(--systems-steel) 28%, var(--color-border-soft));
+  background: color-mix(in srgb, white 92%, var(--systems-mint));
+}
+
+.pp-flow__node.is-done::after {
+  content: '';
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  width: 4px;
+  height: 7px;
+  border-right: 1.5px solid var(--systems-mint);
+  border-bottom: 1.5px solid var(--systems-mint);
+  transform: rotate(42deg);
+  opacity: 0.85;
+}
+.profil-projects-panel__board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-bottom: 1.05rem;
+}
+.pp-board__lane {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+  min-width: 0;
+}
+.pp-board__cap {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--systems-steel) 88%, var(--color-base-dark));
+  text-align: center;
+  line-height: 1.2;
+}
+.pp-board__card,
+.pp-board__card-btn {
+  border-radius: 12px;
+  min-height: 58px;
+  border: 1px dashed color-mix(in srgb, var(--systems-steel) 38%, var(--color-border-soft));
+  background: color-mix(in srgb, white 90%, var(--systems-mint));
+}
+
+.pp-board__card-btn {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.25s ease;
+  outline: none;
+}
+
+.pp-board__card-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 55%, white);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .pp-board__card-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(44, 51, 51, 0.1);
+  }
+}
+
+.pp-board__card-btn.is-active {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--color-primary) 42%, var(--color-border-soft));
+  box-shadow: 0 14px 32px rgba(44, 51, 51, 0.12);
+}
+
+.pp-board__stub.is-pulsing span {
+  animation: pp-stub-pulse 0.85s ease;
+}
+
+@keyframes pp-stub-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.pp-flow__node.is-active {
+  z-index: 3;
+  color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-primary) 38%, var(--color-border-soft));
+  background: color-mix(in srgb, var(--systems-mint) 22%, white);
+  box-shadow: 0 6px 16px rgba(44, 51, 51, 0.1);
+}
+
+.profil-projects-panel__flow.is-flow-live .pp-flow__node.is-active {
+  animation: pp-flow-node-pop 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes pp-flow-node-pop {
+  0% {
+    transform: scale(0.94);
+  }
+  55% {
+    transform: scale(1.07);
+  }
+  100% {
+    transform: scale(1.06);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .profil-projects-panel--motion:hover,
+  .profil-projects-panel--motion.is-active {
+    animation: profil-panel-breathe 7s ease-in-out infinite;
+  }
+}
+.pp-board__card--ghost {
+  opacity: 0.42;
+  min-height: 48px;
+}
+.pp-board__card--backlog {
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--systems-steel) 32%, var(--color-border-soft));
+  background: color-mix(in srgb, white 94%, var(--systems-mint));
+  padding: 8px 8px 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: stretch;
+  min-height: 58px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, white 55%, transparent);
+}
+.pp-board__chip {
+  align-self: flex-start;
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, white 88%, var(--systems-steel));
+  border: 1px solid color-mix(in srgb, var(--systems-steel) 26%, var(--color-border-soft));
+  color: color-mix(in srgb, var(--systems-steel) 86%, var(--color-base-dark));
+}
+.pp-board__chip--scope {
+  background: color-mix(in srgb, var(--systems-mint) 24%, white);
+  border-color: color-mix(in srgb, var(--color-primary) 26%, var(--color-border-soft));
+  color: color-mix(in srgb, var(--color-primary) 92%, var(--color-base-dark));
+}
+.pp-board__chip--uat {
+  background: color-mix(in srgb, white 82%, var(--systems-mint));
+  border-color: color-mix(in srgb, var(--color-primary) 34%, var(--systems-mint));
+  color: color-mix(in srgb, var(--color-primary) 88%, var(--systems-steel));
+}
+.pp-board__stub {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.pp-board__stub span {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--systems-steel) 22%, var(--color-border-soft));
+}
+.pp-board__stub span:nth-child(1) {
+  width: 100%;
+}
+.pp-board__stub span:nth-child(2) {
+  width: 72%;
+}
+.pp-board__stub span:nth-child(3) {
+  width: 48%;
+}
+.pp-board__meta {
+  font-size: 0.52rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: 0.01em;
+  color: color-mix(in srgb, var(--systems-steel) 62%, var(--color-text-secondary));
+  padding-top: 1px;
+}
+.pp-board__meta--on-accent {
+  color: color-mix(in srgb, var(--color-primary) 38%, var(--systems-steel));
+}
+.pp-board__card--solid {
+  border-style: solid;
+  border-color: var(--color-border-soft);
+  background: white;
+  box-shadow: 0 5px 14px rgba(44, 51, 51, 0.07);
+  padding: 8px 8px 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: stretch;
+  min-height: 58px;
+}
+.pp-board__stub--solid span {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--systems-steel) 24%, var(--color-border-soft));
+}
+.pp-board__stub--solid span:nth-child(1) {
+  width: 100%;
+}
+.pp-board__stub--solid span:nth-child(2) {
+  width: 78%;
+}
+.pp-board__stub--solid span:nth-child(3) {
+  width: 52%;
+}
+.pp-board__card--accent {
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--color-primary) 30%, var(--color-border-soft));
+  background: color-mix(in srgb, var(--systems-mint) 14%, white);
+  padding: 8px 8px 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: stretch;
+  min-height: 58px;
+  justify-content: flex-start;
+}
+.pp-board__stub--uat span {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--color-primary) 48%, var(--systems-mint));
+}
+.pp-board__stub--uat span:nth-child(1) {
+  width: 100%;
+}
+.pp-board__stub--uat span:nth-child(2) {
+  width: 82%;
+}
+.pp-board__stub--uat span:nth-child(3) {
+  width: 58%;
+}
+.profil-projects-panel__note {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+  text-align: center;
+  font-weight: 500;
+}
+.profile-project-bullets__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-primary) 72%, white),
+    color-mix(in srgb, var(--systems-steel) 52%, white)
+  );
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+
+.profil-page .profil-band--sage {
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--systems-sage) 92%, white) 0%,
+    #fff 52%,
+    color-mix(in srgb, var(--color-surface-light) 45%, white) 100%
+  );
+}
+.profil-page .profil-band--deck {
+  background: linear-gradient(
+    185deg,
+    color-mix(in srgb, var(--color-surface-light) 55%, white) 0%,
+    color-mix(in srgb, var(--systems-sage) 40%, white) 48%,
+    #fff 100%
+  );
+}
+.profil-page .profil-band--work {
+  background: linear-gradient(
+    180deg,
+    #fff 0%,
+    color-mix(in srgb, var(--systems-mint) 14%, var(--systems-sage)) 100%
+  );
+}
+.profil-page .profil-band--insights {
+  background: linear-gradient(
+    160deg,
+    #fff 0%,
+    color-mix(in srgb, var(--systems-sage) 55%, white) 100%
+  );
+}
+.profil-page .profile-skill-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  padding: 1.35rem 1.4rem 1.25rem;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--systems-steel) 22%, var(--color-border-soft));
+  background: linear-gradient(
+    168deg,
+    #fff 0%,
+    color-mix(in srgb, var(--systems-mint) 9%, white) 46%,
+    color-mix(in srgb, var(--color-surface-light) 38%, white) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, white 72%, transparent),
+    0 14px 36px rgba(44, 51, 51, 0.06);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+}
+.profil-page .profile-skill-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 1.15rem;
+  right: 1.15rem;
+  height: 2px;
+  border-radius: 2px;
+  z-index: 2;
+  opacity: 0.4;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-primary) 38%, transparent),
+    transparent
+  );
+}
+.profil-page .profile-skill-block::after {
+  content: '';
+  position: absolute;
+  inset: -45% -25%;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse 70% 55% at 85% 0%,
+    color-mix(in srgb, white 58%, transparent),
+    transparent 68%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.55s ease;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .profil-page .profile-skill-block:hover .profile-skill-block__viz,
+  .profil-page .profile-skill-block.is-active .profile-skill-block__viz {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(44, 51, 51, 0.08);
+  }
+  .profil-page .profile-skill-block:hover::after {
+    opacity: 0.45;
+  }
+}
+.profil-page .profile-timeline {
+  --timeline-fill: 50%;
+}
+
+.profil-page .profile-timeline::before {
+  width: 3px;
+  transform-origin: top center;
+  transform: scaleY(0);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-primary) 58%, var(--systems-mint)) 0%,
+    color-mix(in srgb, var(--color-primary) 58%, var(--systems-mint)) var(--timeline-fill),
+    color-mix(in srgb, var(--systems-steel) 55%, var(--color-border-soft)) var(--timeline-fill),
+    color-mix(in srgb, var(--systems-steel) 55%, var(--color-border-soft)) 100%
+  );
+  transition:
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.45s ease;
+}
+
+.profil-page .profile-timeline.is-line-drawn::before {
+  transform: scaleY(1);
+}
+
+.profil-page .profile-timeline__marker {
+  border-color: color-mix(in srgb, var(--color-primary) 38%, var(--systems-steel));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--systems-mint) 48%, white);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.35s ease;
+}
+
+.profil-page .profile-timeline__item.is-active .profile-timeline__marker,
+.profil-page .profile-timeline__item:hover .profile-timeline__marker,
+.profil-page .profile-timeline__item:focus-visible .profile-timeline__marker {
+  transform: scale(1.12);
+  background: color-mix(in srgb, var(--color-primary) 82%, white);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--systems-mint) 55%, white);
+}
+
+.profil-page .profile-timeline__item.is-active .profile-timeline__content,
+.profil-page .profile-timeline__item:hover .profile-timeline__content {
+  transform: translateX(4px);
+  background: color-mix(in srgb, var(--systems-mint) 12%, white);
+}
+
+.profil-page .profile-timeline__item.is-active .profile-timeline__kicker,
+.profil-page .profile-timeline__item:hover .profile-timeline__kicker {
+  color: var(--color-primary);
+}
+
+.profil-page .profile-timeline__item.is-active .profile-timeline__title {
+  color: color-mix(in srgb, var(--color-primary) 88%, var(--color-base-dark));
+}
+
+@keyframes profil-timeline-marker-pop {
+  0% {
+    transform: scale(0.92);
+  }
+  55% {
+    transform: scale(1.14);
+  }
+  100% {
+    transform: scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .profil-page .profile-timeline__item.is-active .profile-timeline__marker {
+    animation: profil-timeline-marker-pop 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* Bio-Section: Mockup-Frame im Visual-Stack */
+.profil-page .profil-bio__figure {
+  margin: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--color-border-soft);
+  box-shadow: 0 18px 44px rgba(44, 51, 51, 0.08);
+  background: #f8f6ef;
+  aspect-ratio: 1024 / 571;
+  width: 100%;
+}
+
+.profil-page .profil-bio__mockup {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.profil-page .profil-bio__image,
+.profil-page .profil-bio__mockup .hero-mockup-media__poster,
+.profil-page .profil-bio__mockup .hero-mockup-media__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* Kanban: klickbare Karten, Flow-Highlight, Panel on-demand */
+.pp-board__card-btn {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.pp-board__card-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 55%, white);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .pp-board__card-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(44, 51, 51, 0.12);
+  }
+}
+
+.pp-board__card-btn.is-active {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--color-primary) 42%, var(--color-border-soft)) !important;
+  box-shadow: 0 12px 26px rgba(44, 51, 51, 0.14);
+}
+
+.profil-page--reduced-ui .pp-board__card-btn:hover,
+.profil-page--reduced-ui .pp-board__card-btn.is-active {
+  transform: none;
+}
+
+.pp-flow__node {
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.pp-flow__node.is-active {
+  transform: scale(1.06);
+}
+
+.pp-flow__node--accent.is-active {
+  background: color-mix(in srgb, var(--systems-mint) 26%, white);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pp-board__card-btn.is-active .pp-board__stub span {
+    animation: pp-stub-pulse 1.4s ease-in-out infinite;
+  }
+
+  .pp-board__card-btn.is-active .pp-board__stub span:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+
+  .pp-board__card-btn.is-active .pp-board__stub span:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+}
+
+@keyframes pp-stub-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Panel: keine Dauer-Loops — nur Hover/Active */
+.profil-page .profil-projects-panel--motion {
+  animation: none;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+@media (hover: hover) {
+  .profil-page .profil-projects-panel--motion:hover,
+  .profil-page .profil-projects-panel--motion.is-active {
+    transform: translateY(-4px);
+    box-shadow: 0 26px 56px rgba(44, 51, 51, 0.11);
+  }
+}

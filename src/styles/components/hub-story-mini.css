@@ -1,0 +1,47 @@
+/**
+ * @file src/styles/components/hub-story-mini.css
+ * @summary Kompakte Hub-Story-Mocks (SERP / Workflow).
+ */
+
+.hub-story-mini.seo-serp {
+  max-width: 28rem;
+  margin-top: 2rem;
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  background: white;
+  border: 1px solid var(--color-border-soft);
+  box-shadow: 0 18px 40px rgba(44, 51, 51, 0.08);
+}
+
+.hub-story-mini.workflow--mini {
+  max-width: 32rem;
+  margin-top: 2rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
+  border-radius: 18px;
+  background: white;
+  border: 1px solid var(--color-border-soft);
+  box-shadow: 0 18px 40px rgba(44, 51, 51, 0.08);
+}
+
+.hub-story-mini.workflow--mini .workflow__node {
+  padding: 0.65rem 0.5rem;
+}
+
+.hub-story-mini.workflow--mini .workflow__title {
+  font-size: 0.78rem;
+}
+
+.hub-story-mini .seo-serp__item {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .hub-story-mini.workflow--mini {
+    grid-template-columns: 1fr;
+  }
+  .hub-story-mini.workflow--mini .workflow__wires {
+    display: none;
+  }
+}

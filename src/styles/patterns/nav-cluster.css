@@ -1,0 +1,65 @@
+/**
+ * @file src/styles/patterns/nav-cluster.css
+ * @summary Wiederverwendbares Layout-/Deko-Pattern: nav-cluster.
+ */
+
+/* ---------- Navigation (Disclosure-Pattern) ---------- */
+
+.nav-cluster {
+  position: relative;
+}
+
+.nav-cluster__shell {
+  /* Visuelle Klammer um Link + Toggle, damit beide wie ein Pill wirken,
+   * obwohl es semantisch zwei Klickziele sind. */
+  transition: background-color var(--motion-fast) var(--motion-ease);
+}
+
+.nav-cluster__chev {
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+
+.nav-cluster__btn[aria-expanded="true"] .nav-cluster__chev {
+  transform: rotate(180deg);
+}
+
+.nav-cluster__btn[aria-expanded="true"],
+.nav-cluster:has(.nav-cluster__btn[aria-expanded="true"]) .nav-cluster__link {
+  background: var(--color-surface-light);
+  color: var(--color-base-dark);
+}
+
+/* ---------- Aktiv-Zustand: Cluster-Dot leuchtet, kein Strich ---------- */
+
+.nav-cluster[data-active="true"] .nav-cluster__link {
+  color: var(--color-base-dark);
+}
+
+.nav-cluster[data-active="true"] .nav-cluster__dot {
+  /* Dot wird kraeftiger und bekommt einen weichen Halo,
+   * statt der frueheren box-shadow-Underline. */
+  transform: scale(1.4);
+  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 0%, transparent),
+              0 0 8px 1px color-mix(in srgb, var(--color-primary) 28%, transparent);
+}
+
+.nav-cluster__dot {
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease);
+}
+
+/* ---------- Panel ---------- */
+
+.nav-cluster__panel {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+.nav-cluster__panel:not([hidden]) {
+  opacity: 1;
+  transform: translateY(0);
+}

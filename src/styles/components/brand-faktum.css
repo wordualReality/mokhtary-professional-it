@@ -1,0 +1,1776 @@
+/**
+ * @file src/styles/components/brand-faktum.css
+ * @summary Komponenten-Styles für: brand faktum.
+ */
+
+/* ---------- Brand: Faktum (Demo-Marke fuer Steuerberatung) ----------
+ * Eigenstaendige Brand-Welt, isoliert vom Mokhtary-System.
+ * Editorial-Layout, Serif-Typografie, ruhige Atmosphaere.
+ * Aktivierung ueber .brand-faktum auf einem Wrapper.
+ */
+
+.brand-faktum {
+  --bf-deep: #1a2e4a;
+  --bf-mid: #2d4870;
+  --bf-soft: #6e84a0;
+  --bf-sand: #e8e1d4;
+  --bf-cream: #f6f1e8;
+  --bf-paper: #fcfaf6;
+  --bf-ink: #0f1d30;
+  --bf-text-muted: #5a6878;
+  --bf-border: #d9d4c8;
+  --bf-border-strong: #b6ad9c;
+
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--bf-ink);
+}
+
+.brand-faktum__site {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: var(--bf-paper);
+  height: 100%;
+  min-height: 460px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- Atmosphaere: Hamburger Hafenkante als Linien-Silhouette ---- */
+.brand-faktum__site::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 110px;
+  background-image:
+    /* Wasser-Reflexion */
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--bf-deep) 8%, transparent) 100%
+    ),
+    /* Skyline-Silhouette */
+    radial-gradient(60% 80% at 12% 100%, color-mix(in srgb, var(--bf-deep) 18%, transparent) 0%, transparent 70%),
+    radial-gradient(40% 90% at 32% 100%, color-mix(in srgb, var(--bf-deep) 22%, transparent) 0%, transparent 70%),
+    radial-gradient(45% 70% at 58% 100%, color-mix(in srgb, var(--bf-deep) 16%, transparent) 0%, transparent 70%),
+    radial-gradient(35% 85% at 78% 100%, color-mix(in srgb, var(--bf-deep) 20%, transparent) 0%, transparent 70%),
+    radial-gradient(40% 75% at 92% 100%, color-mix(in srgb, var(--bf-deep) 14%, transparent) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  animation: faktumWaterShimmer 14s ease-in-out infinite alternate;
+}
+
+/* Goldenes Lichtspiel als zweite Atmosphaere */
+.brand-faktum__site::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -20%;
+  width: 80%;
+  height: 70%;
+  background: radial-gradient(
+    50% 60% at 50% 30%,
+    color-mix(in srgb, var(--bf-sand) 70%, transparent) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(20px);
+  animation: faktumLightDrift 24s ease-in-out infinite alternate;
+}
+
+@keyframes faktumWaterShimmer {
+  0% { transform: translateX(0) scaleY(1); opacity: 0.85; }
+  100% { transform: translateX(-12px) scaleY(1.05); opacity: 1; }
+}
+
+@keyframes faktumLightDrift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-40px, 20px) scale(1.12); }
+}
+
+/* ---- Top-Nav: Editorial-Klassik ---- */
+.brand-faktum__nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 36px;
+  border-bottom: 1px solid color-mix(in srgb, var(--bf-deep) 12%, transparent);
+  background: rgba(252, 250, 246, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.brand-faktum__brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.brand-faktum__brand-name {
+  font-family: ui-serif, "Iowan Old Style", "Apple Garamond", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  color: var(--bf-deep);
+}
+
+.brand-faktum__brand-sub {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bf-soft);
+  border-left: 1px solid var(--bf-border-strong);
+  padding-left: 12px;
+}
+
+.brand-faktum__nav-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.875rem;
+  color: var(--bf-text-muted);
+  font-weight: 400;
+}
+
+.brand-faktum__nav-link {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  position: relative;
+}
+
+.brand-faktum__nav-link[data-active="true"] {
+  color: var(--bf-deep);
+  font-weight: 500;
+}
+
+.brand-faktum__nav-link[data-active="true"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 1px;
+  background: var(--bf-deep);
+}
+
+.brand-faktum__nav-link:focus-visible {
+  outline: 2px solid var(--bf-deep);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.brand-faktum__nav-cta {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--bf-cream);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: 4px;
+  padding: 0.55rem 1.15rem;
+  background: var(--bf-deep);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 8px 24px -8px rgba(26, 46, 74, 0.35);
+}
+
+.brand-faktum__nav-cta:hover {
+  background: var(--bf-mid);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -8px rgba(26, 46, 74, 0.4);
+}
+
+.brand-faktum__nav-cta:focus-visible {
+  outline: 2px solid var(--bf-deep);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ---- Main + Seitenpanels ---- */
+.brand-faktum__main {
+  position: relative;
+  z-index: 2;
+  min-height: 360px;
+}
+
+.brand-faktum__page {
+  animation: faktumPageIn 0.38s ease;
+}
+
+.brand-faktum__page[hidden] {
+  display: none;
+}
+
+@keyframes faktumPageIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Hero: Editorial gross ---- */
+.brand-faktum__hero {
+  position: relative;
+  z-index: 2;
+  padding: 72px 48px 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.brand-faktum__hero-visual {
+  position: relative;
+  min-height: 420px;
+}
+
+.brand-faktum__hero-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--bf-border-strong);
+  box-shadow: 0 28px 64px -20px rgba(15, 29, 48, 0.22);
+}
+
+.brand-faktum__hero-appointment {
+  position: absolute;
+  right: -1rem;
+  bottom: -1.5rem;
+  left: 1.5rem;
+  z-index: 2;
+}
+
+.brand-faktum--full .brand-faktum__hero-appointment .brand-faktum__appointment {
+  margin: 0;
+  backdrop-filter: blur(8px);
+  background: color-mix(in srgb, var(--bf-cream) 94%, white);
+}
+
+.brand-faktum__kicker {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bf-mid);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-faktum__kicker::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--bf-mid);
+}
+
+.brand-faktum__headline {
+  margin-top: 22px;
+  font-family: ui-serif, "Iowan Old Style", Georgia, serif;
+  font-size: clamp(1.9rem, 4.2vw, 2.8rem);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: var(--bf-ink);
+}
+
+.brand-faktum--full .brand-faktum__headline {
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+}
+
+.brand-faktum__headline em {
+  font-style: italic;
+  color: var(--bf-mid);
+  font-weight: 400;
+}
+
+.brand-faktum__lede {
+  margin-top: 24px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--bf-text-muted);
+  max-width: 42ch;
+  font-weight: 400;
+}
+
+.brand-faktum__claim {
+  margin-top: 18px;
+  font-family: ui-serif, Georgia, serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: var(--bf-mid);
+}
+
+.brand-faktum__signature {
+  margin-top: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: ui-serif, Georgia, serif;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--bf-mid);
+}
+
+.brand-faktum__signature-line {
+  width: 40px;
+  height: 1px;
+  background: var(--bf-border-strong);
+}
+
+/* ---- Right-side Editorial-Karte: Termine ---- */
+.brand-faktum__appointment {
+  background: var(--bf-cream);
+  border: 1px solid var(--bf-border-strong);
+  border-radius: 6px;
+  padding: 28px 30px;
+  position: relative;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 28px 56px -16px rgba(15, 29, 48, 0.16);
+}
+
+.brand-faktum__appointment-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bf-mid);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-faktum__appointment-label::after {
+  content: "MO · DO";
+  font-weight: 400;
+  color: var(--bf-soft);
+  letter-spacing: 0.16em;
+}
+
+.brand-faktum__appointment-title {
+  margin-top: 14px;
+  font-family: ui-serif, "Iowan Old Style", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--bf-deep);
+  line-height: 1.25;
+}
+
+.brand-faktum__appointment-meta {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: var(--bf-text-muted);
+  line-height: 1.55;
+}
+
+.brand-faktum__slots {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--bf-border-strong);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.brand-faktum__slot {
+  appearance: none;
+  text-align: center;
+  padding: 12px 6px;
+  border-radius: 4px;
+  background: var(--bf-paper);
+  border: 1px solid var(--bf-border);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.8125rem;
+  color: var(--bf-mid);
+  position: relative;
+  cursor: pointer;
+  transition: background 220ms ease, color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.brand-faktum__slot:focus-visible {
+  outline: 2px solid var(--bf-deep);
+  outline-offset: 2px;
+}
+
+.brand-faktum__slot[aria-disabled="true"] {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.brand-faktum__slot[data-state="taken"] {
+  color: var(--bf-soft);
+  text-decoration: line-through;
+  text-decoration-color: var(--bf-soft);
+  background: color-mix(in srgb, var(--bf-paper) 60%, var(--bf-cream));
+}
+
+.brand-faktum__slot[data-state="active"] {
+  background: var(--bf-deep);
+  color: var(--bf-cream);
+  border-color: var(--bf-deep);
+  font-weight: 600;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--bf-deep) 18%, transparent);
+}
+
+.brand-faktum__appointment-cta {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 0.74rem;
+  color: var(--bf-deep);
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.brand-faktum__appointment-cta:focus-visible {
+  outline: 2px solid var(--bf-deep);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.brand-faktum__appointment-cta-arrow {
+  font-family: ui-serif, Georgia, serif;
+  font-size: 0.95rem;
+  transition: transform 240ms ease;
+}
+
+/* ---- Unterseiten: Kanzlei, Leistungen, Hamburg ---- */
+.brand-faktum__subpage-grid {
+  padding: 56px 48px 88px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.95fr);
+  gap: 48px;
+  align-items: start;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.brand-faktum__blocks {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.brand-faktum__block {
+  padding: 18px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--bf-border);
+  background: color-mix(in srgb, var(--bf-paper) 88%, var(--bf-cream));
+}
+
+.brand-faktum__block--featured {
+  grid-column: 1 / -1;
+  padding: 24px 26px;
+  background: var(--bf-cream);
+  border-color: var(--bf-border-strong);
+  box-shadow: 0 12px 32px -16px rgba(15, 29, 48, 0.1);
+}
+
+.brand-faktum__block-title {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--bf-deep);
+}
+
+.brand-faktum__block-body {
+  margin: 8px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--bf-text-muted);
+}
+
+.brand-faktum__aside {
+  background: var(--bf-cream);
+  border: 1px solid var(--bf-border-strong);
+  border-radius: 6px;
+  padding: 28px 30px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 28px 56px -16px rgba(15, 29, 48, 0.14);
+}
+
+.brand-faktum__aside-icons {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--bf-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.brand-faktum__aside-icon {
+  font-size: 0.8125rem;
+  color: var(--bf-text-muted);
+  padding-left: 1.35rem;
+  position: relative;
+}
+
+.brand-faktum__aside-icon::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--bf-mid);
+}
+
+/* ---- Hover-Lebenszeichen: Karte hebt sich, Slot pulsiert ---- */
+.browser-frame:hover .brand-faktum__appointment {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 32px 56px -18px rgba(15, 29, 48, 0.18);
+  transition: transform 320ms ease, box-shadow 320ms ease;
+}
+
+.browser-frame:hover .brand-faktum__appointment-cta-arrow,
+.brand-faktum__appointment-cta:hover .brand-faktum__appointment-cta-arrow {
+  transform: translateX(4px);
+}
+
+.browser-frame .brand-faktum__slot[data-state="active"] {
+  animation: faktumSlotPulse 3.6s ease-in-out infinite;
+}
+
+@keyframes faktumSlotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(26, 46, 74, 0); }
+  50% { box-shadow: 0 0 0 5px rgba(26, 46, 74, 0.12); }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 880px) {
+  .brand-faktum__nav-toggle {
+    display: inline-flex;
+    appearance: none;
+    border: 1px solid var(--bf-border);
+    background: white;
+    border-radius: 8px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.72rem;
+    cursor: pointer;
+  }
+
+  .brand-faktum__nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: rgba(252, 250, 246, 0.98);
+    border-bottom: 1px solid var(--bf-border);
+    z-index: 5;
+  }
+
+  .brand-faktum__nav-menu.is-open {
+    display: flex;
+  }
+
+  .brand-faktum__nav-links {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .brand-faktum__nav {
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .brand-faktum__hero,
+  .brand-faktum__subpage-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 36px 24px 60px;
+  }
+  .brand-faktum__nav { padding: 16px 22px; }
+  .brand-faktum__brand-sub { display: none; }
+}
+
+@media (min-width: 881px) {
+  .brand-faktum__nav-toggle {
+    display: none;
+  }
+
+  .brand-faktum__nav-menu {
+    display: contents;
+  }
+
+  .brand-faktum__nav-portal {
+    font-size: 0.72rem;
+    color: var(--bf-mid);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .brand-faktum__nav-portal:hover {
+    border-bottom-color: var(--bf-deep);
+  }
+}
+
+/* ---- Full-Mode + Wizard + Trust ---- */
+.brand-faktum--full .brand-faktum__site {
+  min-height: auto;
+  overflow: visible;
+}
+
+.brand-faktum--full .brand-faktum__main {
+  min-height: auto;
+}
+
+.brand-faktum__hero-copy {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-faktum__trust {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: flex;
+  gap: 1.25rem;
+}
+
+.brand-faktum__trust-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.brand-faktum__trust-value {
+  font-family: ui-serif, Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--bf-deep);
+}
+
+.brand-faktum__trust-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bf-soft);
+}
+
+.brand-faktum__wizard-loading {
+  font-size: 0.72rem;
+  color: var(--bf-text-muted);
+  grid-column: 1 / -1;
+}
+
+.brand-faktum__wizard-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.brand-faktum__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.brand-faktum__field-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bf-soft);
+}
+
+.brand-faktum__field-input {
+  padding: 0.65rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--bf-border);
+  background: white;
+  font: inherit;
+  font-size: 0.875rem;
+}
+
+.brand-faktum__format-toggles {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.brand-faktum__format-toggle {
+  appearance: none;
+  border: 1px solid var(--bf-border);
+  background: white;
+  border-radius: 6px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.brand-faktum__format-toggle.is-active {
+  background: var(--bf-deep);
+  border-color: var(--bf-deep);
+  color: white;
+}
+
+.brand-faktum__wizard-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.brand-faktum__wizard-back {
+  appearance: none;
+  border: none;
+  background: transparent;
+  font-size: 0.72rem;
+  color: var(--bf-text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.brand-faktum__appointment-cta:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---- Trust-Band (Full-Mode) ---- */
+.brand-faktum__trust-band {
+  position: relative;
+  z-index: 2;
+  background: var(--bf-sand);
+  border-top: 1px solid var(--bf-border-strong);
+  border-bottom: 1px solid var(--bf-border-strong);
+}
+
+.brand-faktum__trust-band-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.brand-faktum__trust-band-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1.35rem 1rem;
+  border-right: 1px solid color-mix(in srgb, var(--bf-border-strong) 70%, transparent);
+  text-align: center;
+}
+
+.brand-faktum__trust-band-item:last-child {
+  border-right: none;
+}
+
+.brand-faktum__trust-band-value {
+  font-family: ui-serif, Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--bf-deep);
+}
+
+.brand-faktum__trust-band-label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bf-mid);
+}
+
+/* ---- Subpage Mini-Hero ---- */
+.brand-faktum__subpage-hero {
+  position: relative;
+  min-height: 220px;
+  max-height: 320px;
+  overflow: hidden;
+}
+
+.brand-faktum__subpage-hero-image {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.brand-faktum__subpage-hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2.5rem 48px;
+  background: linear-gradient(
+    180deg,
+    transparent 20%,
+    color-mix(in srgb, var(--bf-ink) 72%, transparent) 100%
+  );
+}
+
+.brand-faktum__subpage-hero-overlay .brand-faktum__kicker {
+  color: color-mix(in srgb, var(--bf-cream) 85%, white);
+}
+
+.brand-faktum__subpage-hero-overlay .brand-faktum__kicker::before {
+  background: color-mix(in srgb, var(--bf-cream) 85%, white);
+}
+
+.brand-faktum__subpage-hero-title {
+  margin: 12px 0 0;
+  font-family: ui-serif, Georgia, serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.1;
+  font-weight: 400;
+  color: white;
+}
+
+/* ---- Subpage: Hamburg-Badges ---- */
+.brand-faktum__hamburg-badges {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 48px;
+  background: var(--bf-deep);
+  border-bottom: 1px solid color-mix(in srgb, var(--bf-cream) 12%, transparent);
+}
+
+.brand-faktum__hamburg-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--bf-sand) 35%, transparent);
+  background: color-mix(in srgb, var(--bf-mid) 40%, var(--bf-deep));
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bf-cream);
+}
+
+/* ---- Subpage: Partner-Strip (Kanzlei) ---- */
+.brand-faktum__subpage-team {
+  position: relative;
+  z-index: 2;
+  padding: 48px 48px 32px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bf-sand) 35%, var(--bf-cream)) 0%,
+      var(--bf-cream) 100%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--bf-border-strong) 18%, transparent) 0 2px,
+      transparent 2px 48px
+    );
+  border-bottom: 1px solid var(--bf-border);
+}
+
+.brand-faktum__subpage-team-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.brand-faktum__subpage-team-card {
+  text-align: center;
+  padding: 24px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--bf-border);
+  background: var(--bf-paper);
+  box-shadow: 0 16px 40px -20px rgba(15, 29, 48, 0.12);
+}
+
+.brand-faktum__subpage-team-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  border: 3px solid var(--bf-sand);
+  box-shadow: 0 8px 24px -8px rgba(15, 29, 48, 0.2);
+}
+
+.brand-faktum__subpage-team-name {
+  margin: 16px 0 0;
+  font-family: ui-serif, Georgia, serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--bf-deep);
+}
+
+.brand-faktum__subpage-team-role {
+  margin: 8px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--bf-text-muted);
+}
+
+/* ---- Subpage: Zitat-Leiste ---- */
+.brand-faktum__subpage-quote {
+  position: relative;
+  z-index: 2;
+  padding: 18px 48px;
+  background: var(--bf-deep);
+  text-align: center;
+}
+
+.brand-faktum__subpage-quote-text {
+  margin: 0;
+  font-family: ui-serif, Georgia, serif;
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-style: italic;
+  color: var(--bf-cream);
+  letter-spacing: 0.01em;
+}
+
+/* ---- Subpage: Lede-Band ---- */
+.brand-faktum__subpage-band {
+  position: relative;
+  z-index: 2;
+}
+
+.brand-faktum__subpage-band--sand {
+  background: color-mix(in srgb, var(--bf-sand) 45%, var(--bf-cream));
+  border-bottom: 1px solid var(--bf-border);
+}
+
+.brand-faktum__subpage-band-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 48px;
+}
+
+.brand-faktum__subpage-band-inner .brand-faktum__lede {
+  max-width: 62ch;
+  margin: 0;
+}
+
+.brand-faktum__subpage-grid--content {
+  padding: 56px 48px 88px;
+  background: var(--bf-paper);
+  box-shadow: 0 -1px 0 var(--bf-border);
+}
+
+.brand-faktum__subpage-inset-figure {
+  margin: 32px 0 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--bf-border-strong);
+  box-shadow: 0 20px 48px -16px rgba(15, 29, 48, 0.14);
+}
+
+.brand-faktum__subpage-inset-figure img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+.brand-faktum__subpage-inset-caption {
+  padding: 12px 16px;
+  font-size: 0.8125rem;
+  color: var(--bf-mid);
+  background: var(--bf-cream);
+  border-top: 1px solid var(--bf-border);
+}
+
+/* Kanzlei: wärmerer Hero-Overlay */
+.brand-faktum__subpage--kanzlei .brand-faktum__subpage-hero-overlay {
+  background: linear-gradient(
+    180deg,
+    transparent 15%,
+    color-mix(in srgb, var(--bf-ink) 65%, #3d2817) 100%
+  );
+}
+
+/* Leistungen: alternierende Block-Optik */
+.brand-faktum__subpage--leistungen .brand-faktum__block:nth-child(even) {
+  background: color-mix(in srgb, var(--bf-sand) 25%, var(--bf-paper));
+}
+
+.brand-faktum__subpage--leistungen .brand-faktum__subpage-grid--content {
+  background: linear-gradient(
+    180deg,
+    var(--bf-paper) 0%,
+    color-mix(in srgb, var(--bf-cream) 40%, var(--bf-paper)) 100%
+  );
+}
+
+/* Full-Mode: Skyline etwas sichtbarer */
+.brand-faktum--full .brand-faktum__site::before {
+  height: 130px;
+  opacity: 1;
+}
+
+.brand-faktum--full .brand-faktum__site::before {
+  background-image:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--bf-deep) 14%, transparent) 100%
+    ),
+    radial-gradient(60% 80% at 12% 100%, color-mix(in srgb, var(--bf-deep) 28%, transparent) 0%, transparent 70%),
+    radial-gradient(40% 90% at 32% 100%, color-mix(in srgb, var(--bf-deep) 32%, transparent) 0%, transparent 70%),
+    radial-gradient(45% 70% at 58% 100%, color-mix(in srgb, var(--bf-deep) 24%, transparent) 0%, transparent 70%),
+    radial-gradient(35% 85% at 78% 100%, color-mix(in srgb, var(--bf-deep) 30%, transparent) 0%, transparent 70%),
+    radial-gradient(40% 75% at 92% 100%, color-mix(in srgb, var(--bf-deep) 22%, transparent) 0%, transparent 70%);
+}
+
+/* ---- Home sections (Full-Mode) ---- */
+.brand-faktum__home-sections {
+  position: relative;
+  z-index: 2;
+}
+
+.brand-faktum__section {
+  padding: 96px 48px;
+}
+
+.brand-faktum__section--sand {
+  background: color-mix(in srgb, var(--bf-cream) 55%, var(--bf-paper));
+}
+
+.brand-faktum__section--hamburg {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bf-sand) 40%, var(--bf-cream)) 0%,
+      color-mix(in srgb, var(--bf-cream) 55%, var(--bf-paper)) 100%
+    ),
+    repeating-linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--bf-border-strong) 12%, transparent) 0 1px,
+      transparent 1px 12px
+    );
+  border-top: 1px solid var(--bf-border);
+  border-bottom: 1px solid var(--bf-border);
+}
+
+.brand-faktum__section--hamburg::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--bf-deep) 35%, transparent) 20%,
+    color-mix(in srgb, var(--bf-deep) 50%, transparent) 50%,
+    color-mix(in srgb, var(--bf-deep) 35%, transparent) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.brand-faktum__section--wood-accent {
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--bf-sand) 30%, var(--bf-cream)) 0%,
+      var(--bf-paper) 55%,
+      color-mix(in srgb, var(--bf-cream) 70%, var(--bf-paper)) 100%
+    );
+  border-top: 1px solid var(--bf-border);
+  border-bottom: 1px solid var(--bf-border);
+}
+
+.brand-faktum__section--hamburg,
+.brand-faktum__section--wood-accent {
+  position: relative;
+}
+
+.brand-faktum__section-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.brand-faktum__section-title {
+  margin: 12px 0 0;
+  font-family: ui-serif, Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 400;
+  color: var(--bf-ink);
+  line-height: 1.15;
+}
+
+.brand-faktum__service-grid {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.brand-faktum__service-card {
+  appearance: none;
+  text-align: left;
+  width: 100%;
+  padding: 24px 22px;
+  border-radius: 6px;
+  border: 1px solid var(--bf-border);
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.brand-faktum__service-card:hover {
+  border-color: var(--bf-deep);
+  box-shadow: 0 16px 40px -12px rgba(15, 29, 48, 0.14);
+  transform: translateY(-2px);
+}
+
+.brand-faktum__service-card-num {
+  display: block;
+  font-family: ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  color: var(--bf-soft);
+  margin-bottom: 10px;
+}
+
+.brand-faktum__service-card-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--bf-deep);
+}
+
+.brand-faktum__service-card-body {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--bf-text-muted);
+}
+
+.brand-faktum__service-card-link {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--bf-mid);
+}
+
+.brand-faktum__process-grid {
+  list-style: none;
+  margin: 36px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+.brand-faktum__process-step {
+  position: relative;
+  padding: 16px 24px 0 0;
+}
+
+.brand-faktum__process-connector {
+  display: none;
+}
+
+@media (min-width: 881px) {
+  .brand-faktum__process-connector {
+    display: block;
+    position: absolute;
+    top: 1.35rem;
+    right: -12%;
+    width: 24%;
+    height: 1px;
+    background: var(--bf-border-strong);
+  }
+
+  .brand-faktum__process-step:last-child .brand-faktum__process-connector {
+    display: none;
+  }
+}
+
+.brand-faktum__process-num {
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--bf-soft);
+}
+
+.brand-faktum__process-title {
+  margin: 10px 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--bf-deep);
+}
+
+.brand-faktum__process-body {
+  margin: 8px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--bf-text-muted);
+}
+
+.brand-faktum__team-strip {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.brand-faktum__team-card {
+  text-align: center;
+  padding: 24px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--bf-border);
+  background: white;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.brand-faktum__team-card:hover {
+  box-shadow: 0 16px 40px -12px rgba(15, 29, 48, 0.12);
+  transform: translateY(-2px);
+}
+
+.brand-faktum__team-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--bf-border-strong);
+  box-shadow: 0 8px 24px -8px rgba(15, 29, 48, 0.2);
+}
+
+.brand-faktum__team-name {
+  margin: 16px 0 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--bf-deep);
+}
+
+.brand-faktum__team-role {
+  margin: 6px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--bf-text-muted);
+}
+
+.brand-faktum__section-link {
+  appearance: none;
+  margin-top: 20px;
+  border: none;
+  background: transparent;
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--bf-deep);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.brand-faktum__location-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.brand-faktum__location-copy .brand-faktum__lede {
+  max-width: none;
+}
+
+.brand-faktum__location-figure {
+  margin: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--bf-border-strong);
+  box-shadow: 0 20px 48px -16px rgba(15, 29, 48, 0.14);
+}
+
+.brand-faktum__location-figure img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.brand-faktum__location-meta {
+  margin-top: 14px;
+  font-size: 0.875rem;
+  color: var(--bf-mid);
+}
+
+.brand-faktum__location-motifs {
+  margin: 8px 0 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bf-soft);
+}
+
+.brand-faktum__location-cta {
+  appearance: none;
+  margin-top: 1.25rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 4px;
+  border: 1px solid var(--bf-deep);
+  background: var(--bf-deep);
+  color: var(--bf-cream);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.brand-faktum__location-cta:hover {
+  background: var(--bf-mid);
+  transform: translateY(-1px);
+}
+
+/* ---- CTA-Band ---- */
+.brand-faktum__cta-band {
+  position: relative;
+  z-index: 2;
+  padding: 72px 48px;
+  background: var(--bf-deep);
+  color: var(--bf-cream);
+}
+
+.brand-faktum__cta-band-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.brand-faktum__cta-band .brand-faktum__kicker {
+  color: color-mix(in srgb, var(--bf-cream) 75%, white);
+}
+
+.brand-faktum__cta-band .brand-faktum__kicker::before {
+  background: color-mix(in srgb, var(--bf-cream) 75%, white);
+}
+
+.brand-faktum__cta-band-title {
+  margin: 10px 0 0;
+  font-family: ui-serif, Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.brand-faktum__cta-band-lede {
+  margin: 12px 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--bf-cream) 82%, white);
+  max-width: 42ch;
+}
+
+.brand-faktum__cta-band-btn {
+  appearance: none;
+  flex-shrink: 0;
+  padding: 0.85rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--bf-cream);
+  color: var(--bf-deep);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.25);
+}
+
+.brand-faktum__cta-band-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.3);
+}
+
+/* ---- Footer ---- */
+.brand-faktum__footer {
+  position: relative;
+  z-index: 2;
+  padding: 48px 40px 32px;
+  border-top: 1px solid var(--bf-border);
+  background: color-mix(in srgb, var(--bf-cream) 40%, var(--bf-paper));
+}
+
+.brand-faktum__footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.brand-faktum__footer-brand .brand-faktum__brand-sub {
+  display: inline;
+  border-left: none;
+  padding-left: 0;
+  margin-left: 8px;
+}
+
+.brand-faktum__footer-tagline {
+  margin: 10px 0 0;
+  font-size: 0.74rem;
+  color: var(--bf-text-muted);
+  max-width: 28ch;
+}
+
+.brand-faktum__footer-label {
+  margin: 0 0 8px;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bf-soft);
+}
+
+.brand-faktum__footer-text {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: var(--bf-text-muted);
+}
+
+.brand-faktum__footer-placeholder {
+  color: var(--bf-soft);
+}
+
+.brand-faktum__footer-concept {
+  max-width: 960px;
+  margin: 24px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--bf-border);
+  font-size: 0.65rem;
+  color: var(--bf-soft);
+  text-align: center;
+}
+
+/* ---- Mandantenbereich ---- */
+.brand-faktum__portal-wrap {
+  padding: 56px 48px 96px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.brand-faktum__portal-header {
+  margin-bottom: 28px;
+}
+
+.brand-faktum__portal-testhint {
+  margin-top: 16px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--bf-cream) 80%, white);
+  border: 1px solid var(--bf-border);
+  font-size: 0.68rem;
+  color: var(--bf-soft);
+  line-height: 1.5;
+}
+
+.brand-faktum__portal-card {
+  padding: 28px 30px;
+  border-radius: 6px;
+  border: 1px solid var(--bf-border-strong);
+  background: var(--bf-cream);
+  box-shadow: 0 20px 48px -12px rgba(15, 29, 48, 0.12);
+}
+
+.brand-faktum__portal-card-title {
+  margin: 0;
+  font-family: ui-serif, Georgia, serif;
+  font-size: 1.35rem;
+  color: var(--bf-deep);
+}
+
+.brand-faktum__portal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.brand-faktum__portal-submit {
+  appearance: none;
+  align-self: flex-start;
+  margin-top: 0.35rem;
+  padding: 0.65rem 1.25rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--bf-deep);
+  color: var(--bf-cream);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.brand-faktum__portal-dash-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.brand-faktum__portal-logout {
+  appearance: none;
+  border: 1px solid var(--bf-border);
+  background: white;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.68rem;
+  cursor: pointer;
+}
+
+.brand-faktum__portal-upload {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 6px;
+  border: 2px dashed var(--bf-border-strong);
+  background: white;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.brand-faktum__portal-upload.is-dragover {
+  border-color: var(--bf-deep);
+  background: var(--bf-paper);
+}
+
+.brand-faktum__portal-upload-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--bf-deep);
+}
+
+.brand-faktum__portal-upload-hint {
+  margin: 0 0 0.85rem;
+  font-size: 0.8125rem;
+  color: var(--bf-soft);
+}
+
+.brand-faktum__portal-section-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bf-soft);
+}
+
+.brand-faktum__portal-list {
+  list-style: none;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.brand-faktum__portal-item {
+  padding: 0.85rem 1rem;
+  border-radius: 6px;
+  background: white;
+  border: 1px solid var(--bf-border);
+  font-size: 0.875rem;
+}
+
+.brand-faktum__portal-item strong {
+  display: block;
+  color: var(--bf-deep);
+}
+
+.brand-faktum__portal-item span {
+  display: block;
+  margin-top: 0.12rem;
+  font-size: 0.66rem;
+  color: var(--bf-text-muted);
+}
+
+.brand-faktum__portal-item button {
+  margin-top: 0.35rem;
+  appearance: none;
+  border: 1px solid var(--bf-deep);
+  background: transparent;
+  border-radius: 4px;
+  padding: 0.2rem 0.45rem;
+  font-size: 0.62rem;
+  cursor: pointer;
+}
+
+.brand-faktum__portal-empty {
+  font-size: 0.74rem;
+  color: var(--bf-soft);
+}
+
+/* ---- Embed: kompakter Hero ---- */
+.brand-faktum:not(.brand-faktum--full) .brand-faktum__hero {
+  padding: 36px 24px 48px;
+  gap: 24px;
+  align-items: end;
+  max-width: none;
+}
+
+.brand-faktum:not(.brand-faktum--full) .brand-faktum__hero-visual {
+  min-height: auto;
+}
+
+.brand-faktum:not(.brand-faktum--full) .brand-faktum__hero-image {
+  aspect-ratio: 16 / 11;
+}
+
+.brand-faktum:not(.brand-faktum--full) .brand-faktum__claim {
+  display: none;
+}
+
+.brand-faktum:not(.brand-faktum--full) .brand-faktum__hero-appointment {
+  position: static;
+  margin-top: -1rem;
+  padding: 0 0.5rem;
+}
+
+@media (max-width: 880px) {
+  .brand-faktum__service-grid,
+  .brand-faktum__process-grid,
+  .brand-faktum__team-strip,
+  .brand-faktum__footer-grid,
+  .brand-faktum__trust-band-list,
+  .brand-faktum__location-split,
+  .brand-faktum__blocks,
+  .brand-faktum__subpage-team-list {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-faktum__hamburg-badges,
+  .brand-faktum__subpage-team,
+  .brand-faktum__subpage-quote {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .brand-faktum__subpage-band-inner {
+    padding: 32px 24px;
+  }
+
+  .brand-faktum__hero,
+  .brand-faktum__subpage-grid,
+  .brand-faktum__subpage-grid--content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 36px 24px 48px;
+  }
+
+  .brand-faktum__hero-visual {
+    min-height: auto;
+  }
+
+  .brand-faktum__hero-appointment {
+    position: static;
+    margin-top: -1.5rem;
+    padding: 0 0.75rem;
+  }
+
+  .brand-faktum__trust-band-item {
+    border-right: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--bf-border-strong) 70%, transparent);
+  }
+
+  .brand-faktum__trust-band-item:last-child {
+    border-bottom: none;
+  }
+
+  .brand-faktum__subpage-hero-overlay {
+    padding: 1.5rem 24px;
+  }
+
+  .brand-faktum__block--featured {
+    grid-column: auto;
+  }
+
+  .brand-faktum__cta-band-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .brand-faktum__section {
+    padding: 64px 24px;
+  }
+
+  .brand-faktum__cta-band {
+    padding: 56px 24px;
+  }
+
+  .brand-faktum__footer {
+    padding: 36px 24px 24px;
+  }
+
+  .brand-faktum__portal-wrap {
+    padding: 36px 24px 60px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-faktum__site::before,
+  .brand-faktum__site::after,
+  .brand-faktum__slot[data-state="active"],
+  .brand-faktum__page {
+    animation: none;
+  }
+}

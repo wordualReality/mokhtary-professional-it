@@ -1,0 +1,88 @@
+/**
+ * @file src/styles/mockups/feed-grid.css
+ * @summary Reine-CSS-Mockup-Frames: feed-grid.
+ */
+
+/* ---------- Social Feed Grid (Social Media page) ---------- */
+
+.feed-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 8px;
+  aspect-ratio: 3 / 4;
+  padding: 14px;
+  background: var(--growth-cream);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+.feed-tile {
+  position: relative;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid var(--color-border-soft);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 8px;
+  font-size: 0.65rem;
+  color: var(--growth-ink);
+  font-weight: 500;
+}
+
+.feed-tile--a {
+  background: linear-gradient(135deg, var(--growth-lavender) 0%, var(--growth-violet) 100%);
+  color: white;
+}
+.feed-tile--b {
+  background: linear-gradient(180deg, white 0%, var(--growth-cream) 100%);
+}
+.feed-tile--c {
+  background: var(--growth-violet);
+  color: white;
+}
+.feed-tile--d {
+  background: var(--growth-cream);
+}
+.feed-tile--e {
+  background: linear-gradient(180deg, var(--growth-lavender) 0%, white 100%);
+}
+.feed-tile--f {
+  background: white;
+}
+.feed-tile--g {
+  background: linear-gradient(135deg, var(--growth-violet) 0%, var(--color-primary) 100%);
+  color: white;
+}
+.feed-tile--h {
+  background: var(--growth-cream);
+}
+.feed-tile--i {
+  background: var(--growth-lavender);
+  color: white;
+}
+
+.feed-tile__play {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feed-tile__play::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 6px solid var(--growth-violet);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  margin-left: 2px;
+}

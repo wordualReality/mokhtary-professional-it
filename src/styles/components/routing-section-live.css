@@ -1,0 +1,151 @@
+/**
+ * @file src/styles/components/routing-section-live.css
+ * @summary Live-Mock-Overlays in Home-Routing-Karten.
+ */
+
+.route-card__live {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  background: color-mix(in srgb, white 88%, transparent);
+}
+
+.route-card.is-route-active .route-card__live {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.route-card.is-route-active .route-card__img {
+  opacity: 0.15;
+  transform: scale(1.02);
+}
+
+.route-card.is-route-active .hero-mockup-media--embed .hero-mockup-media__poster,
+.route-card.is-route-active .hero-mockup-media--embed .hero-mockup-media__video {
+  opacity: 0.15;
+  transform: scale(1.02);
+}
+
+.route-live-phone {
+  width: min(72%, 7.5rem);
+  aspect-ratio: 9 / 16;
+  border-radius: 1.1rem;
+  border: 2px solid color-mix(in srgb, var(--color-base-dark) 75%, transparent);
+  background: linear-gradient(180deg, #fff 0%, var(--cluster-surface, #f8fcfb) 100%);
+  padding: 0.35rem;
+  box-shadow: 0 12px 28px rgba(44, 51, 51, 0.14);
+}
+
+.route-live-phone__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  height: 100%;
+  align-content: start;
+  padding-top: 0.5rem;
+}
+
+.route-live-phone__cell {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--cluster-accent, var(--color-primary)) 22%, white);
+  border: 1px solid color-mix(in srgb, var(--cluster-accent) 18%, var(--color-border-soft));
+}
+
+.route-live-phone__cell:nth-child(1) {
+  background: linear-gradient(135deg, var(--growth-lavender, #c4b5d4), var(--growth-violet, #6c5b7b));
+}
+
+.route-live-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  margin-top: 0.45rem;
+}
+
+.route-live-chip {
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.58rem;
+  font-weight: 600;
+  border: 1px solid var(--color-border-soft);
+  background: white;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.route-live-chip.is-route-chip-hot {
+  transform: scale(1.06);
+  background: color-mix(in srgb, var(--cluster-accent) 28%, white);
+  color: var(--cluster-accent, var(--color-primary));
+  border-color: color-mix(in srgb, var(--cluster-accent) 40%, var(--color-border-soft));
+}
+
+.route-live-flow {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  max-width: 11rem;
+}
+
+.route-live-flow__node {
+  flex: 1;
+  padding: 0.45rem 0.35rem;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.58rem;
+  font-weight: 600;
+  background: white;
+  border: 1px solid var(--color-border-soft);
+  color: var(--color-base-dark);
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.route-live-flow__node.is-flow-hot {
+  border-color: color-mix(in srgb, var(--systems-steel) 50%, white);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--systems-mint) 45%, transparent);
+}
+
+.route-live-flow__wire {
+  width: 0.65rem;
+  height: 2px;
+  background: color-mix(in srgb, var(--systems-steel) 40%, var(--color-border-soft));
+  border-radius: 2px;
+}
+
+.route-card.is-route-active .route-live-flow__wire {
+  animation: route-wire-pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes route-wire-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scaleX(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-card.is-route-active .route-live-flow__wire {
+    animation: none;
+  }
+}

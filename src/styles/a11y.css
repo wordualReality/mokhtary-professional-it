@@ -1,0 +1,33 @@
+/**
+ * @file src/styles/a11y.css
+ * @summary Barrierefreiheit: Skip-Link, Screenreader-Helfer, reduced-motion.
+ */
+
+/* ---------- Accessibility ---------- */
+
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-base-dark);
+  box-shadow: 0 10px 40px rgba(44, 51, 51, 0.12);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.skip-to-content:focus {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  clip: auto;
+  clip-path: none;
+  height: auto;
+  width: auto;
+  overflow: visible;
+  white-space: normal;
+}

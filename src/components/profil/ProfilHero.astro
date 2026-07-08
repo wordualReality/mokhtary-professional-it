@@ -1,0 +1,185 @@
+---
+/**
+ * @file src/components/profil/ProfilHero.astro
+ * @summary UI-Komponente: profil/ProfilHero — wiederverwendbarer Markup-Block.
+ */
+import HeroMockupMedia from '../ui/HeroMockupMedia.astro';
+import ConnectedDots from '../visual/ConnectedDots.astro';
+import { getProfilContent, type ProfilLocale } from '../../data/profil-content.locale';
+
+interface Props {
+  locale?: ProfilLocale;
+  badge?: string;
+  headline?: string;
+  headlineAccent?: string;
+  lead?: string;
+  primaryCtaLabel?: string;
+  primaryCtaHref?: string;
+  schedulingCtaLabel?: string;
+  schedulingCtaHref?: string;
+}
+
+const { locale = 'de', ...propOverrides } = Astro.props;
+const content = getProfilContent(locale);
+const {
+  profilHeroBullets,
+  profilHeroDeckIntro,
+  profilHeroSignature,
+  profilHeroUi,
+  profilPageCopy,
+} = content;
+
+const {
+  badge = profilPageCopy.hero.badge,
+  headline = profilPageCopy.hero.headline,
+  headlineAccent = profilPageCopy.hero.headlineAccent,
+  lead = profilPageCopy.hero.lead,
+  primaryCtaLabel = profilPageCopy.hero.primaryCtaLabel,
+  primaryCtaHref = profilPageCopy.hero.primaryCtaHref,
+  schedulingCtaLabel = profilPageCopy.hero.schedulingCtaLabel,
+  schedulingCtaHref = profilPageCopy.hero.schedulingCtaHref,
+} = propOverrides;
+---
+    <section
+      id="profil-hero-section"
+      aria-labelledby="profil-hero-heading"
+      class="dots-host page-signature page-signature--decision relative overflow-hidden border-b border-[var(--color-border-soft)] bg-[linear-gradient(180deg,#ECF4E8_0%,#F8FBF6_55%,#FFFFFF_100%)]"
+    >
+      <div class="aurora aurora--systems aurora--muted" aria-hidden="true"></div>
+      <ConnectedDots
+        tone="systems"
+        density={0.95}
+        linkDistance={150}
+        mask="fade-edges"
+      />
+
+      <div class="dots-content relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+        <div class="profil-hero__stack relative z-[2]">
+          <header class="profil-hero__head mx-auto w-full max-w-4xl text-center" data-reveal>
+            <div class="profil-section-accent profil-hero__head-accent" aria-hidden="true"></div>
+            <p class="cluster-badge badge-glow inline-flex">
+              <span aria-hidden="true" class="cluster-dot"></span>
+              {badge}
+            </p>
+            <h1
+              id="profil-hero-heading"
+              class="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight text-[var(--color-base-dark)] md:text-5xl lg:text-6xl"
+            >
+              {headline}
+              <span class="headline-accent mt-6 block text-3xl md:mt-8 md:text-4xl lg:text-[2.65rem] lg:leading-[1.12]">
+                {headlineAccent}
+              </span>
+            </h1>
+          </header>
+
+          <aside
+            class="profil-hero__stage it-hero__art relative mx-auto w-full"
+            aria-label={profilHeroUi.asideAriaLabel}
+            data-prof-hero-aside
+            data-reveal
+            data-reveal-delay="120"
+          >
+            <div class="profil-hero__tilt-wrap tilt-scene" data-prof-hero-tilt>
+              <div class="profil-hero__aside-frame">
+                <div class="profil-hero__bracket profil-hero__bracket--tl" aria-hidden="true"></div>
+                <div class="profil-hero__bracket profil-hero__bracket--br" aria-hidden="true"></div>
+                <div class="mockup-glow mockup-glow--teal" aria-hidden="true"></div>
+                <figure class="tilt-scene__layer profil-hero__figure" data-prof-hero-figure>
+                  <div class="profil-hero__mock-chrome" aria-hidden="true">
+                    <span class="profil-hero__mock-chrome__dots">
+                      <span></span><span></span><span></span>
+                    </span>
+                    <span class="profil-hero__mock-chrome__label">{profilHeroUi.mockChromeLabel}</span>
+                  </div>
+                  <HeroMockupMedia
+                    id="professional-it"
+                    class="profil-hero__mock-media"
+                    imgClass="profil-hero__mock-img"
+                    fetchpriority="high"
+                  />
+                  <div class="profil-hero__mock-overlay" data-prof-hero-mock>
+                    <div class="profil-hero__mock-chips" role="presentation">
+                      <button type="button" class="profil-hero__mock-chip" data-hero-chip="scope">
+                        Scope
+                      </button>
+                      <button type="button" class="profil-hero__mock-chip" data-hero-chip="uat">
+                        UAT
+                      </button>
+                      <button type="button" class="profil-hero__mock-chip" data-hero-chip="release">
+                        Release
+                      </button>
+                    </div>
+                    <button type="button" class="profil-hero__check-row" data-hero-check>
+                      <span class="profil-hero__check-box" aria-hidden="true"></span>
+                      <span class="profil-hero__check-label">{profilHeroUi.checkItems[0]}</span>
+                    </button>
+                    <button type="button" class="profil-hero__check-row" data-hero-check>
+                      <span class="profil-hero__check-box" aria-hidden="true"></span>
+                      <span class="profil-hero__check-label">{profilHeroUi.checkItems[1]}</span>
+                    </button>
+                    <button type="button" class="profil-hero__check-row" data-hero-check>
+                      <span class="profil-hero__check-box" aria-hidden="true"></span>
+                      <span class="profil-hero__check-label">{profilHeroUi.checkItems[2]}</span>
+                    </button>
+                  </div>
+                </figure>
+                <figcaption class="it-hero__sig">
+                  <span class="it-hero__sig-kicker">{profilHeroSignature.kicker}</span>
+                  <span class="it-hero__sig-role">{profilHeroSignature.role}</span>
+                </figcaption>
+              </div>
+            </div>
+          </aside>
+
+          <div
+            class="profil-hero__cta-row flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap"
+            data-reveal
+            data-reveal-delay="180"
+          >
+            <a
+              href={primaryCtaHref}
+              class="profil-hero__cta-primary cta-lift inline-flex items-center justify-center rounded-2xl bg-[var(--color-primary)] px-6 py-3.5 text-sm font-medium text-white shadow-[0_12px_30px_rgba(57,91,100,0.18)]"
+            >
+              {primaryCtaLabel}
+            </a>
+            <a
+              href={schedulingCtaHref}
+              class="cta-lift inline-flex items-center justify-center rounded-2xl border border-[var(--color-border-soft)] bg-white px-6 py-3.5 text-sm font-medium text-[var(--color-base-dark)]"
+            >
+              {schedulingCtaLabel}
+            </a>
+          </div>
+
+          <p class="profil-hero__lead mx-auto max-w-2xl text-center text-base leading-relaxed text-[var(--color-text-secondary)] sm:text-lg sm:leading-8">
+            {lead}
+          </p>
+
+          <div
+            class="profil-hero__deck-grid w-full"
+            data-reveal
+            data-reveal-delay="240"
+          >
+            <div class="profil-hero__deck-copy">
+              <p class="profil-hero__deck-intro text-base leading-relaxed text-[var(--color-text-secondary)] sm:text-lg sm:leading-8 lg:text-[0.98rem] lg:leading-relaxed">
+                {profilHeroDeckIntro}
+              </p>
+            </div>
+            <ul
+              class="profile-project-bullets profil-hero__deck-bullets list-none space-y-2.5 pl-0 text-sm leading-relaxed text-[var(--color-text-secondary)]"
+              role="list"
+            >
+              {
+                profilHeroBullets.map(({ title, text }) => (
+                  <li class="flex gap-2.5">
+                    <span class="profile-project-bullets__dot mt-1.5 shrink-0" aria-hidden="true"></span>
+                    <span>
+                      <strong class="text-[var(--color-base-dark)]">{title}</strong> · {text}
+                    </span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>

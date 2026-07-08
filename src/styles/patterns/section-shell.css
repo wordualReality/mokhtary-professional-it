@@ -1,0 +1,75 @@
+/**
+ * @file src/styles/patterns/section-shell.css
+ * @summary SectionShell — einheitlicher Rhythmus (60-30-10 Surfaces).
+ */
+
+.section-shell {
+  --section-shell-y: clamp(3.75rem, 6vw, 6rem);
+}
+
+.section-shell--bordered {
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.section-shell--white {
+  background: var(--surface-card);
+}
+
+.section-shell--tinted {
+  background: var(--surface-section);
+}
+
+.section-shell--page {
+  background: var(--surface-page);
+}
+
+.section-shell__inner {
+  margin-inline: auto;
+  max-width: var(--content-wide);
+  padding: var(--section-shell-y) 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .section-shell__inner {
+    padding-inline: 2rem;
+  }
+}
+
+.section-shell__inner--wide {
+  max-width: var(--content-max);
+}
+
+.section-shell__header {
+  max-width: var(--content-prose);
+  margin-bottom: 2.5rem;
+}
+
+.section-shell__kicker {
+  margin: 0 0 0.75rem;
+  font-size: var(--text-kicker-size);
+  font-weight: 500;
+  letter-spacing: var(--text-kicker-tracking);
+  text-transform: uppercase;
+  color: var(--action-primary);
+}
+
+.section-shell__title {
+  margin: 0;
+  font-size: var(--text-h2-size);
+  font-weight: 600;
+  line-height: var(--text-h2-leading);
+  letter-spacing: -0.02em;
+  color: var(--color-base-dark);
+}
+
+.section-shell__lead {
+  margin: 1rem 0 0;
+  max-width: 42rem;
+  font-size: var(--text-lead-size);
+  line-height: var(--text-lead-leading);
+  color: var(--color-text-secondary);
+}
+
+.section-shell__cta {
+  margin-top: 2rem;
+}

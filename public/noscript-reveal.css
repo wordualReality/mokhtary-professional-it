@@ -1,0 +1,6 @@
+/* Noscript: Reveal-Zustand ohne JS (wird nur bei deaktiviertem JavaScript geladen). */
+[data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}

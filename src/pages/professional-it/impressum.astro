@@ -1,0 +1,35 @@
+---
+export const prerender = true;
+/**
+ * @file src/pages/professional-it/impressum.astro
+ * @summary Impressum im Professional-IT-Kontext (eigene Shell, kein Main-Business-Nav).
+ */
+import ProfilLaunchLayout from '../../layouts/ProfilLaunchLayout.astro';
+import LegalImpressumArticle from '../../components/legal/LegalImpressumArticle.astro';
+
+const title = 'Impressum · Aydin Mokhtary · Professional IT';
+const description =
+  'Impressum und Pflichtangaben nach § 5 TMG und § 18 Abs. 2 MStV für mokhtary.de. Anbieter: Aydin Mokhtary, Wedel.';
+---
+
+<ProfilLaunchLayout locale="de" title={title} description={description}>
+  <main id="main-content" class="bg-white">
+    <section class="relative border-b border-[var(--color-border-soft)]">
+      <div class="mx-auto max-w-3xl px-6 py-20 lg:px-8 lg:py-24">
+        <header class="mb-10" data-reveal>
+          <p class="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[var(--color-primary)]">
+            Rechtliches
+          </p>
+          <h1 class="text-4xl font-semibold tracking-tight text-[var(--color-base-dark)] md:text-5xl">
+            Impressum
+          </h1>
+          <p class="mt-4 text-base leading-7 text-[var(--color-text-secondary)]">
+            Angaben gemäß § 5 TMG und § 18 Abs. 2 MStV.
+          </p>
+        </header>
+
+        <LegalImpressumArticle />
+      </div>
+    </section>
+  </main>
+</ProfilLaunchLayout>

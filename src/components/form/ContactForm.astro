@@ -1,0 +1,147 @@
+---
+/**
+ * @file src/components/form/ContactForm.astro
+ * @summary UI-Komponente: form/ContactForm — wiederverwendbarer Markup-Block.
+ */
+interface InterestOption {
+  v: string;
+  l: string;
+}
+
+interface Props {
+  subjectPrefix?: string;
+  headline?: string;
+  kicker?: string;
+  introText?: string;
+  trustChipLabel?: string;
+  showTrustChipLabel?: boolean;
+  trustChips?: string[];
+  interests?: InterestOption[];
+  submitLabel?: string;
+  organizationPlaceholder?: string;
+  emailPlaceholder?: string;
+  messagePlaceholder?: string;
+  nameLabel?: string;
+  namePlaceholder?: string;
+  emailLabel?: string;
+  companyLabel?: string;
+  optionalLabel?: string;
+  interestLabel?: string;
+  messageLabel?: string;
+  chipsAriaLabel?: string;
+  formNote?: string;
+}
+
+const {
+  subjectPrefix = 'Anfrage',
+  headline = 'Sie sagen, wo es hin soll. Wir bauen den Weg dorthin.',
+  kicker = 'Nächster Schritt',
+  introText = 'Sagen Sie kurz, worum es geht. Wir melden uns direkt zurück, ohne Formular-Loop.',
+  trustChipLabel = 'Antwort innerhalb von 24 Stunden',
+  showTrustChipLabel = true,
+  trustChips = ['Antwort innerhalb von 24 Stunden', 'Direkt mit dem Team', 'Sachlich und direkt'],
+  submitLabel = 'Anfrage senden',
+  organizationPlaceholder = 'Firma, Praxis, Studio',
+  emailPlaceholder = 'sie@firma.de',
+  messagePlaceholder = 'Was Sie vorhaben, wo Sie stehen, was Sie bisher ausprobiert haben.',
+  nameLabel = 'Name',
+  namePlaceholder = 'Ihr Name',
+  emailLabel = 'E-Mail',
+  companyLabel = 'Unternehmen',
+  optionalLabel = 'optional',
+  interestLabel = 'Anliegen',
+  messageLabel = 'Nachricht',
+  chipsAriaLabel = 'Was Sie bekommen',
+  formNote = 'Ihre Daten bleiben bei uns, keine Weitergabe, keine Newsletter.',
+  interests = [
+    { v: 'webdesign', l: 'Webdesign · SEO' },
+    { v: 'social', l: 'Social Media' },
+    { v: 'systeme-ki', l: 'Systeme & KI · Apps' },
+    { v: 'it-professional', l: 'Professional IT' },
+    { v: 'anderes', l: 'Anderes' },
+  ],
+} = Astro.props;
+
+const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() ?? '';
+---
+
+<div class="contact-card glass-card" data-reveal>
+  <div class="contact-card__intro">
+    <p class="contact-card__kicker">{kicker}</p>
+    <h2 class="contact-card__headline">{headline}</h2>
+    <p class="contact-card__text">{introText}</p>
+    {showTrustChipLabel && (
+      <p class="contact-card__chip-label" data-contact-chip-label aria-live="polite">
+        {trustChipLabel}
+      </p>
+    )}
+    <ul class="contact-card__chips" role="list" aria-label={chipsAriaLabel}>
+      {trustChips.map((chip, i) => (
+        <li class:list={[i === 0 && 'is-chip-active']}>{chip}</li>
+      ))}
+    </ul>
+  </div>
+
+  <form
+    class="contact-form"
+    data-contact-form
+    data-subject-prefix={subjectPrefix}
+    data-web3forms-key={web3formsKey || undefined}
+    action={web3formsKey ? 'https://api.web3forms.com/submit' : 'mailto:kontakt@mokhtary.de'}
+    method={web3formsKey ? 'post' : 'post'}
+    enctype={web3formsKey ? 'application/x-www-form-urlencoded' : 'text/plain'}
+    novalidate
+    aria-describedby="contact-form-note"
+  >
+    <div class="contact-form__row">
+      <label class="contact-form__field">
+        <span class="contact-form__label">{nameLabel}</span>
+        <input type="text" name="name" required autocomplete="name" placeholder={namePlaceholder} />
+      </label>
+      <label class="contact-form__field">
+        <span class="contact-form__label">{emailLabel}</span>
+        <input type="email" name="email" required autocomplete="email" placeholder={emailPlaceholder} />
+      </label>
+    </div>
+
+    <div class="contact-form__row">
+      <label class="contact-form__field">
+        <span class="contact-form__label">{companyLabel} <span class="contact-form__optional">{optionalLabel}</span></span>
+        <input type="text" name="unternehmen" autocomplete="organization" placeholder={organizationPlaceholder} />
+      </label>
+      <label class="contact-form__field">
+        <span class="contact-form__label">{interestLabel}</span>
+        <select name="thema" required>
+          {interests.map((i) => (
+            <option value={i.v}>{i.l}</option>
+          ))}
+        </select>
+      </label>
+    </div>
+
+    <label class="contact-form__field contact-form__field--full">
+      <span class="contact-form__label">{messageLabel}</span>
+      <textarea
+        name="nachricht"
+        rows="5"
+        required
+        placeholder={messagePlaceholder}
+      ></textarea>
+    </label>
+
+    <div class="contact-form__actions">
+      <button type="submit" class="contact-form__submit" data-magnetic>
+        {submitLabel}
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7h8"/>
+          <path d="M7.5 3.5 11 7l-3.5 3.5"/>
+        </svg>
+      </button>
+      <p id="contact-form-note" class="contact-form__note">
+        {formNote}
+      </p>
+    </div>
+
+    <output class="contact-form__status" data-contact-status role="status" aria-live="polite"></output>
+  </form>
+</div>

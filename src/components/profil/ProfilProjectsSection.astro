@@ -1,0 +1,215 @@
+---
+/**
+ * @file src/components/profil/ProfilProjectsSection.astro
+ * @summary UI-Komponente: profil/ProfilProjectsSection — wiederverwendbarer Markup-Block.
+ */
+
+const boardLanes = [
+  {
+    id: 'backlog',
+    flowStep: 'fach',
+    cap: 'Backlog',
+    chipLabel: 'Epic',
+    chipClass: 'pp-board__chip',
+    cardClass: 'pp-board__card pp-board__card--backlog',
+    stubClass: 'pp-board__stub',
+    meta: '5 Items · priorisiert',
+    metaActive: '5 Items · Fokus gesetzt',
+    metaClass: 'pp-board__meta',
+  },
+  {
+    id: 'scope',
+    flowStep: 'req',
+    cap: 'In Scope',
+    chipLabel: 'Build',
+    chipClass: 'pp-board__chip pp-board__chip--scope',
+    cardClass: 'pp-board__card pp-board__card--solid',
+    stubClass: 'pp-board__stub pp-board__stub--solid',
+    meta: '3 Stories · Umsetzung',
+    metaActive: '3 Stories · in Arbeit',
+    metaBuild: 'Build aktiv · 2 Commits',
+    metaClass: 'pp-board__meta',
+  },
+  {
+    id: 'uat',
+    flowStep: 'run',
+    cap: 'UAT',
+    chipLabel: 'Abnahme',
+    chipClass: 'pp-board__chip pp-board__chip--uat',
+    cardClass: 'pp-board__card pp-board__card--accent',
+    stubClass: 'pp-board__stub pp-board__stub--uat',
+    meta: 'Smoke OK · 2/5 Szenarien',
+    metaActive: 'Smoke OK · 4/5 Szenarien',
+    metaClass: 'pp-board__meta pp-board__meta--on-accent',
+  },
+] as const;
+
+---
+    <section
+      aria-labelledby="profil-projects-heading"
+      class="profil-projects-section border-b border-[var(--color-border-soft)]"
+    >
+      <div class="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-24">
+        <div
+          class="profil-projects-layout grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(300px,460px)] lg:gap-x-14 lg:gap-y-12"
+        >
+          <div class="profil-projects-layout__main">
+            <header class="max-w-2xl" data-reveal>
+              <div class="profil-section-accent" aria-hidden="true"></div>
+              <p class="text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-primary)]">
+                Projekte &amp; Umsetzung
+              </p>
+              <h2
+                id="profil-projects-heading"
+                class="mt-3 text-3xl font-semibold tracking-tight text-[var(--color-base-dark)] md:text-4xl"
+              >
+                Wenn das Mandat technische Tiefe braucht
+              </h2>
+            </header>
+            <div class="mt-8 max-w-3xl text-lg leading-8 text-[var(--color-text-secondary)]" data-reveal>
+              <p>
+                In <strong class="font-medium text-[var(--color-base-dark)]">klar abgegrenzten Mandaten</strong> verbinde ich
+                <strong class="font-medium text-[var(--color-base-dark)]">IT Business Analysis, Requirements Engineering</strong>
+                und
+                <strong class="font-medium text-[var(--color-base-dark)]">technische Lieferung</strong>
+                dort, wo Entscheidungen und Annahmen schriftlich stehen müssen und lauffähiges Ergebnis nicht vom
+                Interpretationsspielraum in der Umsetzung abhängen soll. Typisch: Fachbild und Spezifikation, dann
+                Umsetzung und Abnahme aus einer Hand · Schnittstellen, Auswertungen oder interne Tools · Übergabe an den
+                Betrieb. Websites oder leichte Webfrontends können Teil des Mandats sein · sie sind nicht der automatische
+                Einstieg in jedes Projekt.
+              </p>
+            </div>
+          </div>
+          <div class="profil-projects-aside" data-reveal data-reveal-delay="100">
+            <div
+              class="profil-projects-panel profil-projects-panel--motion"
+              data-pp-panel
+              aria-label="Lieferkette im Mandat · interaktive Vorschau"
+            >
+              <p class="profil-projects-panel__eyebrow">Lieferkette im Mandat</p>
+              <div
+                class="profil-projects-panel__flow"
+                data-pp-flow
+                data-pp-flow-index="0"
+                role="group"
+                aria-label="Lieferkette Fach bis Run"
+              >
+                <span class="pp-flow__dot" aria-hidden="true"></span>
+                <button
+                  type="button"
+                  class="pp-flow__node"
+                  data-pp-flow-step="fach"
+                  data-pp-flow-index="0"
+                  aria-pressed="false"
+                >
+                  Fach
+                </button>
+                <span class="pp-flow__segment" aria-hidden="true">
+                  <span class="pp-flow__segment-fill"></span>
+                </span>
+                <button
+                  type="button"
+                  class="pp-flow__node pp-flow__node--accent"
+                  data-pp-flow-step="req"
+                  data-pp-flow-index="1"
+                  aria-pressed="false"
+                >
+                  Req
+                </button>
+                <span class="pp-flow__segment" aria-hidden="true">
+                  <span class="pp-flow__segment-fill"></span>
+                </span>
+                <button
+                  type="button"
+                  class="pp-flow__node"
+                  data-pp-flow-step="build"
+                  data-pp-flow-index="2"
+                  aria-pressed="false"
+                >
+                  Build
+                </button>
+                <span class="pp-flow__segment" aria-hidden="true">
+                  <span class="pp-flow__segment-fill"></span>
+                </span>
+                <button
+                  type="button"
+                  class="pp-flow__node"
+                  data-pp-flow-step="run"
+                  data-pp-flow-index="3"
+                  aria-pressed="false"
+                >
+                  Run
+                </button>
+              </div>
+              <div class="profil-projects-panel__board" data-pp-board role="group" aria-label="Kanban-Spalten">
+                {
+                  boardLanes.map((lane) => (
+                    <div class="pp-board__lane">
+                      <span class="pp-board__cap">{lane.cap}</span>
+                      <button
+                        type="button"
+                        class:list={[lane.cardClass, 'pp-board__card-btn']}
+                        data-pp-lane={lane.id}
+                        data-pp-flow-step={lane.flowStep}
+                        data-pp-meta-default={lane.meta}
+                        data-pp-meta-active={lane.metaActive}
+                        data-pp-meta-build={'metaBuild' in lane ? lane.metaBuild : undefined}
+                        aria-pressed="false"
+                        aria-label={`${lane.cap}: ${lane.chipLabel}`}
+                      >
+                        <span class={lane.chipClass}>{lane.chipLabel}</span>
+                        <div class={lane.stubClass} aria-hidden="true">
+                          <span></span><span></span><span></span>
+                        </div>
+                        <span class={lane.metaClass} data-pp-meta>{lane.meta}</span>
+                      </button>
+                    </div>
+                  ))
+                }
+              </div>
+              <p class="profil-projects-panel__note">Ein Ansprechpartner · kein Plattform-Versprechen.</p>
+            </div>
+            <ul
+              class="profile-project-bullets profil-projects-aside__bullets list-none space-y-2.5 pl-0 text-sm leading-relaxed text-[var(--color-text-secondary)]"
+              role="list"
+            >
+              <li class="flex gap-2.5">
+                <span class="profile-project-bullets__dot mt-1.5 shrink-0" aria-hidden="true"></span>
+                <span>
+                  <strong class="text-[var(--color-base-dark)]">Anforderungen &amp; Scope</strong> · vom Fachbild bis
+                  Traceability in Umsetzung und Test
+                </span>
+              </li>
+              <li class="flex gap-2.5">
+                <span class="profile-project-bullets__dot mt-1.5 shrink-0" aria-hidden="true"></span>
+                <span>
+                  <strong class="text-[var(--color-base-dark)]">Integration &amp; APIs</strong> · REST, Datenflüsse, klare
+                  Schnittstellen im Mandatsumfang
+                </span>
+              </li>
+              <li class="flex gap-2.5">
+                <span class="profile-project-bullets__dot mt-1.5 shrink-0" aria-hidden="true"></span>
+                <span>
+                  <strong class="text-[var(--color-base-dark)]">Qualität &amp; Übergabe</strong> · UAT/Abnahme,
+                  Release-Readiness, Doku für Betrieb und 2nd Line
+                </span>
+              </li>
+              <li class="flex gap-2.5">
+                <span class="profile-project-bullets__dot mt-1.5 shrink-0" aria-hidden="true"></span>
+                <span>
+                  <strong class="text-[var(--color-base-dark)]">Daten &amp; Backend</strong> · SQL, Reporting, operative
+                  Auswertungen
+                </span>
+              </li>
+              <li class="flex gap-2.5">
+                <span class="profile-project-bullets__dot mt-1.5 shrink-0" aria-hidden="true"></span>
+                <span>
+                  <strong class="text-[var(--color-base-dark)]">Websites (optional)</strong> · statisch oder leicht
+                  dynamisch, wartbar · z. B. Astro, wenn der Rahmen passt
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>

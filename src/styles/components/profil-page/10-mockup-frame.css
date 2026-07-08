@@ -1,0 +1,227 @@
+/* Profil-Mockup-Frame: Browser-Chrome + Overlay (Bio, Stakeholder, …) */
+
+.profil-page .profil-mockup-frame {
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.profil-page .profil-bio__figure .profil-mockup-frame,
+.profil-page .profil-stakeholder__figure .profil-mockup-frame {
+  min-height: 100%;
+}
+
+.profil-page .profil-mockup-frame__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.profil-page .profil-mockup-frame__media .hero-mockup-media__badge {
+  display: none;
+}
+
+.profil-page .profil-mockup-frame__img,
+.profil-page .profil-mockup-frame__media .hero-mockup-media__poster,
+.profil-page .profil-mockup-frame__media .hero-mockup-media__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: inherit;
+}
+
+.profil-page .profil-mockup-frame__chrome {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  height: 36px;
+  padding: 0 12px 0 10px;
+  border-radius: inherit;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-base-dark) 94%, transparent) 0%,
+    color-mix(in srgb, var(--color-base-dark) 76%, transparent) 100%
+  );
+  border-bottom: 1px solid color-mix(in srgb, white 10%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, white 16%, transparent),
+    0 10px 22px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+
+.profil-page .profil-mockup-frame__chrome-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.profil-page .profil-mockup-frame__chrome-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: color-mix(in srgb, white 22%, transparent);
+  border: 1px solid color-mix(in srgb, white 35%, transparent);
+}
+
+.profil-page .profil-mockup-frame__chrome-dots span:nth-child(1) {
+  background: color-mix(in srgb, #e57373 70%, transparent);
+}
+
+.profil-page .profil-mockup-frame__chrome-dots span:nth-child(2) {
+  background: color-mix(in srgb, #f0c36d 75%, transparent);
+}
+
+.profil-page .profil-mockup-frame__chrome-dots span:nth-child(3) {
+  background: color-mix(in srgb, var(--systems-mint) 55%, transparent);
+}
+
+.profil-page .profil-mockup-frame__chrome-label {
+  flex: 1;
+  min-width: 0;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, white 78%, var(--systems-mint));
+  opacity: 0.92;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profil-page .profil-mockup-frame__chrome-label.is-chip-active {
+  animation: profil-mock-label-soft 12s ease-in-out infinite;
+}
+
+.profil-page .profil-mockup-frame__overlay {
+  position: absolute;
+  right: 0.65rem;
+  bottom: 0.65rem;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: min(52%, 11.5rem);
+  padding: 0.55rem 0.6rem;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--color-base-dark) 90%, transparent);
+  border: 1px solid color-mix(in srgb, white 14%, transparent);
+  pointer-events: auto;
+}
+
+.profil-page .profil-mockup-frame__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.28rem;
+  margin-bottom: 0.15rem;
+}
+
+.profil-page .profil-mockup-frame__chip {
+  border: 1px solid color-mix(in srgb, white 22%, transparent);
+  border-radius: 999px;
+  padding: 0.12rem 0.42rem;
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, white 82%, var(--systems-mint));
+  background: color-mix(in srgb, white 8%, transparent);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.profil-page .profil-mockup-frame__chip.is-active,
+.profil-page .profil-mockup-frame__chip:hover {
+  border-color: color-mix(in srgb, var(--systems-mint) 55%, white);
+  background: color-mix(in srgb, var(--systems-mint) 28%, transparent);
+}
+
+.profil-page .profil-mockup-frame__chip.is-active {
+  animation: hero-mock-chip-pop 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.profil-page .profil-mockup-frame__check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.2rem 0;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: color-mix(in srgb, white 88%, var(--systems-mint));
+}
+
+.profil-page .profil-mockup-frame__check-box {
+  flex-shrink: 0;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 3px;
+  border: 1.5px solid color-mix(in srgb, white 55%, transparent);
+  background: transparent;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.profil-page .profil-mockup-frame__check-row.is-done .profil-mockup-frame__check-box {
+  border-color: var(--systems-mint);
+  background: var(--systems-mint);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, white 35%, transparent);
+}
+
+.profil-page .profil-mockup-frame__check-row.is-done .profil-mockup-frame__check-box::after {
+  content: '';
+  display: block;
+  width: 0.28rem;
+  height: 0.48rem;
+  margin: 0.05rem auto 0;
+  border-right: 1.5px solid white;
+  border-bottom: 1.5px solid white;
+  transform: rotate(42deg) translate(-1px, -1px);
+}
+
+.profil-page .profil-mockup-frame__check-label {
+  font-size: 0.58rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.profil-page .profil-mockup-frame.is-mockup-ready .profil-mockup-frame__overlay {
+  animation: hero-overlay-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.profil-page .profil-mockup-frame.is-mockup-ready .profil-mockup-frame__check-row {
+  animation: hero-check-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.profil-page .profil-mockup-frame.is-mockup-ready .profil-mockup-frame__overlay > .profil-mockup-frame__check-row:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.profil-page .profil-mockup-frame.is-mockup-ready .profil-mockup-frame__overlay > .profil-mockup-frame__check-row:nth-child(3) {
+  animation-delay: 0.22s;
+}
+
+.profil-page .profil-mockup-frame.is-mockup-ready .profil-mockup-frame__overlay > .profil-mockup-frame__check-row:nth-child(4) {
+  animation-delay: 0.32s;
+}
+
+.profil-page .profil-mockup-frame.is-mockup-live .profil-mockup-frame__chrome-label {
+  animation: profil-mock-label-soft 12s ease-in-out infinite;
+}

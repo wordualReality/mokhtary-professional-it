@@ -1,0 +1,362 @@
+/* --- Band Arbeitsweise: it-gain-Kacheln + Mini-Mocks --- */
+
+.profil-work-grid {
+  align-items: stretch;
+}
+
+.profil-band--work.is-band-live .it-gain.is-active .pp-work-viz {
+  border-color: color-mix(in srgb, var(--color-primary) 30%, var(--color-border-soft));
+}
+
+.it-gain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  min-width: 0;
+  padding: 0;
+  outline: none;
+  border-radius: 12px;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.it-gain.is-active {
+  transform: translateY(-3px);
+}
+
+.it-gain:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 55%, white);
+  outline-offset: 4px;
+}
+
+.it-gain__num {
+  margin: 0;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.76rem;
+  color: var(--systems-steel);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.it-gain__num::after {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--systems-steel);
+  margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+.it-gain__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.it-gain__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-base-dark);
+  line-height: 1.3;
+}
+
+.it-gain__body {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  min-height: 4.5em;
+}
+
+.it-gain__body.is-typing::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  background: color-mix(in srgb, var(--color-primary) 70%, var(--systems-mint));
+  animation: pp-work-caret 0.7s step-end infinite;
+}
+
+@keyframes pp-work-caret {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.pp-work-viz {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  height: 3.35rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--systems-steel) 20%, var(--color-border-soft));
+  background: color-mix(in srgb, white 92%, var(--systems-mint));
+  overflow: hidden;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.28s ease;
+}
+
+.it-gain.is-active .pp-work-viz {
+  border-color: color-mix(in srgb, var(--color-primary) 28%, var(--color-border-soft));
+  box-shadow: 0 10px 24px rgba(44, 51, 51, 0.08);
+}
+
+/* 01 — Dokument + Checkliste */
+
+.pp-work-viz--doc {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.32rem;
+  padding: 0.45rem 0.55rem;
+}
+
+.pp-work-viz__sheet {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  min-width: 0;
+  height: 2.05rem;
+  padding: 0.28rem 0.4rem;
+  border-radius: 6px;
+  background: white;
+  border: 1px solid var(--color-border-soft);
+  box-shadow: 0 4px 10px rgba(44, 51, 51, 0.06);
+}
+
+.pp-work-viz__typed {
+  display: block;
+  min-width: 0;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.48rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--color-primary) 82%, var(--color-base-dark));
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.pp-work-viz__check {
+  flex-shrink: 0;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 3px;
+  border: 1.5px solid color-mix(in srgb, var(--systems-steel) 45%, transparent);
+  background: white;
+  opacity: 0.28;
+  transition:
+    opacity 0.22s ease,
+    background 0.22s ease,
+    border-color 0.22s ease,
+    transform 0.22s ease;
+}
+
+.pp-work-viz__check.is-done {
+  opacity: 1;
+  border-color: var(--systems-mint);
+  background: color-mix(in srgb, var(--systems-mint) 38%, white);
+  transform: scale(1.05);
+}
+
+.pp-work-viz__check--a.is-done {
+  border-color: var(--systems-mint);
+}
+
+.pp-work-viz__check--b.is-done {
+  border-color: color-mix(in srgb, var(--color-primary) 45%, var(--systems-mint));
+  background: color-mix(in srgb, var(--color-primary) 22%, white);
+}
+
+.pp-work-viz__check--c.is-done {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 28%, white);
+}
+
+/* 02 — Scope In/Out */
+
+.pp-work-viz--scope {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+  padding: 0.4rem;
+}
+
+.pp-work-viz__scope-in,
+.pp-work-viz__scope-out {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.35rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 8px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  transition:
+    transform 0.22s ease,
+    opacity 0.22s ease,
+    background 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.pp-work-viz__scope-in {
+  background: color-mix(in srgb, var(--systems-mint) 22%, white);
+  color: var(--color-primary);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 22%, var(--color-border-soft));
+}
+
+.pp-work-viz__scope-out {
+  background: color-mix(in srgb, var(--color-border-soft) 55%, white);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-soft);
+  opacity: 0.5;
+}
+
+.pp-work-viz__scope-in.is-active,
+.pp-work-viz__scope-out.is-active {
+  opacity: 1;
+  transform: scale(1.03);
+  box-shadow: 0 6px 14px rgba(44, 51, 51, 0.08);
+}
+
+.pp-work-viz__scope-in.is-active {
+  background: color-mix(in srgb, var(--systems-mint) 32%, white);
+  border-color: color-mix(in srgb, var(--color-primary) 35%, var(--color-border-soft));
+}
+
+.pp-work-viz__scope-out.is-active {
+  background: color-mix(in srgb, var(--systems-steel) 14%, white);
+  color: var(--color-base-dark);
+  border-color: color-mix(in srgb, var(--systems-steel) 35%, var(--color-border-soft));
+}
+
+.pp-work-viz__scope-in:focus-visible,
+.pp-work-viz__scope-out:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 55%, white);
+  outline-offset: 2px;
+}
+
+/* 03 — FB ↔ IT */
+
+.pp-work-viz--bridge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  padding: 0.45rem 0.55rem;
+}
+
+.pp-work-viz__bubble {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  min-width: 2rem;
+  padding: 0.35rem 0.4rem;
+  border-radius: 8px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-align: center;
+  border: 1px solid var(--color-border-soft);
+  background: white;
+  transition:
+    transform 0.28s ease,
+    border-color 0.25s ease,
+    box-shadow 0.28s ease;
+}
+
+.pp-work-viz__bubble--fb {
+  color: var(--color-primary);
+}
+
+.pp-work-viz__bubble--it {
+  color: var(--systems-steel);
+}
+
+.it-gain.is-active .pp-work-viz__bubble--fb,
+.pp-work-viz--bridge.is-pulse-at-it .pp-work-viz__bubble--it {
+  transform: scale(1.06);
+  border-color: color-mix(in srgb, var(--color-primary) 32%, var(--color-border-soft));
+  box-shadow: 0 4px 12px rgba(44, 51, 51, 0.1);
+}
+
+.pp-work-viz__bridge-track {
+  position: relative;
+  flex: 1;
+  height: 1.35rem;
+  min-width: 1.5rem;
+}
+
+.pp-work-viz__bridge-arc {
+  position: absolute;
+  inset: auto 0 0;
+  height: 1.1rem;
+  border-top: 2px dashed color-mix(in srgb, var(--systems-steel) 38%, transparent);
+  border-radius: 999px 999px 0 0;
+  opacity: 0.45;
+  transition:
+    opacity 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.it-gain.is-active .pp-work-viz__bridge-arc,
+.pp-work-viz--bridge.is-flow-live .pp-work-viz__bridge-arc {
+  opacity: 1;
+  border-color: color-mix(in srgb, var(--color-primary) 48%, transparent);
+}
+
+.pp-work-viz__bridge-pulse {
+  position: absolute;
+  top: 0;
+  left: 8%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--systems-mint) 45%, white);
+  transform: translate(-50%, 0);
+  opacity: 0;
+  transition:
+    left 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
+}
+
+.pp-work-viz--bridge.is-flow-live .pp-work-viz__bridge-pulse {
+  opacity: 1;
+}
+
+.pp-work-viz--bridge.is-pulse-at-fb .pp-work-viz__bridge-pulse {
+  left: 10%;
+}
+
+.pp-work-viz--bridge.is-pulse-at-mid .pp-work-viz__bridge-pulse {
+  left: 50%;
+}
+
+.pp-work-viz--bridge.is-pulse-at-it .pp-work-viz__bridge-pulse {
+  left: 90%;
+}
+
+@media (hover: hover) {
+  .it-gain[role='button'] {
+    cursor: pointer;
+  }
+}

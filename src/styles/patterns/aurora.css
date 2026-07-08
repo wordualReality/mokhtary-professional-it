@@ -1,0 +1,237 @@
+/**
+ * @file src/styles/patterns/aurora.css
+ * @summary Wiederverwendbares Layout-/Deko-Pattern: aurora.
+ */
+
+/* ---------- Aurora · Licht-Schicht ----------
+ *
+ * Warme, langsam driftende Lichtstimmung fuer Heroes.
+ * Weiche Farbverlaeufe, ruhiger Parallax, reduzierte Bewegung respektiert.
+ * Laesst den Dokumenten-Look brechen, ohne laut zu werden.
+ *
+ * Markup:
+ *   <div class="aurora aurora--growth" aria-hidden="true"></div>
+ *   <div class="aurora aurora--systems" aria-hidden="true"></div>
+ *   <div class="aurora aurora--neutral" aria-hidden="true"></div>
+ *
+ * Moeglichst als erstes Kind einer "relative overflow-hidden"-Section.
+ * Zusammen mit .grain und .mockup-glow definiert das Phase 1 der
+ * Vibrance-Ausbauten.
+ */
+
+.aurora {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background-repeat: no-repeat;
+  filter: blur(70px);
+  will-change: transform;
+}
+
+.aurora::before {
+  background-image:
+    radial-gradient(42% 50% at 20% 28%, var(--aurora-c1) 0%, transparent 70%),
+    radial-gradient(38% 44% at 78% 64%, var(--aurora-c2) 0%, transparent 72%),
+    radial-gradient(30% 40% at 50% 18%, var(--aurora-c3) 0%, transparent 75%);
+  animation: auroraDriftA var(--aurora-duration, 42s) ease-in-out infinite alternate;
+  opacity: var(--aurora-opacity-a, 0.72);
+}
+
+.aurora::after {
+  background-image:
+    radial-gradient(40% 50% at 72% 24%, var(--aurora-c4) 0%, transparent 74%),
+    radial-gradient(45% 52% at 22% 76%, var(--aurora-c5) 0%, transparent 72%);
+  animation: auroraDriftB calc(var(--aurora-duration, 42s) * 1.25) ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+  opacity: var(--aurora-opacity-b, 0.68);
+}
+
+/* Cluster: Wachstum (Cream, Lavender, Violet + warmes Licht) ----- */
+.aurora--growth {
+  --aurora-c1: color-mix(in srgb, var(--growth-lavender) 60%, transparent);
+  --aurora-c2: color-mix(in srgb, var(--growth-violet) 42%, transparent);
+  --aurora-c3: color-mix(in srgb, #F5C59B 55%, transparent);
+  --aurora-c4: color-mix(in srgb, var(--growth-cream) 70%, transparent);
+  --aurora-c5: color-mix(in srgb, var(--growth-lavender) 50%, transparent);
+  --aurora-duration: 44s;
+}
+
+/* Cluster: Systeme (Sage, Teal, Steel + kuehles Licht) ----------- */
+.aurora--systems {
+  --aurora-c1: color-mix(in srgb, var(--systems-steel) 55%, transparent);
+  --aurora-c2: color-mix(in srgb, var(--systems-mint) 50%, transparent);
+  --aurora-c3: color-mix(in srgb, var(--deep-mist) 55%, transparent);
+  --aurora-c4: color-mix(in srgb, var(--color-primary) 40%, transparent);
+  --aurora-c5: color-mix(in srgb, var(--systems-sage) 70%, transparent);
+  --aurora-duration: 46s;
+}
+
+/* Neutral: Home, Uebergangs-Sektionen ---------------------------- */
+.aurora--neutral {
+  --aurora-c1: color-mix(in srgb, var(--color-accent-soft) 55%, transparent);
+  --aurora-c2: color-mix(in srgb, var(--growth-lavender) 45%, transparent);
+  --aurora-c3: color-mix(in srgb, var(--systems-mint) 40%, transparent);
+  --aurora-c4: color-mix(in srgb, #F5C59B 40%, transparent);
+  --aurora-c5: color-mix(in srgb, var(--color-primary) 32%, transparent);
+  --aurora-duration: 50s;
+}
+
+/* Intensity-Modifier: wenn ConnectedDots in derselben Section liegen,
+ * wird die Aurora leiser gefahren, damit es nicht ueberladen wirkt. */
+.aurora--muted {
+  --aurora-opacity-a: 0.48;
+  --aurora-opacity-b: 0.42;
+}
+
+@keyframes auroraDriftA {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  100% { transform: translate3d(4%, -3%, 0) rotate(8deg); }
+}
+
+@keyframes auroraDriftB {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  100% { transform: translate3d(-4%, 4%, 0) rotate(-6deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora::before,
+  .aurora::after { animation: none; }
+}
+
+/* ---------- Grain · Film-Grain-Veil ----------
+ *
+ * Sehr feine SVG-basierte Noise-Textur. Bricht das "vektor-flach"-Gefuehl
+ * und gibt Heroes eine fast fotografische Tiefe. 3-5% Opazitaet reicht.
+ */
+
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.35;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+  background-repeat: repeat;
+}
+
+.grain--fine {
+  opacity: 0.22;
+}
+
+/* ---------- Mockup-Glow · Radialer Schein hinter Bildern ----------
+ *
+ * Wird als Geschwister-Element NEBEN dem Mockup platziert oder als
+ * Pseudo-Element des Wrappers. Pulsiert langsam, gibt dem Mockup ein
+ * "leuchtendes" Standbein. Farbe adaptiv via CSS-Variable.
+ *
+ * Markup:
+ *   <div class="mockup-glow mockup-glow--violet" aria-hidden="true"></div>
+ */
+
+.mockup-glow {
+  position: absolute;
+  inset: -12% -14% -16% -14%;
+  z-index: -1;
+  border-radius: 60px;
+  pointer-events: none;
+  filter: blur(50px);
+  opacity: 0.62;
+  animation: mockupGlowPulse 8s ease-in-out infinite alternate;
+}
+
+.mockup-glow--violet {
+  background: radial-gradient(
+    60% 60% at 50% 50%,
+    color-mix(in srgb, var(--growth-violet) 70%, transparent) 0%,
+    color-mix(in srgb, var(--growth-lavender) 35%, transparent) 45%,
+    transparent 75%
+  );
+}
+
+.mockup-glow--teal {
+  background: radial-gradient(
+    60% 60% at 50% 50%,
+    color-mix(in srgb, var(--color-primary) 60%, transparent) 0%,
+    color-mix(in srgb, var(--systems-mint) 40%, transparent) 50%,
+    transparent 78%
+  );
+}
+
+.mockup-glow--warm {
+  background: radial-gradient(
+    60% 60% at 50% 50%,
+    color-mix(in srgb, #F5C59B 55%, transparent) 0%,
+    color-mix(in srgb, var(--growth-lavender) 30%, transparent) 50%,
+    transparent 78%
+  );
+}
+
+@keyframes mockupGlowPulse {
+  0%   { transform: scale(1) translate3d(0, 0, 0); opacity: 0.55; }
+  100% { transform: scale(1.08) translate3d(1%, -1%, 0); opacity: 0.72; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mockup-glow { animation: none; }
+}
+
+/* ---------- Glass · frosted-glass Utility ----------
+ *
+ * Fuer Cards und Oberflaechen, die "schweben" sollen (z.B. ContactForm).
+ * Verwendet backdrop-filter mit Fallback auf solides weiss.
+ */
+
+.glass-card {
+  background: color-mix(in srgb, white 82%, transparent);
+  backdrop-filter: saturate(1.2) blur(18px);
+  -webkit-backdrop-filter: saturate(1.2) blur(18px);
+  border: 1px solid color-mix(in srgb, white 60%, var(--color-border-soft));
+  box-shadow:
+    0 30px 60px rgba(44, 51, 51, 0.10),
+    0 1px 0 rgba(255, 255, 255, 0.6) inset;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-card {
+    background: white;
+  }
+}
+
+/* ---------- Tilt-Scene · dezentes Parallax-Kippen ----------
+ *
+ * Wrapper mit data-tilt setzt --tx/--ty (-1..1) via JS. Das
+ * Child mit .tilt-scene__layer kippt darauf leicht mit Perspektive.
+ * Maximum ca. 4-6deg fuer seriosen Effekt. Bewegung ist sanft
+ * interpoliert ueber transition.
+ */
+
+.tilt-scene {
+  --tx: 0;
+  --ty: 0;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.tilt-scene__layer {
+  transform:
+    rotateY(calc(var(--tx) * 4deg))
+    rotateX(calc(var(--ty) * -4deg))
+    translate3d(calc(var(--tx) * 6px), calc(var(--ty) * 6px), 0);
+  transition: transform 260ms var(--motion-ease);
+  will-change: transform;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .tilt-scene__layer { transform: none; }
+}

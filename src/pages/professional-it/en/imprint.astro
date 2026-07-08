@@ -1,0 +1,35 @@
+---
+export const prerender = true;
+/**
+ * @file src/pages/professional-it/en/imprint.astro
+ * @summary Imprint in Professional IT English context.
+ */
+import ProfilLaunchLayout from '../../../layouts/ProfilLaunchLayout.astro';
+import LegalImpressumArticle from '../../../components/legal/LegalImpressumArticle.astro';
+
+const title = 'Imprint · Aydin Mokhtary · Professional IT';
+const description =
+  'Legal notice and mandatory information under German law for mokhtary.de. Provider: Aydin Mokhtary, Wedel.';
+---
+
+<ProfilLaunchLayout locale="en" title={title} description={description}>
+  <main id="main-content" class="bg-white">
+    <section class="relative border-b border-[var(--color-border-soft)]">
+      <div class="mx-auto max-w-3xl px-6 py-20 lg:px-8 lg:py-24">
+        <header class="mb-10" data-reveal>
+          <p class="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[var(--color-primary)]">
+            Legal
+          </p>
+          <h1 class="text-4xl font-semibold tracking-tight text-[var(--color-base-dark)] md:text-5xl">
+            Imprint
+          </h1>
+          <p class="mt-4 text-base leading-7 text-[var(--color-text-secondary)]">
+            Information pursuant to § 5 TMG and § 18 (2) MStV (German law).
+          </p>
+        </header>
+
+        <LegalImpressumArticle />
+      </div>
+    </section>
+  </main>
+</ProfilLaunchLayout>

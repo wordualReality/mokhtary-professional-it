@@ -1,0 +1,134 @@
+/**
+ * @file src/styles/patterns/typography.css
+ * @summary Wiederverwendbares Layout-/Deko-Pattern: typography.
+ */
+
+/* ---------- Typography · Vibrance Phase 4 ----------
+ *
+ * Display-Serif als Editorial-Akzent in Heroes, Kinetic-Type fuer
+ * Key-Words und Oversized-Outline-Numerik fuer Prozess-Schritte.
+ * Alle Tools arbeiten mit System-Schriften (keine externen Webfonts),
+ * um Performance und Apple-Clean-Stil zu bewahren.
+ */
+
+/* Typografie-Scale (Foundation v2) --------------------------- */
+.text-h1 {
+  font-size: var(--text-h1-size);
+  line-height: var(--text-h1-leading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.text-h2 {
+  font-size: var(--text-h2-size);
+  line-height: var(--text-h2-leading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.text-lead {
+  font-size: var(--text-lead-size);
+  line-height: var(--text-lead-leading);
+}
+
+.text-kicker {
+  font-size: var(--text-kicker-size);
+  letter-spacing: var(--text-kicker-tracking);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Display-Serif: editorial Kontrast zu Inter/SF -------- */
+.display-serif {
+  font-family:
+    "New York", "Iowan Old Style", "Source Serif Pro",
+    "Cambria", "Georgia", ui-serif, serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  font-style: normal;
+}
+
+.display-serif--italic {
+  font-style: italic;
+}
+
+/* Kinetic-Type: Key-Word atmet, letter-spacing oszilliert ---- *
+ * Nur sparsam verwenden, ein Wort pro Hero reicht. */
+.kinetic {
+  display: inline-block;
+  background-image: linear-gradient(
+    100deg,
+    var(--cluster-accent, var(--color-primary)) 0%,
+    var(--cluster-accent-hot, var(--accent-violet)) 50%,
+    var(--accent-coral) 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation:
+    kineticShift 10s ease-in-out infinite alternate,
+    kineticSpace 8s ease-in-out infinite alternate;
+}
+
+.cluster-growth .kinetic {
+  background-image: linear-gradient(
+    100deg,
+    var(--growth-violet) 0%,
+    var(--accent-violet) 50%,
+    var(--accent-coral) 100%
+  );
+}
+
+.cluster-systems .kinetic {
+  background-image: linear-gradient(
+    100deg,
+    var(--systems-steel) 0%,
+    var(--accent-teal) 50%,
+    var(--accent-mint) 100%
+  );
+}
+
+@keyframes kineticShift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+@keyframes kineticSpace {
+  0%   { letter-spacing: -0.02em; }
+  100% { letter-spacing:  0.01em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kinetic { animation: none; }
+}
+
+/* Oversized-Outline-Numerik fuer Prozess-Schritte ----------- *
+ * Markup-Konvention:
+ *   <span class="step-numeric" aria-hidden="true">01</span>
+ *   <h3>Headline</h3>
+ */
+.step-numeric {
+  display: block;
+  font-family:
+    "New York", "Iowan Old Style", "Cambria", "Georgia", ui-serif, serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--cluster-accent-hot, var(--accent-violet)) 70%, transparent);
+  color: transparent;
+  margin-bottom: 0.5rem;
+  transition: -webkit-text-stroke-color 300ms var(--motion-ease), color 300ms var(--motion-ease);
+}
+
+.step-numeric--filled {
+  -webkit-text-stroke: 0;
+  color: color-mix(in srgb, var(--cluster-accent-hot, var(--accent-violet)) 90%, transparent);
+}
+
+/* Hover auf dem umgebenden Step fuellt die Ziffer */
+.step-card:hover .step-numeric,
+.step-rail__step:hover .step-numeric {
+  -webkit-text-stroke: 0;
+  color: color-mix(in srgb, var(--cluster-accent-hot, var(--accent-violet)) 90%, transparent);
+}

@@ -1,0 +1,173 @@
+/**
+ * @file src/styles/patterns/interactions.css
+ * @summary Wiederverwendbares Layout-/Deko-Pattern: interactions.
+ */
+
+/* ---------- Interactions ----------
+ * Buttons, Chevrons, Scroll-Reveal, Concept-Label.
+ * Konsolidiert aus vier Mini-Dateien (cta-lift, chevron-nudge, reveal,
+ * concept-label). Gleiche Konzern-Domain (UI-Mikro-Verhalten), darum
+ * gemeinsam.
+ */
+
+/* CTA-Lift: Button hebt sich beim Hover */
+.cta-lift {
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease),
+    background-color var(--motion-fast) var(--motion-ease);
+}
+
+@media (hover: hover) {
+  .cta-lift:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 18px 38px color-mix(in srgb, var(--action-primary) 32%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--action-primary) 25%, transparent) inset;
+  }
+  .cluster-growth .cta-lift:hover {
+    box-shadow:
+      0 18px 38px color-mix(in srgb, var(--accent-violet) 30%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--accent-violet) 25%, transparent) inset;
+  }
+  .cluster-systems .cta-lift:hover {
+    box-shadow:
+      0 18px 38px color-mix(in srgb, var(--accent-teal) 30%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--accent-teal) 25%, transparent) inset;
+  }
+}
+
+/* Chevron-Nudge: Pfeil in CTAs schiebt sich beim Hover */
+.chevron-nudge {
+  display: inline-block;
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+
+@media (hover: hover) {
+  .cta-lift:hover .chevron-nudge,
+  a:hover > .chevron-nudge {
+    transform: translateX(3px);
+  }
+}
+
+/* Reveal-on-Scroll (von reveal.ts gesteuert)
+ * Vibrance-Phase 2: blur-to-clear plus staerkerer y-Offset fuer
+ * eine filmischere Einblendung. Grundvariante bleibt dezent,
+ * Akzent-Varianten via data-reveal="lift" / "fade" / "fly". */
+html:not(.js-reveal-ready) [data-reveal] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(6px);
+  transition:
+    opacity 720ms var(--motion-ease),
+    transform 720ms var(--motion-ease),
+    filter 720ms var(--motion-ease);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+[data-reveal="fade"] {
+  transform: none;
+  filter: blur(4px);
+}
+
+[data-reveal="lift"] {
+  transform: translateY(28px) scale(0.985);
+  filter: blur(8px);
+}
+
+[data-reveal="fly"] {
+  transform: translateY(40px) scale(0.96);
+  filter: blur(10px);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+[data-reveal-delay="80"] { --reveal-delay: 80ms; }
+[data-reveal-delay="100"] { --reveal-delay: 100ms; }
+[data-reveal-delay="120"] { --reveal-delay: 120ms; }
+[data-reveal-delay="140"] { --reveal-delay: 140ms; }
+[data-reveal-delay="160"] { --reveal-delay: 160ms; }
+[data-reveal-delay="180"] { --reveal-delay: 180ms; }
+[data-reveal-delay="200"] { --reveal-delay: 200ms; }
+[data-reveal-delay="220"] { --reveal-delay: 220ms; }
+[data-reveal-delay="240"] { --reveal-delay: 240ms; }
+[data-reveal-delay="260"] { --reveal-delay: 260ms; }
+[data-reveal-delay="300"] { --reveal-delay: 300ms; }
+
+[data-stagger-index="0"] { --i: 0; }
+[data-stagger-index="1"] { --i: 1; }
+[data-stagger-index="2"] { --i: 2; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
+/* ---------- Magnetic CTA ----------
+ *
+ * Datenattribut data-magnetic auf primaeren CTAs. Das Script setzt
+ * --mx und --my als relativen Cursor-Offset (-0.5 ... 0.5).
+ * Die CSS nutzt diese Werte, um Button und Chevron magnetisch
+ * zu verschieben. Nur auf pointer:fine aktiv, respektiert reduce-motion.
+ */
+
+[data-magnetic] {
+  --mx: 0;
+  --my: 0;
+  --magnet-strength: 10px;
+  transform: translate3d(calc(var(--mx) * var(--magnet-strength)), calc(var(--my) * var(--magnet-strength)), 0);
+  transition: transform 180ms var(--motion-ease);
+}
+
+[data-magnetic] .chevron-nudge {
+  transform: translate3d(calc(var(--mx) * 4px), calc(var(--my) * 2px), 0);
+  transition: transform 180ms var(--motion-ease);
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  [data-magnetic] {
+    transform: none;
+  }
+  [data-magnetic] .chevron-nudge {
+    transform: none;
+  }
+}
+
+/* Concept-Label (Demo-Marken-Kennzeichnung) */
+.concept-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-base-dark) 6%, white);
+  border: 1px solid var(--color-border-soft);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+}
+
+.concept-label::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-text-secondary);
+  opacity: 0.45;
+}

@@ -1,0 +1,65 @@
+/**
+ * @file src/styles/patterns/gradient-bridge.css
+ * @summary Wiederverwendbares Layout-/Deko-Pattern: gradient-bridge.
+ */
+
+/* ---------- Gradient-Bridge ----------
+ *
+ * Verlauf zwischen zwei Sektionen statt einer harten Trennlinie.
+ * Markup-Konvention:
+ *   <div class="gradient-bridge" role="presentation" style="--from: …; --to: …;"></div>
+ *
+ * Die CSS-Variablen --from und --to definieren die Endfarben des Verlaufs.
+ * Standard: surface-light → white. Cluster-Varianten siehe unten.
+ */
+
+.gradient-bridge {
+  --from: var(--color-surface-light);
+  --to: white;
+  position: relative;
+  height: 96px;
+  width: 100%;
+  background: linear-gradient(180deg, var(--from) 0%, var(--to) 100%);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gradient-bridge--tall {
+  height: 144px;
+}
+
+.gradient-bridge--short {
+  height: 56px;
+}
+
+/* Cluster-Varianten: warm in kuehl und umgekehrt */
+
+.gradient-bridge--growth-to-systems {
+  --from: var(--growth-cream);
+  --to: var(--systems-sage);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--from) 70%, white) 0%,
+    color-mix(in srgb, var(--to) 70%, white) 100%
+  );
+}
+
+.gradient-bridge--systems-to-growth {
+  --from: var(--systems-sage);
+  --to: var(--growth-cream);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--from) 70%, white) 0%,
+    color-mix(in srgb, var(--to) 70%, white) 100%
+  );
+}
+
+.gradient-bridge--surface-to-dark {
+  --from: var(--color-surface-light);
+  --to: var(--deep-night);
+}
+
+.gradient-bridge--dark-to-surface {
+  --from: var(--deep-night);
+  --to: var(--color-surface-light);
+}

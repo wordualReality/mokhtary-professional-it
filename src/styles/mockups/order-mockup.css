@@ -1,0 +1,226 @@
+/**
+ * @file src/styles/mockups/order-mockup.css
+ * @summary Reine-CSS-Mockup: order-mockup (Webdesign/Funnel).
+ */
+
+.order-mockup {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 14px;
+  padding: 16px;
+  background: white;
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.order-mockup__kicker {
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--growth-violet);
+}
+
+.order-mockup__left,
+.order-mockup__right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.order-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-soft);
+  background: color-mix(in srgb, var(--growth-cream) 30%, white);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.order-line.is-line-active {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--growth-violet) 35%, var(--color-border-soft));
+  box-shadow: 0 6px 16px rgba(108, 91, 123, 0.12);
+}
+
+.order-line__name {
+  flex: 1;
+  max-width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--growth-violet) 35%, var(--color-border-soft));
+  display: block;
+}
+
+.order-line__qty {
+  flex-shrink: 0;
+  width: 38px;
+  height: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-soft);
+  background: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--growth-ink);
+  font-weight: 500;
+}
+
+.order-line__price {
+  flex-shrink: 0;
+  width: 44px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--color-border-soft);
+}
+
+.order-summary {
+  padding: 14px;
+  border-radius: 16px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--growth-lavender) 30%, white) 0%,
+    white 100%
+  );
+  border: 1px solid color-mix(in srgb, var(--growth-violet) 25%, var(--color-border-soft));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.order-summary__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.order-summary__total {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--growth-ink);
+}
+
+.order-summary__cta {
+  margin-top: auto;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--color-primary);
+  color: white;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.order-summary__cta.is-order-success {
+  background: color-mix(in srgb, var(--growth-violet) 88%, var(--color-primary));
+}
+
+.order-mockup__toast {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  z-index: 3;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--growth-violet) 92%, #1e2a2e);
+  color: white;
+  font-size: 0.68rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.32s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.order-mockup__toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.order-mockup.is-order-live .order-line__name {
+  animation: orderFill 6s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+.order-mockup.is-order-live .order-mockup__left .order-line:nth-child(2) .order-line__name {
+  animation-delay: 0.6s;
+}
+
+.order-mockup.is-order-live .order-mockup__left .order-line:nth-child(3) .order-line__name {
+  animation-delay: 1.2s;
+}
+
+.order-mockup.is-order-live .order-mockup__left .order-line:nth-child(4) .order-line__name {
+  animation-delay: 1.8s;
+}
+
+.order-mockup.is-order-live .order-summary__cta:not(.is-order-success) {
+  animation: orderCtaPulse 3.4s ease-in-out infinite;
+}
+
+@keyframes orderFill {
+  0%,
+  100% {
+    transform: scaleX(0.85);
+    opacity: 0.6;
+  }
+  40%,
+  70% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes orderCtaPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(57, 91, 100, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(57, 91, 100, 0.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .order-mockup.is-order-live .order-line__name,
+  .order-mockup.is-order-live .order-summary__cta {
+    animation: none !important;
+  }
+  .order-line__name {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}

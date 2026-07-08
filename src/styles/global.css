@@ -1,0 +1,71 @@
+/**
+ * @file src/styles/global.css
+ * @summary Aggregiert Tailwind, Tokens und alle Teil-Stylesheets; primärer Einstieg für das Layout.
+ */
+
+/*
+ * global.css — Aggregator
+ *
+ * Tailwind, Tokens, Patterns, Komponenten, **Pages** (`src/styles/pages/`), dann base.
+ * Keine `<style>`-Blöcke in `.astro`; neue Regeln in passende Unter-Datei legen und hier importieren.
+ */
+
+@import "tailwindcss";
+
+@import "./tokens.css";
+@import "./a11y.css";
+
+@import "./patterns/interactions.css";
+@import "./patterns/nav-cluster.css";
+@import "./patterns/page-signature.css";
+@import "./patterns/marquee.css";
+@import "./patterns/gradient-bridge.css";
+@import "./patterns/connected-dots.css";
+@import "./patterns/aurora.css";
+@import "./patterns/color-accents.css";
+@import "./patterns/typography.css";
+@import "./patterns/section-shell.css";
+
+@import "./components/trust-chips.css";
+@import "./components/mid-cta-band.css";
+@import "./components/cluster-card.css";
+@import "./components/cluster-badge.css";
+@import "./components/status-rotator.css";
+@import "./components/brand-faktum.css";
+@import "./components/legal.css";
+@import "./components/profile-timeline.css";
+@import "./components/profil-page.css";
+@import "./components/architecture-diagram.css";
+@import "./components/hero-mockup-media.css";
+@import "./components/contact-form.css";
+@import "./components/home-hero.css";
+@import "./components/routing-section.css";
+@import "./components/routing-section-live.css";
+@import "./components/hub-card-live.css";
+@import "./components/hub-story-mini.css";
+@import "./components/wachstum-growth-story.css";
+@import "./components/webdesign-hero-site.css";
+@import "./components/showroom-stack.css";
+@import "./components/show-card.css";
+@import "./components/service-stub-page.css";
+@import "./components/step-rail.css";
+@import "./components/site-band-motion.css";
+@import "./components/social-hero-instagram.css";
+@import "./components/social-format-section.css";
+@import "./components/social-bento-mocks.css";
+
+@import "./pages/social-media-page.css";
+@import "./pages/webdesign-page.css";
+@import "./components/systeme-problem.css";
+@import "./components/systeme-decision.css";
+@import "./pages/systeme-ki-page.css";
+@import "./pages/apps-page.css";
+@import "./pages/ki-automation-page.css";
+@import "./pages/showcase-faktum-page.css";
+
+@import "./mockups/phone-frame.css";
+@import "./mockups/feed-grid.css";
+@import "./mockups/order-mockup.css";
+@import "./mockups/browser-frame.css";
+
+@import "./base.css";

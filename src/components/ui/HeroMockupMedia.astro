@@ -1,0 +1,64 @@
+---
+/**
+ * @file src/components/ui/HeroMockupMedia.astro
+ * @summary Hero-Mockup mit JPG-Poster und optionalem stummem Loop-Video (lazy).
+ */
+import { getHeroMockupVideo, type HeroMockupId } from '../../data/hero-mockup-videos';
+
+interface Props {
+  id: HeroMockupId;
+  class?: string;
+  imgClass?: string;
+  fetchpriority?: 'high' | 'low' | 'auto';
+  loading?: 'lazy' | 'eager';
+}
+
+const { id, class: wrapClass, imgClass, fetchpriority, loading = 'eager' } = Astro.props;
+const cfg = getHeroMockupVideo(id);
+const playback = cfg.playback ?? 'loop';
+const wrapStyle = cfg.objectPosition ? `--hero-mockup-position: ${cfg.objectPosition}` : undefined;
+const posterSrc = encodeURI(cfg.poster);
+const videoSrc = encodeURI(cfg.video);
+---
+
+<div
+  class:list={['hero-mockup-media', wrapClass]}
+  data-hero-mockup={id}
+  data-hero-mockup-playback={playback}
+  style={wrapStyle}
+>
+  <img
+    src={posterSrc}
+    alt={cfg.alt}
+    width={cfg.width}
+    height={cfg.height}
+    class:list={[imgClass, 'hero-mockup-media__poster']}
+    data-hero-mockup-poster
+    loading={loading}
+    decoding="async"
+    fetchpriority={fetchpriority}
+  />
+  <video
+    class="hero-mockup-media__video"
+    muted
+    loop={playback === 'loop' ? true : undefined}
+    playsinline
+    preload="metadata"
+    poster={posterSrc}
+    width={cfg.width}
+    height={cfg.height}
+    data-hero-mockup-video
+    data-hero-mockup-src={videoSrc}
+    aria-hidden="true"
+  />
+  <span class="hero-mockup-media__tint" aria-hidden="true"></span>
+  {
+    cfg.coverBadge ? (
+      <div class="hero-mockup-media__badge" aria-hidden="true">
+        <span class="hero-mockup-media__badge-dot" />
+        <span class="hero-mockup-media__badge-title">{cfg.coverBadge.title}</span>
+        <span class="hero-mockup-media__badge-meta">{cfg.coverBadge.meta}</span>
+      </div>
+    ) : null
+  }
+</div>

@@ -1,0 +1,18 @@
+---
+/**
+ * @file src/components/profil/ArchitectureDiagramHybrid.astro
+ * @summary Original-Mockup (JPG + optional Loop); Verbindungslinien liegen im Bild, kein SVG-Overlay.
+ */
+import HeroMockupMedia from '../ui/HeroMockupMedia.astro';
+---
+
+<div class="arch-diagram arch-diagram--hybrid" data-arch-diagram>
+  <div class="arch-diagram__stage">
+    <HeroMockupMedia
+      id="professional-it"
+      class="arch-diagram__fallback"
+      imgClass="profil-hero__mock-img"
+      fetchpriority="high"
+    />
+  </div>
+</div>

@@ -1,0 +1,169 @@
+---
+/**
+ * @file src/layouts/ProfilLaunchLayout.astro
+ * @summary Launch-Layout für /professional-it: minimales Header/Footer ohne Cross-Links.
+ */
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import SchedulingDialog from '../components/scheduling/SchedulingDialog.astro';
+import {
+  professionalItDeHref,
+  professionalItEnHref,
+} from '../config/professional-navigation';
+import type { ProfilLocale } from '../data/profil-content.locale';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+  locale?: ProfilLocale;
+}
+
+const {
+  title,
+  description,
+  image = '/og-default.png',
+  noindex = false,
+  locale = 'de',
+} = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://mokhtary.de';
+const canonical = new URL(Astro.url.pathname, `${siteUrl}/`).toString();
+const ogImage = new URL(image, `${siteUrl}/`).toString();
+const htmlLang = locale === 'en' ? 'en' : 'de';
+const ogLocale = locale === 'en' ? 'en_GB' : 'de_DE';
+const inLanguage = locale === 'en' ? 'en-GB' : 'de-DE';
+const skipLabel = locale === 'en' ? 'Skip to content' : 'Zum Inhalt springen';
+
+const alternateDe = new URL(professionalItDeHref, `${siteUrl}/`).toString();
+const alternateEn = new URL(professionalItEnHref, `${siteUrl}/`).toString();
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${siteUrl}/#business`,
+  name: 'Aydin Mokhtary',
+  url: `${siteUrl}/professional-it`,
+  email: 'kontakt@mokhtary.de',
+  description:
+    locale === 'en'
+      ? 'IT business analysis, requirements engineering and stakeholder management for corporate Switzerland and freelance mandates in Germany.'
+      : 'IT Business Analysis, Requirements Engineering und Stakeholder-Management für Corporate-Schweiz und Freelance-Mandate in Deutschland.',
+  founder: {
+    '@type': 'Person',
+    '@id': `${siteUrl}/#founder`,
+    name: 'Aydin Mokhtary',
+    jobTitle: 'IT Business Analyst · Requirements Engineering',
+    knowsAbout: [
+      'Business Analysis',
+      'Requirements Engineering',
+      'Stakeholder Management',
+      'Enterprise IT',
+      'DORA Compliance',
+    ],
+  },
+  areaServed: [
+    { '@type': 'Country', name: locale === 'en' ? 'Switzerland' : 'Schweiz' },
+    { '@type': 'Country', name: locale === 'en' ? 'Germany' : 'Deutschland' },
+  ],
+  serviceType: ['Professional IT', 'Business Analysis', 'Requirements Engineering'],
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  url: `${siteUrl}/`,
+  name: 'Aydin Mokhtary · Professional IT',
+  inLanguage,
+  publisher: { '@id': `${siteUrl}/#business` },
+};
+
+const webpage = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${canonical}#webpage`,
+  url: canonical,
+  name: title,
+  description,
+  inLanguage,
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  about: { '@id': `${siteUrl}/#business` },
+};
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#395b64" />
+    <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Aydin Mokhtary" />
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <meta
+          name="robots"
+          content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
+        />
+      )
+    }
+
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="de" href={alternateDe} />
+    <link rel="alternate" hreflang="en" href={alternateEn} />
+    <link rel="alternate" hreflang="x-default" href={alternateDe} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:site_name" content="Aydin Mokhtary · Professional IT" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(organization)} />
+    <script type="application/ld+json" set:html={JSON.stringify(website)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webpage)} />
+
+    <slot name="head" />
+
+    <noscript>
+      <link rel="stylesheet" href="/noscript-reveal.css" />
+    </noscript>
+  </head>
+
+  <body class="min-h-screen bg-[var(--color-background)] text-[var(--color-text-primary)] antialiased">
+    <a href="#main-content" class="skip-to-content">{skipLabel}</a>
+    <div class="flex min-h-screen flex-col">
+      <Header variant="launch" locale={locale} />
+      <slot />
+      <Footer variant="launch" locale={locale} />
+    </div>
+
+    <SchedulingDialog />
+
+    <script>
+      import '../scripts/core.ts';
+      import '../scripts/route-init.ts';
+    </script>
+  </body>
+</html>

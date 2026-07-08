@@ -1,0 +1,15 @@
+---
+/**
+ * @file src/components/profil/ArchitectureDiagram.astro
+ * @summary Architektur-Mockup für den Profil-Hero (SVG, Raster oder statisches JPG).
+ */
+import { ARCH_DIAGRAM_MODE } from '../../data/architecture-diagram';
+import ArchitectureDiagramHybrid from './ArchitectureDiagramHybrid.astro';
+import ArchitectureDiagramSvg from './ArchitectureDiagramSvg.astro';
+import ArchitectureDiagramRaster from './ArchitectureDiagramRaster.astro';
+---
+
+{ARCH_DIAGRAM_MODE === 'hybrid' && <ArchitectureDiagramHybrid />}
+{ARCH_DIAGRAM_MODE === 'svg' && <ArchitectureDiagramSvg />}
+{ARCH_DIAGRAM_MODE === 'raster' && <ArchitectureDiagramRaster />}
+{ARCH_DIAGRAM_MODE === 'static' && <ArchitectureDiagramRaster />}

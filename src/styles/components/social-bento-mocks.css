@@ -1,0 +1,108 @@
+/**
+ * @file src/styles/components/social-bento-mocks.css
+ * @summary Dekorative CSS-Mocks für Social-Bento (Carousel, Quote, Daily, CTA).
+ */
+
+  .sm-bento-mock {
+    border-radius: inherit;
+    overflow: hidden;
+  }
+
+  /* Carousel -------------------------------------------------- */
+  .sm-bento-mock--carousel {
+    background: linear-gradient(180deg, white 0%, var(--growth-cream) 100%);
+  }
+
+  .sm-bento-carousel__dot {
+    background: color-mix(in srgb, var(--growth-lavender) 55%, white);
+    transition:
+      transform 0.35s ease,
+      background-color 0.35s ease;
+  }
+
+  .sm-bento-carousel__dot.is-active {
+    transform: scale(1.35);
+    background: var(--growth-violet);
+  }
+
+  .sm-format-card.is-active .sm-bento-carousel__slide--front,
+  .sm-format-card:hover .sm-bento-carousel__slide--front {
+    transform: translateY(-2px);
+  }
+
+  .sm-bento-carousel__slide {
+    transition: transform 0.4s ease;
+  }
+
+  /* Quote ----------------------------------------------------- */
+  .sm-bento-mock--quote {
+    background: linear-gradient(
+      155deg,
+      color-mix(in srgb, white 92%, var(--growth-cream)) 0%,
+      color-mix(in srgb, var(--growth-lavender) 18%, white) 100%
+    );
+  }
+
+  /* Daily ----------------------------------------------------- */
+  .sm-bento-mock--daily {
+    background: linear-gradient(
+      160deg,
+      color-mix(in srgb, white 90%, var(--growth-cream)) 0%,
+      white 55%,
+      color-mix(in srgb, var(--growth-lavender) 12%, white) 100%
+    );
+  }
+
+  .sm-bento-daily__progress-fill {
+    width: var(--bento-daily-progress, 50%);
+  }
+
+  /* CTA ------------------------------------------------------- */
+  .sm-bento-mock--cta {
+    background: linear-gradient(
+      100deg,
+      var(--growth-violet) 0%,
+      color-mix(in srgb, var(--growth-lavender) 65%, var(--growth-violet)) 100%
+    );
+  }
+
+  /* Gastro: dezente Warm-Akzente ----------------------------- */
+  .sm-bento-mock[data-variant='gastro'].sm-bento-mock--carousel {
+    background: linear-gradient(180deg, white 0%, color-mix(in srgb, #fbbf24 12%, var(--growth-cream)) 100%);
+  }
+
+  .sm-bento-mock[data-variant='gastro'].sm-bento-mock--quote {
+    background: linear-gradient(
+      155deg,
+      color-mix(in srgb, white 90%, #fef3c7) 0%,
+      color-mix(in srgb, #d97706 10%, var(--growth-lavender)) 100%
+    );
+  }
+
+  .sm-bento-mock[data-variant='gastro'].sm-bento-mock--daily {
+    background: linear-gradient(
+      160deg,
+      color-mix(in srgb, white 88%, #fef3c7) 0%,
+      white 60%,
+      color-mix(in srgb, #fbbf24 14%, var(--growth-cream)) 100%
+    );
+  }
+
+  .sm-bento-mock[data-variant='gastro'].sm-bento-mock--cta {
+    background: linear-gradient(
+      100deg,
+      #b45309 0%,
+      color-mix(in srgb, #d97706 70%, var(--growth-violet)) 100%
+    );
+  }
+
+  .sm-bento-mock[data-variant='gastro'] .sm-bento-cta__pill {
+    color: #b45309;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sm-bento-carousel__slide,
+    .sm-bento-carousel__dot {
+      transition: none;
+    }
+  }

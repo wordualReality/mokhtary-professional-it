@@ -1,0 +1,34 @@
+---
+/**
+ * @file src/components/visual/ConnectedDots.astro
+ * @summary UI-Komponente: visual/ConnectedDots — wiederverwendbarer Markup-Block.
+ */
+interface Props {
+  tone?: 'neutral' | 'growth' | 'systems';
+  density?: number;
+  linkDistance?: number;
+  mask?: 'none' | 'fade-edges' | 'fade-bottom';
+  class?: string;
+}
+
+const {
+  tone = 'neutral',
+  density = 1,
+  linkDistance = 130,
+  mask = 'fade-edges',
+  class: className = '',
+} = Astro.props;
+
+const maskClass =
+  mask === 'fade-edges' ? 'dots-canvas--fade-edges' :
+  mask === 'fade-bottom' ? 'dots-canvas--fade-bottom' : '';
+---
+
+<canvas
+  data-connected-dots
+  data-tone={tone}
+  data-density={density}
+  data-link-distance={linkDistance}
+  aria-hidden="true"
+  class={`dots-canvas ${maskClass} ${className}`.trim()}
+></canvas>

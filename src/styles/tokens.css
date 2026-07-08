@@ -1,0 +1,115 @@
+/**
+ * @file src/styles/tokens.css
+ * @summary Design-Tokens (:root): Farben, Cluster-Paletten, Motion, Schatten.
+ */
+
+/* ---------- Design Tokens ---------- */
+
+:root {
+  --color-base-dark: #2c3333;
+  --color-primary: #395b64;
+  --color-primary-deep: #314e56;
+  --color-accent-soft: #a5c9ca;
+  --color-accent-strong: #7fb1b3;
+  --color-surface-light: #e7f6f2;
+  --color-background: #e7f6f2;
+  --color-text-primary: #2c3333;
+  --color-text-secondary: #4b5a5a;
+  --color-border-soft: #d7e8e4;
+
+  /* Cluster: Wachstum (Webdesign, SEO, Social) */
+  --growth-cream: #f2eae0;
+  --growth-lavender: #bda6ce;
+  --growth-violet: #9b8ec7;
+  --growth-ink: #4a3f5c;
+
+  /* Cluster: Systeme (KI, Apps, IT Consulting) */
+  --systems-sage: #ecf4e8;
+  --systems-mint: #abe7b2;
+  --systems-steel: #93bfc7;
+  --systems-ink: #2f4a4f;
+
+  /* Deep: dramatisches Dark-Stack fuer Stat-Band, Footer-Konzepte,
+   * eventuell spezielle CTA-Flaechen. Nicht den Brand-Teal ueberschreiben,
+   * sondern als kontrastreicher Anker. Quelle: colorhunt.co/palette/0926351b42425c83749ec8b9
+   */
+  --deep-night: #092635;
+  --deep-teal: #1b4242;
+  --deep-pine: #5c8374;
+  --deep-mist: #9ec8b9;
+
+  --motion-slow: 32s;
+  --motion-medium: 18s;
+  --motion-fast: 600ms;
+  --motion-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --shadow-lifted: 0 18px 44px rgba(44, 51, 51, 0.08);
+  --shadow-soft: 0 10px 28px rgba(44, 51, 51, 0.06);
+  --ring-focus: 0 0 0 2px var(--color-primary);
+
+  --radius-card: 28px;
+
+  /* ---------- Foundation v2 · 60-30-10 -------------------------------- */
+  --surface-page: var(--color-background);
+  --surface-section: #f8fcfb;
+  --surface-card: #ffffff;
+
+  --action-primary: #2f4f56;
+  --action-primary-hover: #243d43;
+  --shadow-action: 0 12px 30px color-mix(in srgb, var(--action-primary) 28%, transparent);
+
+  --content-prose: 42rem;
+  --content-wide: 72rem;
+  --content-max: 80rem;
+
+  --section-y: clamp(3.75rem, 6vw, 6rem);
+
+  /* Typografie-Scale (siehe typography.css) */
+  --text-kicker-size: 0.75rem;
+  --text-kicker-tracking: 0.18em;
+  --text-h1-size: clamp(2rem, 4.5vw, 3.5rem);
+  --text-h1-leading: 1.08;
+  --text-h2-size: clamp(1.5rem, 2.8vw, 2.25rem);
+  --text-h2-leading: 1.15;
+  --text-lead-size: 1.125rem;
+  --text-lead-leading: 1.75;
+
+  /* ---------- Vibrance Accents ---------------------------------
+   * Saturierte Varianten fuer Focus-Ringe, aktive Zustaende,
+   * Badge-Glows und gezielte Highlights. Die ruhige Palette
+   * bleibt Grundton, diese Akzente duerfen heller leuchten.
+   */
+  --accent-violet: #7c4fbf;
+  --accent-violet-soft: #bda6ce;
+  --accent-teal: #2c8a96;
+  --accent-teal-soft: #93bfc7;
+  --accent-coral: #f5a98c;
+  --accent-coral-soft: #f9cdba;
+  --accent-mint: #6fc19b;
+
+  --glow-violet: 0 0 24px color-mix(in srgb, var(--accent-violet) 55%, transparent);
+  --glow-teal:   0 0 24px color-mix(in srgb, var(--accent-teal) 55%, transparent);
+
+  --ring-focus-strong: 0 0 0 3px color-mix(in srgb, var(--accent-violet) 35%, transparent);
+}
+
+/* Cluster scoping: remap accents when section carries a cluster class */
+.cluster-growth {
+  --cluster-accent: var(--growth-violet);
+  --cluster-accent-soft: var(--growth-lavender);
+  --cluster-accent-hot: var(--accent-violet);
+  --cluster-surface: var(--growth-cream);
+  --cluster-ink: var(--growth-ink);
+  --cluster-glow: var(--glow-violet);
+  --surface-section: color-mix(in srgb, var(--growth-cream) 38%, white);
+}
+
+.cluster-systems {
+  --cluster-accent: var(--systems-steel);
+  --cluster-accent-soft: var(--systems-mint);
+  --cluster-accent-hot: var(--accent-teal);
+  --cluster-surface: var(--systems-sage);
+  --cluster-ink: var(--systems-ink);
+  --cluster-glow: var(--glow-teal);
+  --surface-section: color-mix(in srgb, var(--systems-sage) 55%, white);
+}

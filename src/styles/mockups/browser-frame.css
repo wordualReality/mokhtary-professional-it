@@ -1,0 +1,90 @@
+/**
+ * @file src/styles/mockups/browser-frame.css
+ * @summary Reine-CSS-Mockup-Frames: browser-frame.
+ */
+
+/* ---------- Browser Frame (wiederverwendbar fuer Brand-Showcases) ----------
+ * Dezente Browser-Chrome-Imitation: Traffic-Lights, URL-Bar, Inhalts-Container.
+ * Inhalts-Skin wird ueber Brand-Scope-Klassen gesetzt (z.B. .brand-faktum).
+ * Reines HTML/CSS, keine externen Assets.
+ */
+
+.browser-frame {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid var(--color-border-soft);
+  box-shadow: var(--shadow-lifted);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.browser-frame__chrome {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, #f7f7f8 0%, #eef0f2 100%);
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.browser-frame__lights {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.browser-frame__light {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #d8d8db;
+}
+
+.browser-frame__light--red { background: #ff5f57; }
+.browser-frame__light--yellow { background: #febc2e; }
+.browser-frame__light--green { background: #28c840; }
+
+.browser-frame__url {
+  flex: 1;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 26px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid var(--color-border-soft);
+  font-size: 0.72rem;
+  color: var(--color-text-secondary);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.browser-frame__url-lock {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  color: var(--color-accent-strong);
+}
+
+.browser-frame__viewport {
+  position: relative;
+  background: white;
+  min-height: 320px;
+}
+
+/* Optional Aspect-Ratio-Variante fuer konsistente Demo-Hoehen */
+.browser-frame--16x10 .browser-frame__viewport {
+  aspect-ratio: 16 / 10;
+}
+
+@media (max-width: 640px) {
+  .browser-frame__chrome { padding: 10px 12px; gap: 10px; }
+  .browser-frame__url { font-size: 0.65rem; height: 22px; }
+}

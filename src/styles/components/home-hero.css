@@ -1,0 +1,13 @@
+  .home-hero__image {
+    animation: home-hero-breath 14s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  @keyframes home-hero-breath {
+    from { transform: scale(1); }
+    to { transform: scale(1.035); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-hero__image { animation: none; }
+  }

@@ -1,0 +1,208 @@
+---
+/**
+ * @file src/components/legal/LegalDatenschutzArticle.astro
+ * @summary Datenschutz-Inhalt — shared zwischen global und Professional IT.
+ */
+interface Props {
+  privacyHref?: string;
+}
+
+const { privacyHref = '/datenschutz' } = Astro.props;
+---
+
+<article class="legal" data-reveal data-reveal-delay="120">
+  <h2>1. Verantwortlicher</h2>
+  <p>
+    Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) und
+    anderer nationaler Datenschutzgesetze sowie sonstiger datenschutz­rechtlicher
+    Bestimmungen ist:
+  </p>
+  <p>
+    Aydin Mokhtary<br />
+    Boockholtzstraße 11<br />
+    22880 Wedel<br />
+    Deutschland<br />
+    Telefon: <a href="tel:+491759710761">+49 175 9710761</a><br />
+    E-Mail: <a href="mailto:kontakt@mokhtary.de">kontakt@mokhtary.de</a>
+  </p>
+
+  <h2>2. Cookies und clientseitige Speicherung</h2>
+  <p>
+    Diese Website setzt <strong>keine Cookies</strong>. Es werden weder
+    technisch notwendige noch analytische oder Marketing-Cookies verwendet.
+    Auch <code>localStorage</code> und <code>sessionStorage</code> werden
+    nicht genutzt. Aus diesem Grund ist kein Einwilligungs-Banner nach
+    § 25 TTDSG notwendig.
+  </p>
+
+  <h2>3. Kein Tracking, keine externen Dienste</h2>
+  <p>
+    Die Seite verzichtet bewusst auf Tools, die personenbezogene Daten an
+    Dritte übertragen. Insbesondere werden nicht eingesetzt:
+  </p>
+  <ul>
+    <li>Google Analytics, Matomo, Plausible oder vergleichbare Analyse-Tools</li>
+    <li>Facebook-Pixel, LinkedIn Insight Tag, TikTok-Pixel, Google Ads Conversion</li>
+    <li>Google Fonts oder Schrift-CDNs (alle Schriften stammen aus dem Betriebssystem)</li>
+    <li>eingebettete YouTube-, Vimeo-, Google-Maps- oder Social-Media-Embeds</li>
+    <li>externe Skripte von Content-Delivery-Networks</li>
+  </ul>
+
+  <h2>4. Zugriff auf die Website · Server-Log-Files</h2>
+  <p>
+    Wenn Sie diese Website aufrufen, verarbeitet mein Hosting-Dienstleister
+    automatisch technisch notwendige Zugriffsdaten in Server-Log-Files. Dies
+    ist für die Auslieferung und den sicheren Betrieb der Seite erforderlich.
+  </p>
+  <p>Verarbeitet werden dabei typischerweise:</p>
+  <ul>
+    <li>IP-Adresse des anfragenden Geräts (gekürzt oder anonymisiert, soweit möglich)</li>
+    <li>Datum und Uhrzeit des Zugriffs</li>
+    <li>Name und URL der abgerufenen Datei</li>
+    <li>übertragene Datenmenge</li>
+    <li>HTTP-Statuscode</li>
+    <li>verwendeter Browser und dessen Version, Betriebssystem</li>
+    <li>Referrer-URL (zuvor besuchte Seite)</li>
+  </ul>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte
+    Interesse besteht im stabilen, fehlerfreien und sicheren Betrieb der Website.
+  </p>
+  <p>
+    <strong>Speicherdauer:</strong> Die Log-Daten werden nach spätestens 14 Tagen
+    gelöscht, sofern sie nicht für die Aufklärung von Angriffen auf die
+    IT-Infrastruktur benötigt werden.
+  </p>
+
+  <h2>5. Hosting</h2>
+  <p>
+    Die Website wird gehostet bei:
+  </p>
+  <p>
+    <strong>Hostinger International Ltd.</strong><br />
+    61 Lordou Vironos Street<br />
+    6023 Larnaca, Zypern (EU)<br />
+    <a href="https://www.hostinger.de/" rel="noopener noreferrer" target="_blank">hostinger.de</a>
+  </p>
+  <p>
+    Mit Hostinger wurde ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO
+    geschlossen. Als <strong>Server-Standort wurde bewusst Litauen</strong>
+    gewählt; die Auslieferung der Website und die Verarbeitung der
+    Server-Log-Files finden damit ausschließlich innerhalb der
+    Europäischen Union statt. Eine Datenübertragung in Drittländer im Rahmen
+    des Hostings erfolgt nicht.
+  </p>
+  <p>
+    Weitere Informationen zur Datenverarbeitung durch Hostinger finden Sie in
+    deren Datenschutzerklärung:
+    <a
+      href="https://www.hostinger.de/datenschutzrichtlinie"
+      rel="noopener noreferrer"
+      target="_blank">hostinger.de/datenschutzrichtlinie</a
+    >.
+  </p>
+
+  <h2>6. Kontaktaufnahme per E-Mail</h2>
+  <p>
+    Wenn Sie mir per E-Mail eine Nachricht senden (direkt oder über den
+    <code>mailto:</code>-Link der Website), verarbeite ich Ihre Angaben zum
+    Zweck der Beantwortung Ihrer Anfrage und der Anbahnung einer möglichen
+    Zusammenarbeit.
+  </p>
+  <p>
+    <strong>Verarbeitete Daten:</strong> Name, E-Mail-Adresse, Inhalt der
+    Nachricht sowie weitere Angaben, die Sie freiwillig mitteilen.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Durchführung
+    vorvertraglicher Maßnahmen auf Ihre Anfrage) bzw. Art. 6 Abs. 1 lit. f DSGVO
+    (berechtigtes Interesse an der Beantwortung Ihrer Anfrage).
+  </p>
+  <p>
+    <strong>Speicherdauer:</strong> Anfragen werden gelöscht, sobald sie nicht
+    mehr benötigt werden, spätestens wenn sich aus dem Kontakt kein
+    Vertragsverhältnis ergibt oder nach Ablauf gesetzlicher Aufbewahrungsfristen.
+  </p>
+  <p>
+    <strong>E-Mail-Abwicklung:</strong> Die E-Mail-Adresse
+    <a href="mailto:kontakt@mokhtary.de">kontakt@mokhtary.de</a> wird über
+    Hostinger betrieben (Anschrift siehe Abschnitt 5). Hostinger ist in
+    dieser Funktion Auftragsverarbeiter nach Art. 28 DSGVO; es besteht ein
+    entsprechender Auftragsverarbeitungs­vertrag. Die E-Mail-Infrastruktur
+    wird innerhalb der EU betrieben.
+  </p>
+
+  <h2>7. Empfänger von Daten</h2>
+  <p>
+    Eine Weitergabe Ihrer personenbezogenen Daten an Dritte findet nicht statt,
+    außer an die in dieser Erklärung genannten Auftragsverarbeiter (Hosting,
+    E-Mail) und in Fällen, in denen eine gesetzliche Verpflichtung zur
+    Weitergabe besteht (z. B. gegenüber Ermittlungsbehörden).
+  </p>
+
+  <h2>8. Übermittlung in Drittländer</h2>
+  <p>
+    Eine Übermittlung personenbezogener Daten in Drittländer außerhalb der EU
+    bzw. des EWR findet nicht statt. Sowohl der Hosting-Server als auch die
+    E-Mail-Infrastruktur sind innerhalb der Europäischen Union lokalisiert
+    (Server-Standort: Litauen).
+  </p>
+
+  <h2>9. Ihre Rechte als betroffene Person</h2>
+  <p>Nach der DSGVO stehen Ihnen insbesondere folgende Rechte zu:</p>
+  <ul>
+    <li><strong>Art. 15 DSGVO</strong> – Auskunft über die zu Ihrer Person gespeicherten Daten</li>
+    <li><strong>Art. 16 DSGVO</strong> – Berichtigung unrichtiger Daten</li>
+    <li><strong>Art. 17 DSGVO</strong> – Löschung („Recht auf Vergessenwerden")</li>
+    <li><strong>Art. 18 DSGVO</strong> – Einschränkung der Verarbeitung</li>
+    <li><strong>Art. 20 DSGVO</strong> – Datenübertragbarkeit</li>
+    <li><strong>Art. 21 DSGVO</strong> – Widerspruch gegen Verarbeitungen auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO</li>
+    <li><strong>Art. 7 Abs. 3 DSGVO</strong> – Widerruf erteilter Einwilligungen mit Wirkung für die Zukunft</li>
+  </ul>
+  <p>
+    Zur Ausübung Ihrer Rechte genügt eine formlose Nachricht an
+    <a href="mailto:kontakt@mokhtary.de">kontakt@mokhtary.de</a>.
+  </p>
+
+  <h2>10. Beschwerderecht bei der Aufsichtsbehörde</h2>
+  <p>
+    Sie haben nach Art. 77 DSGVO das Recht, sich bei einer
+    Datenschutz-Aufsichtsbehörde zu beschweren. Zuständig für den Verantwortlichen
+    in Wedel ist:
+  </p>
+  <p>
+    <strong>
+      Unabhängiges Landeszentrum für Datenschutz Schleswig-Holstein (ULD)
+    </strong><br />
+    Holstenstraße 98<br />
+    24103 Kiel<br />
+    Telefon: +49 431 988-1200<br />
+    E-Mail:
+    <a href="mailto:mail@datenschutzzentrum.de">mail@datenschutzzentrum.de</a><br />
+    Web:
+    <a
+      href="https://www.datenschutzzentrum.de"
+      rel="noopener noreferrer"
+      target="_blank">datenschutzzentrum.de</a
+    >
+  </p>
+
+  <h2>11. Keine automatisierte Entscheidungsfindung</h2>
+  <p>
+    Es findet keine automatisierte Entscheidungsfindung einschließlich Profiling
+    gemäß Art. 22 DSGVO statt.
+  </p>
+
+  <h2>12. Aktualität und Änderung dieser Datenschutzerklärung</h2>
+  <p>
+    Diese Datenschutzerklärung gibt den aktuellen Stand wieder. Durch die
+    Weiterentwicklung der Website oder geänderte gesetzliche bzw. behördliche
+    Vorgaben kann es notwendig werden, diese Erklärung anzupassen. Die jeweils
+    aktuelle Fassung kann jederzeit unter
+    <a href={privacyHref}>{privacyHref}</a> abgerufen werden.
+  </p>
+
+  <p class="legal__meta">
+    Stand: April 2026
+  </p>
+</article>

@@ -1,0 +1,211 @@
+/* Hero mockup: poster + optional video loop */
+
+.hero-mockup-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.hero-mockup-media__poster,
+.hero-mockup-media__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-position: var(--hero-mockup-position, center center);
+}
+
+.hero-mockup-media__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.hero-mockup-media.is-mockup-live .hero-mockup-media__poster {
+  opacity: 0;
+}
+
+.hero-mockup-media.is-mockup-live .hero-mockup-media__video {
+  opacity: 1;
+}
+
+.hero-mockup-media__poster {
+  transition: opacity 0.35s ease;
+}
+
+/* Farbton: KI-Clip an Systems-Cluster (weniger Gelb/Grün, mehr Mint/Steel) */
+[data-hero-mockup='systeme-ki'] .hero-mockup-media__poster,
+[data-hero-mockup='systeme-ki'] .hero-mockup-media__video,
+[data-hero-mockup='ki-automation'] .hero-mockup-media__poster,
+[data-hero-mockup='ki-automation'] .hero-mockup-media__video {
+  filter: saturate(0.9) hue-rotate(-6deg) brightness(1.04) contrast(1.05);
+}
+
+[data-hero-mockup='systeme-ki'] .hero-mockup-media__tint,
+[data-hero-mockup='ki-automation'] .hero-mockup-media__tint {
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, var(--systems-mint) 22%, transparent) 0%,
+    color-mix(in srgb, var(--color-primary) 12%, transparent) 48%,
+    color-mix(in srgb, white 38%, transparent) 100%
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.42;
+}
+
+/* Professional IT: ruhiger, kühler (Steel + Sage) */
+[data-hero-mockup='professional-it'] .hero-mockup-media__poster,
+[data-hero-mockup='professional-it'] .hero-mockup-media__video {
+  filter: saturate(0.92) hue-rotate(-3deg) brightness(1.02) contrast(1.04);
+}
+
+[data-hero-mockup='professional-it'] .hero-mockup-media__tint {
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--systems-sage) 18%, transparent) 0%,
+    color-mix(in srgb, var(--systems-steel) 14%, transparent) 55%,
+    color-mix(in srgb, white 32%, transparent) 100%
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.38;
+}
+
+/* Wachstum: Growth-Cluster (Violet / Cream) */
+[data-hero-mockup='wachstum'] .hero-mockup-media__poster,
+[data-hero-mockup='wachstum'] .hero-mockup-media__video {
+  filter: saturate(0.94) hue-rotate(4deg) brightness(1.03) contrast(1.04);
+}
+
+[data-hero-mockup='wachstum'] .hero-mockup-media__tint {
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--growth-lavender) 24%, transparent) 0%,
+    color-mix(in srgb, var(--growth-violet) 10%, transparent) 50%,
+    color-mix(in srgb, var(--growth-cream) 35%, transparent) 100%
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.4;
+}
+
+[data-hero-mockup='wachstum'] .hero-mockup-media__badge-dot {
+  background: var(--growth-violet);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--growth-lavender) 55%, white);
+  animation: hero-mockup-pulse 2.4s ease-in-out infinite;
+}
+
+.hero-mockup-media__tint {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Mini-Mock unten rechts · überdeckt typisches KI-Wasserzeichen */
+.hero-mockup-media__badge {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 0.45rem;
+  row-gap: 0.1rem;
+  align-items: center;
+  min-width: 7.5rem;
+  padding: 0.55rem 0.7rem 0.5rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--color-border-soft) 88%, white);
+  background: color-mix(in srgb, white 94%, var(--systems-mint));
+  box-shadow:
+    0 10px 28px rgba(44, 51, 51, 0.14),
+    inset 0 1px 0 color-mix(in srgb, white 72%, transparent);
+  pointer-events: none;
+}
+
+.hero-mockup-media__badge-dot {
+  grid-row: 1 / span 2;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--systems-mint) 55%, white);
+}
+
+[data-hero-mockup='systeme-ki'] .hero-mockup-media__badge-dot,
+[data-hero-mockup='ki-automation'] .hero-mockup-media__badge-dot {
+  animation: hero-mockup-pulse 2.4s ease-in-out infinite;
+}
+
+.hero-mockup-media__badge-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-base-dark);
+  line-height: 1.2;
+}
+
+.hero-mockup-media__badge-meta {
+  grid-column: 2;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--systems-steel) 82%, var(--color-text-secondary));
+  line-height: 1.2;
+}
+
+@keyframes hero-mockup-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scale(0.92);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mockup-media__video {
+    display: none;
+  }
+
+  [data-hero-mockup='systeme-ki'] .hero-mockup-media__badge-dot,
+  [data-hero-mockup='ki-automation'] .hero-mockup-media__badge-dot,
+  [data-hero-mockup='wachstum'] .hero-mockup-media__badge-dot {
+    animation: none;
+  }
+}
+
+/* Eingebettet in Karten (ShowCard, Route-Card, Baustein) */
+.hero-mockup-media--embed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.hero-mockup-media--embed .hero-mockup-media__poster,
+.hero-mockup-media--embed .hero-mockup-media__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-mockup-media--embed .hero-mockup-media__badge {
+  display: none;
+}
+
+.hero-mockup-media--embed .hero-mockup-media__tint {
+  opacity: 0.28;
+}

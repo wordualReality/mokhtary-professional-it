@@ -1,0 +1,133 @@
+---
+/**
+ * @file src/components/profil/ArchitectureDiagramRaster.astro
+ * @summary Raster-Layer-Mockup (PNG) für den Profil-Hero.
+ */
+import { ARCH_DIAGRAM_LAYERS_ENABLED } from '../../data/architecture-diagram';
+import { MOCKUP_IT_CONSULTING } from '../../data/asset-paths';
+
+const ARCH = '/images/architecture';
+const STAGE_W = 1024;
+const STAGE_H = 571;
+const ALT =
+  'Isometrisches Mockup: Clipboard mit Checkliste, Fluss Fach, Anforderung, Bau und Hinweis auf Scope, UAT und Release';
+---
+
+<div
+  class:list={['arch-diagram', 'arch-diagram--raster', !ARCH_DIAGRAM_LAYERS_ENABLED && 'arch-diagram--static']}
+  data-arch-diagram
+>
+  <div
+    class="arch-diagram__stage"
+    role={ARCH_DIAGRAM_LAYERS_ENABLED ? 'img' : undefined}
+    aria-label={ARCH_DIAGRAM_LAYERS_ENABLED ? ALT : undefined}
+  >
+    <img
+      class="arch-diagram__fallback profil-hero__mock-img"
+      src={MOCKUP_IT_CONSULTING}
+      alt={ARCH_DIAGRAM_LAYERS_ENABLED ? '' : ALT}
+      width={STAGE_W}
+      height={STAGE_H}
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      sizes="(min-width: 1024px) min(52vw, 640px), (min-width: 640px) 90vw, 100vw"
+    />
+    {
+      ARCH_DIAGRAM_LAYERS_ENABLED && (
+        <>
+          <img
+            class="arch-diagram__layer arch-diagram__layer--grid"
+            data-arch-layer="grid"
+            src={`${ARCH}/bg-grid.png`}
+            alt=""
+            width={STAGE_W}
+            height={STAGE_H}
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            class="arch-diagram__layer arch-diagram__layer--connectors"
+            data-arch-layer="connectors"
+            src={`${ARCH}/connectors.png`}
+            alt=""
+            width={STAGE_W}
+            height={STAGE_H}
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            class="arch-diagram__layer arch-diagram__layer--clipboard"
+            data-arch-layer="clipboard"
+            src={`${ARCH}/clipboard.png`}
+            alt=""
+            width={420}
+            height={320}
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            class="arch-diagram__layer arch-diagram__layer--risiko"
+            data-arch-layer="risiko"
+            src={`${ARCH}/icon-risiko.png`}
+            alt=""
+            width={180}
+            height={160}
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            class="arch-diagram__layer arch-diagram__layer--fach"
+            data-arch-layer="fach"
+            src={`${ARCH}/box-fach.png`}
+            alt=""
+            width={200}
+            height={140}
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            class="arch-diagram__layer arch-diagram__layer--anforderung"
+            data-arch-layer="anforderung"
+            src={`${ARCH}/box-anforderung.png`}
+            alt=""
+            width={200}
+            height={140}
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            class="arch-diagram__layer arch-diagram__layer--bau"
+            data-arch-layer="bau"
+            src={`${ARCH}/box-bau.png`}
+            alt=""
+            width={200}
+            height={140}
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            class="arch-diagram__layer arch-diagram__layer--cloud"
+            data-arch-layer="cloud"
+            src={`${ARCH}/icon-cloud.png`}
+            alt=""
+            width={140}
+            height={100}
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            class="arch-diagram__layer arch-diagram__layer--server"
+            data-arch-layer="server"
+            src={`${ARCH}/icon-server.png`}
+            alt=""
+            width={90}
+            height={120}
+            loading="lazy"
+            decoding="async"
+          />
+        </>
+      )
+    }
+  </div>
+</div>

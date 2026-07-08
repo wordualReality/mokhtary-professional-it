@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /styleguide
+Disallow: /styleguide/
+
+Sitemap: https://mokhtary.de/sitemap-index.xml

@@ -1,0 +1,25 @@
+/**
+ * @file src/styles/pages/showcase-faktum-page.css
+ * @summary Faktum-Showcase: immersiver Rahmen, full-bleed Kanzlei-Stage.
+ */
+
+.showcase-faktum__frame {
+  max-width: none;
+}
+
+.showcase-faktum__stage {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 32px 80px rgba(26, 46, 74, 0.12),
+    0 0 0 1px rgba(26, 46, 74, 0.06);
+}
+
+.showcase-faktum__stage .brand-faktum__site {
+  min-height: auto;
+  overflow: visible;
+}
+
+.showcase-faktum__stage .brand-faktum--full .brand-faktum__site {
+  min-height: auto;
+}

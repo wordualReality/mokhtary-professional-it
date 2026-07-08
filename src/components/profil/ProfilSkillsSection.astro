@@ -1,0 +1,171 @@
+---
+/**
+ * @file src/components/profil/ProfilSkillsSection.astro
+ * @summary UI-Komponente: profil/ProfilSkillsSection — wiederverwendbarer Markup-Block.
+ */
+import { getProfilContent, type ProfilLocale } from '../../data/profil-content.locale';
+
+interface Props {
+  locale?: ProfilLocale;
+}
+
+const { locale = 'de' } = Astro.props;
+const { skillsSection } = getProfilContent(locale);
+const [techBlock, bizBlock, langBlock] = skillsSection.blocks;
+---
+    <section
+      id="kenntnisse"
+      aria-labelledby="profil-skills-heading"
+      class="profil-band profil-band--deck scroll-mt-24 border-b border-[var(--color-border-soft)]"
+    >
+      <div class="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-24">
+        <header class="max-w-2xl" data-reveal>
+          <div class="profil-section-accent" aria-hidden="true"></div>
+          <p class="text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-primary)]">
+            {skillsSection.kicker}
+          </p>
+          <h2
+            id="profil-skills-heading"
+            class="mt-3 text-3xl font-semibold tracking-tight text-[var(--color-base-dark)] md:text-4xl"
+          >
+            {skillsSection.headline}
+          </h2>
+        </header>
+
+        <ul
+          class="profil-skills-grid mt-12 list-none gap-6 p-0 md:grid md:grid-cols-3 md:gap-8"
+          role="list"
+          data-reveal
+          data-prof-skills-grid
+          data-reveal-delay="120"
+        >
+          <li class="profil-skills-grid__item">
+            <article
+              class="profile-skill-block profile-skill-block--tech"
+              data-skill-card="tech"
+              tabindex="0"
+              role="button"
+              aria-pressed="false"
+              aria-label={techBlock.ariaLabel}
+            >
+              <div class="profile-skill-block__viz" aria-hidden="true">
+                <div class="ps-viz ps-viz--tech">
+                  <div class="ps-viz__chrome">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="ps-viz__editor ps-viz__editor--code" data-skill-typewriter>
+                    <div class="ps-viz__code-line">
+                      <span class="ps-viz__ln">1</span>
+                      <code data-type-line
+                        ><span class="ps-viz__anno">@RestController</span></code
+                      >
+                    </div>
+                    <div class="ps-viz__code-line">
+                      <span class="ps-viz__ln">2</span>
+                      <code data-type-line>
+                        <span class="ps-viz__anno">@GetMapping</span>(<span class="ps-viz__str"
+                          >{'"/api/v1/orders/{id}"'}</span
+                        >)
+                      </code>
+                    </div>
+                    <div class="ps-viz__code-line">
+                      <span class="ps-viz__ln">3</span>
+                      <code data-type-line>
+                        <span class="ps-viz__kw">public</span> <span class="ps-viz__nm">Order</span>
+                        <span class="ps-viz__fn">get</span>(<span class="ps-viz__anno">@PathVariable</span>
+                        <span class="ps-viz__nm">Long</span> id) {'{'}
+                      </code>
+                    </div>
+                    <span class="ps-viz__caret" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="profile-skill-block__inner">
+                <h3 class="profile-skill-block__title">{techBlock.title}</h3>
+                <p class="profile-skill-block__body">{techBlock.body}</p>
+              </div>
+            </article>
+          </li>
+          <li class="profil-skills-grid__item">
+            <article
+              class="profile-skill-block profile-skill-block--biz"
+              data-skill-card="biz"
+              data-biz-step="0"
+              tabindex="0"
+              role="button"
+              aria-pressed="false"
+              aria-label={bizBlock.ariaLabel}
+            >
+              <div class="profile-skill-block__viz" aria-hidden="true">
+                <div class="ps-viz ps-viz--biz" data-biz-flow data-biz-step="0">
+                  <span class="ps-viz__flow-dot" aria-hidden="true"></span>
+                  <span class="ps-viz__node is-active" data-biz-step="0">BA</span>
+                  <span class="ps-viz__segment" aria-hidden="true">
+                    <span class="ps-viz__segment-fill"></span>
+                  </span>
+                  <span class="ps-viz__node ps-viz__node--mid" data-biz-step="1">Req</span>
+                  <span class="ps-viz__segment" aria-hidden="true">
+                    <span class="ps-viz__segment-fill"></span>
+                  </span>
+                  <span class="ps-viz__node ps-viz__node--end" data-biz-step="2">
+                    <span class="ps-viz__node-short">Run</span>
+                    <span class="ps-viz__node-long">Delivery</span>
+                  </span>
+                </div>
+              </div>
+              <div class="profile-skill-block__inner">
+                <h3 class="profile-skill-block__title">{bizBlock.title}</h3>
+                <p class="profile-skill-block__body">{bizBlock.body}</p>
+              </div>
+            </article>
+          </li>
+          <li class="profil-skills-grid__item">
+            <article
+              class="profile-skill-block profile-skill-block--lang"
+              data-skill-card="lang"
+              tabindex="0"
+              role="button"
+              aria-pressed="false"
+              aria-label={langBlock.ariaLabel}
+            >
+              <div class="profile-skill-block__viz" aria-hidden="true">
+                <div class="ps-viz ps-viz--lang" data-lang-viz>
+                  <div class="ps-viz__meter">
+                    <div class="ps-viz__lab">
+                      <span class="ps-viz__cap">DE</span>
+                      <span class="ps-viz__lvl">C2</span>
+                    </div>
+                    <span class="ps-viz__bar"><i></i></span>
+                  </div>
+                  <div class="ps-viz__meter">
+                    <div class="ps-viz__lab">
+                      <span class="ps-viz__cap">EN</span>
+                      <span class="ps-viz__lvl">C1</span>
+                    </div>
+                    <span class="ps-viz__bar"><i></i></span>
+                  </div>
+                  <div class="ps-viz__meter">
+                    <div class="ps-viz__lab">
+                      <span class="ps-viz__cap">FA</span>
+                      <span class="ps-viz__lvl ps-viz__lvl--nat">++</span>
+                    </div>
+                    <span class="ps-viz__bar"><i></i></span>
+                  </div>
+                  <div class="ps-viz__meter">
+                    <div class="ps-viz__lab">
+                      <span class="ps-viz__cap">FR</span>
+                      <span class="ps-viz__lvl">A2</span>
+                    </div>
+                    <span class="ps-viz__bar"><i></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="profile-skill-block__inner">
+                <h3 class="profile-skill-block__title">{langBlock.title}</h3>
+                <p class="profile-skill-block__body">{langBlock.body}</p>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>

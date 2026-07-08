@@ -1,0 +1,32 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+.venv-slice/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# Faktum demo DB + uploads
+data/faktum-demo/
+
+# Raw upload duplicates (canonical assets live in public/images/mockups/)
+public/images/_archive-uploads/
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+public/videos/

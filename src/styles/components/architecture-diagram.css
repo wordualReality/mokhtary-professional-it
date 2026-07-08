@@ -1,0 +1,350 @@
+/**
+ * @file src/styles/components/architecture-diagram.css
+ * @summary Layer-Mockup Profil-Hero (/professional-it): Position, Einstieg-Animation.
+ */
+
+.arch-diagram {
+  --arch-diagram-bg: #f8f6ef;
+  display: block;
+  width: 100%;
+}
+
+.arch-diagram--static .arch-diagram__layer {
+  display: none !important;
+}
+
+.arch-diagram--static .arch-diagram__fallback {
+  display: block;
+  position: relative;
+  opacity: 0;
+  transform: scale(0.985) translateY(10px);
+}
+
+.profil-hero__figure.is-hero-ready .arch-diagram--static .arch-diagram__fallback {
+  animation: arch-static-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.arch-diagram--assets-ready:not(.arch-diagram--static) .arch-diagram__fallback {
+  display: none;
+}
+
+.arch-diagram__stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1024 / 571;
+  overflow: hidden;
+  background-color: var(--arch-diagram-bg);
+}
+
+/* Hybrid: Original-JPG + Linien-Overlay */
+.arch-diagram--hybrid .arch-diagram__fallback {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.arch-diagram--hybrid .arch-diagram__overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.arch-diagram--hybrid .arch-diagram__connector-line--loop {
+  opacity: 0;
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+}
+
+.profil-hero__figure.is-hero-ready .arch-diagram--hybrid .arch-diagram__connector-line--loop {
+  animation: arch-draw-line-loop 1.4s ease-out 0.35s forwards;
+}
+
+@keyframes arch-node-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.arch-diagram--svg .arch-diagram__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.arch-diagram--svg .arch-diagram__svg-layer {
+  opacity: 0;
+}
+
+.arch-diagram--svg [data-arch-layer='connectors'].arch-diagram__svg-layer {
+  opacity: 1;
+}
+
+.arch-diagram--svg .arch-diagram__connector-line {
+  opacity: 0;
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+}
+
+.arch-diagram--svg .arch-diagram__connector-line--loop {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+}
+
+.arch-diagram__layer {
+  position: absolute;
+  height: auto;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.arch-diagram__fallback {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+  position: relative;
+  z-index: 0;
+}
+
+.arch-diagram__layer--grid {
+  left: 22%;
+  top: 18%;
+  width: 56%;
+  z-index: 1;
+}
+
+.arch-diagram__layer--connectors {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.arch-diagram__layer--clipboard {
+  left: 5%;
+  top: 10%;
+  width: 30%;
+  z-index: 4;
+}
+
+.arch-diagram__layer--risiko {
+  left: 10%;
+  bottom: 15%;
+  width: 15%;
+  z-index: 4;
+}
+
+.arch-diagram__layer--fach {
+  left: 30%;
+  bottom: 30%;
+  width: 18%;
+  z-index: 3;
+}
+
+.arch-diagram__layer--anforderung {
+  left: 45%;
+  bottom: 40%;
+  width: 18%;
+  z-index: 3;
+}
+
+.arch-diagram__layer--bau {
+  left: 60%;
+  bottom: 50%;
+  width: 18%;
+  z-index: 3;
+}
+
+.arch-diagram__layer--cloud {
+  right: 10%;
+  top: 15%;
+  width: 12%;
+  z-index: 3;
+}
+
+.arch-diagram__layer--server {
+  right: 15%;
+  bottom: 20%;
+  width: 8%;
+  z-index: 3;
+}
+
+/* Einstieg nach Hero-Reveal (Raster) */
+.profil-hero__figure.is-hero-ready .arch-diagram__layer[data-arch-layer='clipboard'],
+.profil-hero__figure.is-hero-ready .arch-diagram__layer[data-arch-layer='risiko'],
+.profil-hero__figure.is-hero-ready .arch-diagram__layer[data-arch-layer='connectors'],
+.profil-hero__figure.is-hero-ready .arch-diagram__layer[data-arch-layer='cloud'],
+.profil-hero__figure.is-hero-ready .arch-diagram__layer[data-arch-layer='server'] {
+  animation: arch-fade-in 0.8s ease-out forwards;
+}
+
+.profil-hero__figure.is-hero-ready .arch-diagram__layer[data-arch-layer='grid'] {
+  animation: arch-fade-in 0.6s ease-out forwards;
+}
+
+.profil-hero__figure.is-hero-ready .arch-diagram__layer[data-arch-layer='fach'],
+.profil-hero__figure.is-hero-ready .arch-diagram__layer[data-arch-layer='anforderung'],
+.profil-hero__figure.is-hero-ready .arch-diagram__layer[data-arch-layer='bau'] {
+  animation: arch-slide-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+[data-arch-layer='clipboard'] {
+  animation-delay: 0.2s;
+}
+[data-arch-layer='risiko'] {
+  animation-delay: 0.5s;
+}
+[data-arch-layer='connectors'] {
+  animation-delay: 0.75s;
+}
+[data-arch-layer='grid'] {
+  animation-delay: 0.85s;
+}
+[data-arch-layer='fach'] {
+  animation-delay: 1s;
+}
+[data-arch-layer='anforderung'] {
+  animation-delay: 1.4s;
+}
+[data-arch-layer='bau'] {
+  animation-delay: 1.8s;
+}
+[data-arch-layer='cloud'] {
+  animation-delay: 2.3s;
+}
+[data-arch-layer='server'] {
+  animation-delay: 2.5s;
+}
+
+/* Einstieg nach Hero-Reveal (SVG) */
+.profil-hero__figure.is-hero-ready .arch-diagram--svg [data-arch-layer='clipboard'],
+.profil-hero__figure.is-hero-ready .arch-diagram--svg [data-arch-layer='risiko'],
+.profil-hero__figure.is-hero-ready .arch-diagram--svg [data-arch-layer='cloud'],
+.profil-hero__figure.is-hero-ready .arch-diagram--svg [data-arch-layer='server'] {
+  animation: arch-fade-in 0.8s ease-out forwards;
+}
+
+.profil-hero__figure.is-hero-ready .arch-diagram--svg [data-arch-layer='grid'] {
+  animation: arch-fade-in 0.6s ease-out forwards;
+}
+
+.profil-hero__figure.is-hero-ready .arch-diagram--svg .arch-diagram__connector-line {
+  animation: arch-draw-line 1.1s ease-out forwards;
+}
+
+.profil-hero__figure.is-hero-ready .arch-diagram--svg [data-arch-layer='fach'],
+.profil-hero__figure.is-hero-ready .arch-diagram--svg [data-arch-layer='anforderung'],
+.profil-hero__figure.is-hero-ready .arch-diagram--svg [data-arch-layer='bau'] {
+  animation: arch-slide-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.arch-diagram--svg [data-arch-layer='clipboard'] {
+  animation-delay: 0.2s;
+}
+.arch-diagram--svg [data-arch-layer='risiko'] {
+  animation-delay: 0.5s;
+}
+.arch-diagram--svg .arch-diagram__connector-line {
+  animation-delay: 0.75s;
+}
+.arch-diagram--svg .arch-diagram__connector-line--loop {
+  animation-delay: 0.95s;
+}
+.arch-diagram--svg [data-arch-layer='grid'] {
+  animation-delay: 0.85s;
+}
+.arch-diagram--svg [data-arch-layer='fach'] {
+  animation-delay: 1s;
+}
+.arch-diagram--svg [data-arch-layer='anforderung'] {
+  animation-delay: 1.4s;
+}
+.arch-diagram--svg [data-arch-layer='bau'] {
+  animation-delay: 1.8s;
+}
+.arch-diagram--svg [data-arch-layer='cloud'] {
+  animation-delay: 2.3s;
+}
+.arch-diagram--svg [data-arch-layer='server'] {
+  animation-delay: 2.5s;
+}
+
+@keyframes arch-draw-line {
+  0% {
+    stroke-dashoffset: 120;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.profil-hero__figure.is-hero-ready .arch-diagram--svg .arch-diagram__connector-line--loop {
+  animation-name: arch-draw-line-loop;
+}
+
+@keyframes arch-draw-line-loop {
+  0% {
+    stroke-dashoffset: 280;
+    opacity: 0.35;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes arch-static-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.985) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes arch-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes arch-slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-diagram--static .arch-diagram__fallback,
+  .arch-diagram__layer,
+  .arch-diagram--hybrid .arch-diagram__connector-line--loop,
+  .arch-diagram--svg .arch-diagram__svg-layer,
+  .arch-diagram--svg .arch-diagram__connector-line {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+    stroke-dashoffset: 0;
+  }
+}

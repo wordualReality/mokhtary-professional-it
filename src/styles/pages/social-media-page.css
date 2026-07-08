@@ -1,0 +1,381 @@
+/**
+ * @file src/styles/pages/social-media-page.css
+ * @summary Routen-Layout für /social-media: Hero-Copy, KI-Console, Quotes, Funnel.
+ */
+
+  /* Social Hero · Layout (angelehnt an ProfilHero) ----------------------- */
+  /* Gradient-Headline: innerer Block verhindert Abschneiden der Unterlängen */
+  #social-hero-heading {
+    line-height: 1.14;
+    overflow: visible;
+  }
+
+  .social-hero__copy,
+  .social-hero__copy header {
+    overflow: visible;
+  }
+
+  .social-hero__headline-accent {
+    overflow: visible;
+    line-height: 1;
+  }
+
+  .social-hero__headline-accent-inner {
+    display: inline-block;
+    line-height: 1.35;
+    padding: 0.06em 0 0.28em;
+    vertical-align: baseline;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  .social-hero__accent {
+    height: 3px;
+    max-width: 14rem;
+    margin-bottom: 2.25rem;
+    border-radius: 2px;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--growth-violet) 65%, transparent) 0%,
+      color-mix(in srgb, var(--growth-lavender) 45%, transparent) 60%,
+      transparent 100%
+    );
+    opacity: 0.88;
+  }
+
+  .social-hero__aside {
+    pointer-events: none;
+  }
+
+  .social-hero__aside .social-ig-hero__phone-wrap {
+    pointer-events: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .social-hero__aside {
+      margin-left: -0.75rem;
+    }
+  }
+
+  /* Schwerpunkt-Pills (wie ProfilHero, Growth-Farben) ------------------- */
+  .social-hero-signals-wrap {
+    position: relative;
+    z-index: 1;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    .social-hero-signals-wrap {
+      margin-top: 2.25rem;
+      max-width: 36rem;
+    }
+  }
+
+  .social-hero-signals {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.35rem;
+    width: 100%;
+  }
+
+  .social-hero-signals__item {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.28rem;
+    padding: 0.2rem 0.45rem 0.2rem 0.28rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--growth-violet) 22%, var(--color-border-soft));
+    background: linear-gradient(
+      165deg,
+      color-mix(in srgb, white 94%, var(--growth-cream)) 0%,
+      white 55%,
+      color-mix(in srgb, white 96%, var(--growth-lavender)) 100%
+    );
+    box-shadow:
+      0 3px 10px rgba(44, 51, 51, 0.04),
+      inset 0 1px 0 color-mix(in srgb, white 72%, transparent);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .social-hero-signals__item:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 10px 22px rgba(108, 91, 123, 0.1),
+        inset 0 1px 0 color-mix(in srgb, white 85%, transparent);
+    }
+
+    .social-hero-signals__item:hover .social-hero-signals__glyph {
+      color: var(--growth-ink);
+      border-color: color-mix(in srgb, var(--growth-violet) 35%, var(--color-border-soft));
+    }
+  }
+
+  .social-hero-signals__glyph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    border-radius: 7px;
+    background: white;
+    color: var(--growth-violet);
+    border: 1px solid color-mix(in srgb, var(--growth-violet) 18%, var(--color-border-soft));
+    box-shadow: 0 2px 6px rgba(44, 51, 51, 0.05);
+  }
+
+  .social-hero-signals__svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .social-hero-signals__label {
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-base-dark) 92%, var(--growth-violet));
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+
+  /* KI-Console Mockup ---------------------------------------- */
+  .ki-console {
+    position: relative;
+    border-radius: 22px;
+    background: linear-gradient(180deg, #fff 0%, #F7F0E8 100%);
+    border: 1px solid var(--color-border-soft);
+    padding: 1.25rem 1.25rem 1.5rem;
+    box-shadow: 0 22px 56px rgba(44, 51, 51, 0.08);
+  }
+  .ki-console__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--color-border-soft);
+    margin-bottom: 0.9rem;
+  }
+  .ki-console__dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--growth-violet);
+    box-shadow: 0 0 0 4px rgba(108,91,123,0.14);
+  }
+  .ki-console__title {
+    flex: 1;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--color-base-dark);
+  }
+  .ki-console__chip {
+    font-size: 0.68rem;
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--growth-lavender) 40%, white);
+    color: var(--growth-ink);
+    letter-spacing: 0.05em;
+  }
+  .ki-console__prompt {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.7rem 0.85rem;
+    margin-bottom: 0.85rem;
+    border-radius: 14px;
+    background: white;
+    border: 1px dashed color-mix(in srgb, var(--growth-violet) 30%, white);
+  }
+  .ki-console__prompt-label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.7rem;
+    color: var(--growth-violet);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .ki-console__prompt p { margin: 0; font-size: 0.85rem; color: var(--color-base-dark); }
+  .ki-console__results {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .ki-console__card {
+    background: white;
+    border: 1px solid var(--color-border-soft);
+    border-radius: 14px;
+    padding: 0.75rem 0.9rem;
+    animation: kc-fade 0.6s ease backwards;
+    animation-delay: calc(var(--i) * 160ms);
+  }
+  .ki-console__card--accent {
+    border: 1px solid color-mix(in srgb, var(--growth-violet) 30%, white);
+    background: linear-gradient(180deg, #fff 0%, color-mix(in srgb, var(--growth-lavender) 15%, white) 100%);
+  }
+  .ki-console__kind {
+    display: inline-block;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: color-mix(in srgb, var(--growth-lavender) 30%, white);
+    color: var(--growth-ink);
+    border-radius: 999px;
+    margin-bottom: 0.3rem;
+  }
+  .ki-console__card p {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--color-text-secondary);
+    line-height: 1.45;
+  }
+  .ki-console__foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.55rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--color-border-soft);
+    font-size: 0.72rem;
+    color: var(--color-text-secondary);
+  }
+  .ki-console__schedule {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  .ki-console__status {
+    color: var(--growth-violet);
+    font-weight: 500;
+  }
+  @keyframes kc-fade {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* Editorial Quotes ----------------------------------------- */
+  .social-quote {
+    margin: 0;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--growth-violet);
+  }
+  .social-quote__text {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: var(--color-base-dark);
+    margin: 0;
+    font-weight: 500;
+  }
+  .social-quote__meta {
+    margin-top: 0.8rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  /* Funnel Rail ---------------------------------------------- */
+  .funnel-rail {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+  }
+  .funnel-rail::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 8%;
+    right: 8%;
+    height: 2px;
+    background: repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--growth-violet) 40%, white) 0,
+      color-mix(in srgb, var(--growth-violet) 40%, white) 6px,
+      transparent 6px,
+      transparent 12px
+    );
+  }
+  .funnel-rail__item {
+    position: relative;
+    padding: 0;
+    background: transparent;
+  }
+  .funnel-rail__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px; height: 38px;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid var(--color-border-soft);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--growth-violet);
+    margin: 0 0 0.75rem;
+  }
+  .funnel-rail__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-base-dark);
+  }
+  .funnel-rail__body {
+    margin-top: 0.35rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+  }
+  @media (max-width: 768px) {
+    .funnel-rail { grid-template-columns: 1fr; gap: 1rem; }
+    .funnel-rail::before { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ki-console__card,
+    .social-hero-signals__item,
+    .sm-viz__filmstrip,
+    .sm-viz__spark,
+    .phone-frame--social {
+      animation: none;
+    }
+
+    .social-hero-signals__item:hover {
+      transform: none;
+    }
+    .sm-format-card:hover .sm-format-card__post,
+    .sm-format-card.is-active .sm-format-card__post,
+    .sm-format-card:hover .sm-format-card__photo,
+    .sm-format-card.is-active .sm-format-card__photo {
+      transform: none;
+    }
+
+    .sm-format-card--reel:hover .sm-format-card__play-overlay,
+    .sm-format-card--reel.is-active .sm-format-card__play-overlay {
+      transform: translate(-50%, -50%);
+    }
+
+    .sm-format-card--story .sm-viz__story-bar {
+      animation: none;
+    }
+    .social-ig-hero__phone-wrap,
+    .phone-frame--social {
+      transform: none;
+    }
+  }

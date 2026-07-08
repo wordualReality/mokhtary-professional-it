@@ -1,0 +1,138 @@
+/**
+ * @file src/styles/patterns/color-accents.css
+ * @summary Wiederverwendbares Layout-/Deko-Pattern: color-accents.
+ */
+
+/* ---------- Color Accents · Vibrance Phase 3 ----------
+ *
+ * Hot Akzente, die gezielt ueber der ruhigen Grundpalette sitzen.
+ * Regel bleibt: nur 1-2 satte Highlights pro View, sonst kippt
+ * das Edle in Neon.
+ *
+ * Enthaltene Tools:
+ *   .headline-duo        Bi-Color-Headline mit Gradient im Key-Word
+ *   .headline-accent     einzelnes Wort in gesaettigter Akzentfarbe
+ *   .badge-glow          Cluster-Badge mit weichem Leucht-Ring
+ *   .section-bridge      sehr duenner Gradient-Streifen zwischen Sektionen
+ */
+
+/* Bi-color Headline ---------------------------------------------- */
+.headline-duo > span,
+.headline-accent {
+  background-image: linear-gradient(
+    100deg,
+    var(--cluster-accent, var(--accent-violet)) 0%,
+    var(--cluster-accent-hot, var(--accent-violet)) 55%,
+    var(--accent-coral) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  animation: headlineDuoShift 16s ease-in-out infinite alternate;
+}
+
+.cluster-growth .headline-duo > span,
+.cluster-growth .headline-accent {
+  background-image: linear-gradient(
+    100deg,
+    var(--growth-violet) 0%,
+    var(--accent-violet) 55%,
+    var(--accent-coral) 100%
+  );
+}
+
+.cluster-systems .headline-duo > span,
+.cluster-systems .headline-accent {
+  background-image: linear-gradient(
+    100deg,
+    var(--systems-steel) 0%,
+    var(--accent-teal) 55%,
+    var(--accent-mint) 100%
+  );
+}
+
+@keyframes headlineDuoShift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headline-duo > span,
+  .headline-accent { animation: none; }
+}
+
+/* Badge-Glow ----------------------------------------------------- */
+.badge-glow {
+  position: relative;
+}
+.badge-glow::after {
+  content: '';
+  position: absolute;
+  inset: -6px -10px;
+  border-radius: 999px;
+  background: radial-gradient(
+    60% 100% at 50% 50%,
+    color-mix(in srgb, var(--cluster-accent-hot, var(--accent-violet)) 45%, transparent) 0%,
+    transparent 70%
+  );
+  filter: blur(10px);
+  z-index: -1;
+  opacity: 0.75;
+  animation: badgeGlowPulse 4.5s ease-in-out infinite alternate;
+}
+@keyframes badgeGlowPulse {
+  0%   { opacity: 0.55; transform: scale(0.96); }
+  100% { opacity: 0.85; transform: scale(1.06); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .badge-glow::after { animation: none; }
+}
+
+/* Section-Bridge ------------------------------------------------- */
+.section-bridge {
+  position: relative;
+  height: 1px;
+  margin: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--cluster-accent-hot, var(--accent-violet)) 55%, transparent) 18%,
+    color-mix(in srgb, var(--cluster-accent-hot, var(--accent-violet)) 75%, transparent) 50%,
+    color-mix(in srgb, var(--cluster-accent-hot, var(--accent-violet)) 55%, transparent) 82%,
+    transparent 100%
+  );
+}
+.section-bridge::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--cluster-accent-hot, var(--accent-violet));
+  transform: translateX(-50%);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--cluster-accent-hot, var(--accent-violet)) 75%, transparent);
+  animation: sectionBridgePulse 3.6s ease-in-out infinite;
+}
+@keyframes sectionBridgePulse {
+  0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+  50%      { opacity: 1;   transform: translateX(-50%) scale(1.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-bridge::before { animation: none; }
+}
+
+/* Focus-Ring-Verstaerker ----------------------------------------- *
+ * Cursor-Keyboard-Fokus auf primaeren CTAs bekommt einen satten Ring.
+ * Wird ausserhalb :hover sichtbar, nur auf :focus-visible.
+ */
+.cta-lift:focus-visible,
+[data-magnetic]:focus-visible {
+  outline: none;
+  box-shadow:
+    var(--ring-focus-strong),
+    0 18px 38px rgba(57, 91, 100, 0.28);
+}

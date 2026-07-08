@@ -1,0 +1,118 @@
+/**
+ * @file src/styles/patterns/page-signature.css
+ * @summary Wiederverwendbares Layout-/Deko-Pattern: page-signature.
+ */
+
+/* ---------- Unterseiten-Signatures (Hero-Atmosphaeren) ---------- */
+
+.page-signature {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.page-signature::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+.page-signature > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Webdesign: feines Raster (Surface) */
+.page-signature--surface::before {
+  background-image:
+    linear-gradient(to right, rgba(57, 91, 100, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(57, 91, 100, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(
+    ellipse 75% 55% at 30% 35%,
+    black 40%,
+    transparent 85%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 55% at 30% 35%,
+    black 40%,
+    transparent 85%
+  );
+}
+
+/* SEO: Signalwelle */
+.page-signature--signal::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'><path d='M0 160 C 120 140, 200 80, 320 90 S 520 170, 640 150 S 880 60, 1000 90 S 1160 160, 1200 150' fill='none' stroke='%23395B64' stroke-width='1.25' stroke-linecap='round' opacity='0.35'/><path d='M0 180 C 180 150, 260 120, 400 130 S 580 180, 720 170 S 900 120, 1040 140 S 1180 180, 1200 180' fill='none' stroke='%23395B64' stroke-width='1' stroke-linecap='round' opacity='0.2'/></svg>");
+  background-size: 100% 240px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  opacity: 0.85;
+}
+
+/* KI: Flow-Knoten */
+.page-signature--flow::before {
+  background-image:
+    radial-gradient(
+      circle at 18% 70%,
+      rgba(57, 91, 100, 0.12) 0,
+      rgba(57, 91, 100, 0.12) 4px,
+      transparent 5px
+    ),
+    radial-gradient(
+      circle at 50% 32%,
+      rgba(57, 91, 100, 0.2) 0,
+      rgba(57, 91, 100, 0.2) 5px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 82% 70%,
+      rgba(57, 91, 100, 0.12) 0,
+      rgba(57, 91, 100, 0.12) 4px,
+      transparent 5px
+    ),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 400' preserveAspectRatio='none'><path d='M220 280 C 380 280, 420 130, 600 130 S 820 280, 980 280' fill='none' stroke='%23395B64' stroke-width='1.25' stroke-linecap='round' opacity='0.3' stroke-dasharray='2 6'/></svg>");
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+}
+
+/* IT Consulting: Dokument-Spalten (Decision) */
+.page-signature--decision::before {
+  background-image:
+    linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(50% - 0.5px),
+      rgba(57, 91, 100, 0.1) calc(50% - 0.5px),
+      rgba(57, 91, 100, 0.1) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 38px,
+      rgba(57, 91, 100, 0.05) 38px,
+      rgba(57, 91, 100, 0.05) 39px
+    );
+  opacity: 0.8;
+}
+
+/* Cluster-Hero-Hintergründe (statt Inline-Gradients in Pages) */
+.hero-surface--growth {
+  background: linear-gradient(180deg, #f2eae0 0%, #fbf6f0 55%, #ffffff 100%);
+}
+
+.hero-surface--systems {
+  background: linear-gradient(180deg, #ecf4e8 0%, #f4f9f1 55%, #ffffff 100%);
+}
+
+.hero-surface--systems-soft {
+  background: linear-gradient(180deg, #ecf4e8 0%, #f8fbf6 55%, #ffffff 100%);
+}

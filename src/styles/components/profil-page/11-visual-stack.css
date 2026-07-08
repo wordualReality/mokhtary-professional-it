@@ -1,0 +1,79 @@
+/* --- Visual-Stack: Head zentriert → Mockup → Deck links/rechts (Hero, Bio, Stakeholder) --- */
+
+.profil-page .profil-visual-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .profil-page .profil-visual-stack {
+    gap: 3rem;
+  }
+}
+
+.profil-page .profil-visual-stack__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 44rem;
+  text-align: center;
+}
+
+.profil-page .profil-visual-stack__head-accent {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profil-page .profil-visual-stack__stage {
+  width: 100%;
+  max-width: 38rem;
+}
+
+.profil-page .profil-visual-stack__deck-grid {
+  display: grid;
+  gap: 2rem 2.5rem;
+  width: 100%;
+  max-width: 56rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .profil-page .profil-visual-stack__deck-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem 3rem;
+  }
+}
+
+.profil-page .profil-visual-stack__deck-copy {
+  margin: 0;
+  text-align: left;
+}
+
+.profil-page .profil-visual-stack__deck-bullets {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  text-align: left;
+}
+
+/* Bio: Timeline als 2-Spalten-Deck unter dem Mockup */
+.profil-page .profile-timeline--split {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profil-page .profile-timeline--split::before {
+  display: none;
+}
+
+.profil-page .profile-timeline--split .profile-timeline__item {
+  padding: 0 0 0 1.35rem;
+}
+
+.profil-page .profile-timeline--split .profile-timeline__item:last-child {
+  padding-bottom: 0;
+}

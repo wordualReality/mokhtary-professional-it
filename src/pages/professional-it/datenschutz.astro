@@ -1,0 +1,39 @@
+---
+export const prerender = true;
+/**
+ * @file src/pages/professional-it/datenschutz.astro
+ * @summary Datenschutz im Professional-IT-Kontext (eigene Shell, kein Main-Business-Nav).
+ */
+import ProfilLaunchLayout from '../../layouts/ProfilLaunchLayout.astro';
+import LegalDatenschutzArticle from '../../components/legal/LegalDatenschutzArticle.astro';
+import { professionalLegalPaths } from '../../config/professional-navigation';
+
+const title = 'Datenschutzerklärung · Aydin Mokhtary · Professional IT';
+const description =
+  'Datenschutzerklärung nach DSGVO für mokhtary.de. Keine Cookies, kein Tracking, keine externen Fonts oder CDNs. Verantwortlicher: Aydin Mokhtary, Wedel.';
+---
+
+<ProfilLaunchLayout locale="de" title={title} description={description}>
+  <main id="main-content" class="bg-white">
+    <section class="relative border-b border-[var(--color-border-soft)]">
+      <div class="mx-auto max-w-3xl px-6 py-20 lg:px-8 lg:py-24">
+        <header class="mb-10" data-reveal>
+          <p class="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[var(--color-primary)]">
+            Rechtliches
+          </p>
+          <h1 class="text-4xl font-semibold tracking-tight text-[var(--color-base-dark)] md:text-5xl">
+            Datenschutzerklärung
+          </h1>
+          <p class="mt-4 text-base leading-7 text-[var(--color-text-secondary)]">
+            Transparent und kurz. Diese Seite verwendet keine Cookies, kein Tracking
+            und keine externen Dienste, die personenbezogene Daten an Dritte übertragen.
+            Die einzige aktive Datenverarbeitung entsteht durch den Hosting-Betrieb
+            und durch E-Mails, die Sie mir schicken.
+          </p>
+        </header>
+
+        <LegalDatenschutzArticle privacyHref={professionalLegalPaths.datenschutz} />
+      </div>
+    </section>
+  </main>
+</ProfilLaunchLayout>

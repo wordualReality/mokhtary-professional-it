@@ -1,0 +1,87 @@
+/**
+ * @file src/styles/components/legal.css
+ * @summary Komponenten-Styles für: legal.
+ */
+
+/*
+ * legal.css — Typografie fuer Impressum, Datenschutz & Co.
+ *
+ * Ruhige, gut lesbare Darstellung. Kein Tailwind-Prose, weil die
+ * Farbtoenen und Abstaende exakt zum Design-System passen sollen.
+ */
+
+.legal {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-text-primary);
+}
+
+.legal h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-base-dark);
+}
+
+.legal h2:first-child {
+  margin-top: 0;
+}
+
+.legal h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--color-base-dark);
+}
+
+.legal p {
+  margin-bottom: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.legal p strong {
+  color: var(--color-base-dark);
+  font-weight: 600;
+}
+
+.legal ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-text-secondary);
+}
+
+.legal ul li {
+  margin-bottom: 0.4rem;
+}
+
+.legal a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 160ms var(--motion-ease);
+}
+
+.legal a:hover {
+  color: var(--color-primary-deep);
+}
+
+.legal code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  background: var(--color-surface-soft, rgba(57, 91, 100, 0.08));
+  padding: 0.08em 0.35em;
+  border-radius: 4px;
+}
+
+.legal__meta {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border-soft);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}

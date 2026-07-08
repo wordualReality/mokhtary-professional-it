@@ -1,0 +1,73 @@
+---
+/**
+ * @file src/components/profil/ProfilBioSection.astro
+ * @summary Rollen & Kontexte — zentrierter Head + Mockup, Timeline links/rechts darunter.
+ */
+import { getProfilContent, type ProfilLocale } from '../../data/profil-content.locale';
+import ProfilMockupFrame from './ProfilMockupFrame.astro';
+
+interface Props {
+  locale?: ProfilLocale;
+}
+
+const { locale = 'de' } = Astro.props;
+const { biography, bioSection } = getProfilContent(locale);
+---
+    <section
+      id="erfahrung"
+      aria-labelledby="profil-bio-heading"
+      class="profil-band profil-band--sage scroll-mt-24 border-b border-[var(--color-border-soft)]"
+    >
+      <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+        <div class="profil-visual-stack">
+          <header class="profil-visual-stack__head" data-reveal>
+            <div class="profil-section-accent profil-visual-stack__head-accent" aria-hidden="true"></div>
+            <p class="text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-primary)]">
+              {bioSection.kicker}
+            </p>
+            <h2
+              id="profil-bio-heading"
+              class="mt-3 text-3xl font-semibold tracking-tight text-[var(--color-base-dark)] md:text-4xl"
+            >
+              {bioSection.headline}
+            </h2>
+          </header>
+
+          <aside
+            class="profil-visual-stack__stage"
+            aria-label={bioSection.asideAriaLabel}
+            data-reveal
+            data-reveal-delay="120"
+          >
+            <div class="profil-bio__figure">
+              <ProfilMockupFrame frameId="delivery" loading="lazy" />
+            </div>
+          </aside>
+
+          <ol
+            class="profile-timeline profile-timeline--split profil-visual-stack__deck-grid profil-bio__timeline"
+            role="list"
+            data-prof-bio-timeline
+            data-reveal
+            data-reveal-delay="200"
+          >
+            {biography.map((b, i) => (
+              <li
+                class="profile-timeline__item"
+                data-timeline-item
+                data-timeline-index={i}
+                style={`--reveal-delay: ${i * 100}ms`}
+                tabindex="0"
+              >
+                <span class="profile-timeline__marker" aria-hidden="true"></span>
+                <div class="profile-timeline__content">
+                  <span class="profile-timeline__kicker">{b.kicker}</span>
+                  <h3 class="profile-timeline__title">{b.title}</h3>
+                  <p class="profile-timeline__body">{b.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>

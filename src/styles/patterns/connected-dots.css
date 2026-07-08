@@ -1,0 +1,73 @@
+/**
+ * @file src/styles/patterns/connected-dots.css
+ * @summary Wiederverwendbares Layout-/Deko-Pattern: connected-dots.
+ */
+
+/* ---------- Connected Dots ----------
+ *
+ * Vector-network background: drifting particles with dynamic connecting lines.
+ * Drop-in via <canvas data-connected-dots data-tone="neutral|growth|systems">.
+ * The wrapper needs position: relative and a defined height.
+ *
+ *   <div class="dots-host">
+ *     <canvas data-connected-dots data-tone="growth" class="dots-canvas"></canvas>
+ *     <div class="dots-content">...</div>
+ *   </div>
+ *
+ * Respects prefers-reduced-motion by rendering static frame only.
+ */
+
+.dots-host {
+  position: relative;
+  isolation: isolate;
+}
+
+.dots-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Soft radial mask so the network fades toward edges — keeps focus on content */
+.dots-canvas--fade-edges {
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 50%,
+    black 55%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 50%,
+    black 55%,
+    transparent 100%
+  );
+}
+
+/* Bottom-fade variant for hero sections — keeps bottom clean for CTAs */
+.dots-canvas--fade-bottom {
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    black 0%,
+    black 60%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    black 0%,
+    black 60%,
+    transparent 100%
+  );
+}
+
+.dots-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure canvas has pointer events disabled even on the parent (hero sections with forms etc.) */
+.dots-host > canvas[data-connected-dots] {
+  pointer-events: none;
+}

@@ -1,0 +1,91 @@
+---
+/**
+ * @file src/components/profil/ProfilWorkSection.astro
+ * @summary UI-Komponente: profil/ProfilWorkSection — wiederverwendbarer Markup-Block.
+ */
+---
+    <section
+      class="profil-band profil-band--work border-b border-[var(--color-border-soft)]"
+      data-prof-work-band
+    >
+      <div class="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-24">
+        <header class="max-w-2xl" data-reveal>
+          <div class="profil-section-accent" aria-hidden="true"></div>
+          <p class="text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-primary)]">
+            Arbeitsweise
+          </p>
+          <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--color-base-dark)] md:text-4xl">
+            Orientierung, die vor „Go-Live“ nicht bricht.
+          </h2>
+        </header>
+
+        <div
+          class="profil-work-grid mt-12 grid gap-10 md:grid-cols-3"
+          data-prof-work-grid
+          data-reveal
+          data-reveal-delay="120"
+        >
+          <article class="it-gain" data-work-gain="doc" tabindex="0" role="button" aria-pressed="false">
+            <p class="it-gain__num">01</p>
+            <div class="pp-work-viz pp-work-viz--doc" data-work-viz aria-hidden="true">
+              <span class="pp-work-viz__sheet">
+                <span class="pp-work-viz__typed" data-work-typed></span>
+              </span>
+              <span class="pp-work-viz__check pp-work-viz__check--a" data-work-check></span>
+              <span class="pp-work-viz__check pp-work-viz__check--b" data-work-check></span>
+              <span class="pp-work-viz__check pp-work-viz__check--c" data-work-check></span>
+            </div>
+            <div class="it-gain__copy">
+              <h3 class="it-gain__title">Grundlage für Entscheidungen.</h3>
+              <p class="it-gain__body" data-work-body>
+                Fachlichkeit, Machbarkeit und Risiko bündeln sich in einem tragfähigen Bild, nachvollziehbar,
+                was umsetzbar ist und was bewusst später priorisiert wird.
+              </p>
+            </div>
+          </article>
+
+          <article class="it-gain" data-work-gain="scope" tabindex="0" role="button" aria-pressed="false">
+            <p class="it-gain__num">02</p>
+            <div class="pp-work-viz pp-work-viz--scope" data-work-viz aria-hidden="true">
+              <button
+                type="button"
+                class="pp-work-viz__scope-in is-active"
+                data-scope-side="in"
+                aria-pressed="true"
+              >
+                In
+              </button>
+              <button type="button" class="pp-work-viz__scope-out" data-scope-side="out" aria-pressed="false">
+                Out
+              </button>
+            </div>
+            <div class="it-gain__copy">
+              <h3 class="it-gain__title">Sicherheit im Scope.</h3>
+              <p class="it-gain__body" data-work-body>
+                Was vereinbart ist, steht fest · inklusive dessen, was außerhalb der aktuellen Lieferung
+                bleibt.
+              </p>
+            </div>
+          </article>
+
+          <article class="it-gain" data-work-gain="bridge" tabindex="0" role="button" aria-pressed="false">
+            <p class="it-gain__num">03</p>
+            <div class="pp-work-viz pp-work-viz--bridge" data-work-viz aria-hidden="true">
+              <span class="pp-work-viz__bubble pp-work-viz__bubble--fb">FB</span>
+              <span class="pp-work-viz__bridge-track">
+                <span class="pp-work-viz__bridge-arc"></span>
+                <span class="pp-work-viz__bridge-pulse" data-bridge-pulse></span>
+              </span>
+              <span class="pp-work-viz__bubble pp-work-viz__bubble--it">IT</span>
+            </div>
+            <div class="it-gain__copy">
+              <h3 class="it-gain__title">Eine Sprache für alle Beteiligten.</h3>
+              <p class="it-gain__body" data-work-body>
+                Abgestimmt zwischen Fachbereich, Technik und Steuerung · mit Respekt vor Detail und
+                Nachvollziehbarkeit.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>

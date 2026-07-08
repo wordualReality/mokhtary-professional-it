@@ -1,0 +1,124 @@
+---
+/**
+ * @file src/components/form/ContactSection.astro
+ * ContactSection — Wrapper um <ContactForm /> fuer den Seiten-Abschluss.
+ *
+ * Kapselt die bisher 7x duplizierte Abschluss-Section:
+ *   <section id="kontakt"> + Aurora + Grain + max-w-Container + Form.
+ *
+ * Der inhaltliche Unterschied liegt nur im Tonfall (neutral / growth /
+ * systems) und in Headline/Introtext. Alles weitere hier zentral.
+ *
+ * Tone-Defaults:
+ *   neutral  -> Mint-weiss (fuer home)
+ *   growth   -> leichter Beige-Verlauf (webdesign, social-media)
+ *   systems  -> leichter Gruen-Verlauf (systeme, systeme-ki, profil)
+ *
+ * Wer den "reicheren" Hub-Verlauf braucht, gibt `bgGradient` explizit
+ * mit (z.B. Seite /wachstum, /systeme).
+ */
+import ContactForm from './ContactForm.astro';
+
+type Tone = 'neutral' | 'growth' | 'systems';
+
+interface Props {
+  subjectPrefix: string;
+  headline: string;
+  introText: string;
+  kicker?: string;
+  tone?: Tone;
+  bgGradient?: string;
+  id?: string;
+  ariaLabel?: string;
+  trustChipLabel?: string;
+  showTrustChipLabel?: boolean;
+  trustChips?: string[];
+  interests?: { v: string; l: string }[];
+  submitLabel?: string;
+  organizationPlaceholder?: string;
+  emailPlaceholder?: string;
+  messagePlaceholder?: string;
+  nameLabel?: string;
+  namePlaceholder?: string;
+  emailLabel?: string;
+  companyLabel?: string;
+  optionalLabel?: string;
+  interestLabel?: string;
+  messageLabel?: string;
+  chipsAriaLabel?: string;
+  formNote?: string;
+}
+
+const {
+  subjectPrefix,
+  headline,
+  introText,
+  kicker = 'Nächster Schritt',
+  tone = 'neutral',
+  bgGradient,
+  id = 'kontakt',
+  ariaLabel = 'Kontakt',
+  trustChipLabel,
+  showTrustChipLabel,
+  trustChips,
+  interests,
+  submitLabel,
+  organizationPlaceholder,
+  emailPlaceholder,
+  messagePlaceholder,
+  nameLabel,
+  namePlaceholder,
+  emailLabel,
+  companyLabel,
+  optionalLabel,
+  interestLabel,
+  messageLabel,
+  chipsAriaLabel,
+  formNote,
+} = Astro.props;
+
+const gradientByTone: Record<Tone, string> = {
+  neutral: 'linear-gradient(180deg,#F8FCFB 0%,#EEF7F5 100%)',
+  growth: 'linear-gradient(180deg,#FBF6F0 0%,#FFFFFF 100%)',
+  systems: 'linear-gradient(180deg,#ECF4E8 0%,#FFFFFF 100%)',
+};
+
+const auroraClass = `aurora aurora--${tone} aurora--muted`;
+const background = bgGradient ?? gradientByTone[tone];
+---
+
+<section
+  id={id}
+  aria-label={ariaLabel}
+  class="scroll-mt-24 relative overflow-hidden"
+  data-motion-band="contact-chips"
+  style={`background: ${background};`}
+>
+  <div class={auroraClass} aria-hidden="true"></div>
+  <div class="grain grain--fine" aria-hidden="true"></div>
+  <div class="relative z-10 mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-24">
+    <ContactForm
+      subjectPrefix={subjectPrefix}
+      kicker={kicker}
+      headline={headline}
+      introText={introText}
+      trustChipLabel={trustChipLabel}
+      showTrustChipLabel={showTrustChipLabel}
+      trustChips={trustChips}
+      interests={interests}
+      submitLabel={submitLabel}
+      organizationPlaceholder={organizationPlaceholder}
+      emailPlaceholder={emailPlaceholder}
+      messagePlaceholder={messagePlaceholder}
+      nameLabel={nameLabel}
+      namePlaceholder={namePlaceholder}
+      emailLabel={emailLabel}
+      companyLabel={companyLabel}
+      optionalLabel={optionalLabel}
+      interestLabel={interestLabel}
+      messageLabel={messageLabel}
+      chipsAriaLabel={chipsAriaLabel}
+      formNote={formNote}
+    />
+  </div>
+</section>

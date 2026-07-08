@@ -1,0 +1,70 @@
+/**
+ * @file src/styles/components/hub-card-live.css
+ * @summary Live-Zustände für card-cycle (Chips, Status, Addon-Badge).
+ */
+
+[data-motion-band='card-cycle'].is-band-live [data-card-cycle-item]:not(.is-motion-active) {
+  opacity: 0.72;
+}
+
+[data-stack-chip].is-chip-hot {
+  transform: translateY(-2px) scale(1.04);
+  background: color-mix(in srgb, var(--cluster-accent, var(--color-primary)) 32%, white) !important;
+  color: var(--cluster-accent, var(--color-primary)) !important;
+  box-shadow: 0 6px 14px rgba(44, 51, 51, 0.1);
+}
+
+.show-card__status {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  transition: color 0.3s ease;
+}
+
+.show-card__status.is-status-live {
+  color: var(--color-primary);
+}
+
+/* Lift + Schatten nur auf .show-card__media (site-band-motion), nicht auf dem Link-Wrapper */
+
+.addon-card.is-motion-active .addon-card__kicker::after {
+  content: ' · live';
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.use-case-card__kpi {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--cluster-accent, var(--color-primary));
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.is-motion-active .use-case-card__kpi {
+  opacity: 1;
+  animation: use-case-kpi-pulse 2s ease-in-out infinite;
+}
+
+@keyframes use-case-kpi-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-motion-active .use-case-card__kpi {
+    animation: none;
+    opacity: 1;
+  }
+}

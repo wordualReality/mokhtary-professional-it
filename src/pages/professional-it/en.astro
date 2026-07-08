@@ -1,0 +1,57 @@
+---
+export const prerender = true;
+/**
+ * @file src/pages/professional-it/en.astro
+ * @summary English Professional IT portfolio page.
+ */
+import ProfilLaunchLayout from '../../layouts/ProfilLaunchLayout.astro';
+import ContactSection from '../../components/form/ContactSection.astro';
+import ProfilHero from '../../components/profil/ProfilHero.astro';
+import ProfilStakeholderSection from '../../components/profil/ProfilStakeholderSection.astro';
+import ProfilBioSection from '../../components/profil/ProfilBioSection.astro';
+import ProfilSkillsSection from '../../components/profil/ProfilSkillsSection.astro';
+import ProfilInsightsSection from '../../components/profil/ProfilInsightsSection.astro';
+import { getProfilContent } from '../../data/profil-content.locale';
+
+const content = getProfilContent('en');
+const { contact, contactForm } = content.profilPageCopy;
+---
+
+<ProfilLaunchLayout
+  locale="en"
+  title="Aydin Mokhtary · Senior IT Business Analyst · Requirements Engineer · Banking IT"
+  description="Senior IT business analyst and requirements engineer with a banking IT focus. Stakeholder management, enterprise integration and robust acceptance for corporate and freelance mandates."
+>
+  <main id="main-content" class="cluster-systems profil-page">
+    <ProfilHero locale="en" />
+    <ProfilSkillsSection locale="en" />
+    <ProfilBioSection locale="en" />
+    <ProfilInsightsSection locale="en" />
+    <ProfilStakeholderSection locale="en" />
+    <ContactSection
+      tone="systems"
+      bgGradient="linear-gradient(180deg,#F4FAF1_0%,#FFFFFF_100%)"
+      ariaLabel="Contact Professional IT"
+      subjectPrefix="Professional IT"
+      kicker={contact.kicker}
+      headline={contact.headline}
+      introText={contact.introText}
+      showTrustChipLabel={false}
+      trustChips={[...contact.trustChips]}
+      interests={[...content.profilContactInterests]}
+      submitLabel={contact.submitLabel}
+      organizationPlaceholder={contact.organizationPlaceholder}
+      emailPlaceholder={contact.emailPlaceholder}
+      messagePlaceholder={contact.messagePlaceholder}
+      nameLabel={contactForm.nameLabel}
+      namePlaceholder={contactForm.namePlaceholder}
+      emailLabel={contactForm.emailLabel}
+      companyLabel={contactForm.companyLabel}
+      optionalLabel={contactForm.optionalLabel}
+      interestLabel={contactForm.interestLabel}
+      messageLabel={contactForm.messageLabel}
+      chipsAriaLabel={contactForm.chipsAriaLabel}
+      formNote={contactForm.formNote}
+    />
+  </main>
+</ProfilLaunchLayout>

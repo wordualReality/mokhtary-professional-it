@@ -1,0 +1,19 @@
+/**
+ * @file src/styles/components/profil-page.css
+ * @summary Aggregator für `/professional-it` (`.profil-page`): importiert thematische Partials in fester Reihenfolge.
+ *
+ * Partials liegen unter `./profil-page/`. Reihenfolge nicht ändern, ohne Cascade zu prüfen.
+ */
+
+/* Route /professional-it — nur professional-it.astro; Sektionen in den Partials per Banner markiert. */
+@import "./profil-page/01-base-hero.css";
+@import "./profil-page/02-terminwahl.css";
+@import "./profil-page/03-skills.css";
+@import "./profil-page/04-projects.css";
+@import "./profil-page/05-hero-aside.css";
+@import "./profil-page/06-work-band.css";
+@import "./profil-page/07-insights.css";
+@import "./profil-page/09-stakeholder.css";
+@import "./profil-page/10-mockup-frame.css";
+@import "./profil-page/11-visual-stack.css";
+@import "./profil-page/08-reduced-motion.css";

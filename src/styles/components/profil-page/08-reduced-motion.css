@@ -1,0 +1,200 @@
+/* --- prefers-reduced-motion: Profil-Animationen abschalten --- */
+
+@media (prefers-reduced-motion: reduce) {
+  .insights-grid__item,
+  details.insight-card {
+    animation: none;
+    transition: none;
+  }
+  details.insight-card:hover,
+  details.insight-card[open],
+  .profil-page details.insight-card.is-preview,
+  .profil-page details.insight-card.is-dimmed {
+    transform: none;
+    opacity: 1;
+  }
+  .profil-page details.insight-card.is-preview .insight-card__summary-chev .insight-card__chev {
+    animation: none !important;
+  }
+  .insight-card__panel {
+    transition: none !important;
+  }
+  details.insight-card[open] .insight-card__panel {
+    grid-template-rows: 1fr;
+  }
+  .insight-card__chev {
+    transition: none;
+  }
+  .schedule-details__summary .chevron-nudge {
+    transition: none;
+  }
+  dialog#profil-terminwahl-dialog.profil-scheduling-dialog[open] {
+    animation: none !important;
+  }
+  .insight-viz-req__status,
+  .insight-viz-br__pill,
+  .insight-viz-br__arc,
+  .insight-viz-prov__fill,
+  .insight-viz-prov__bang,
+  .profil-page .insight-viz-ai__brand,
+  .profil-page .insight-viz-ai__stack,
+  .profil-page .insight-viz-ai__flower,
+  .insight-viz--ai.is-ai-live .insight-viz-ai__brand,
+  .insight-viz--ai.is-ai-live .insight-viz-ai__stack,
+  .insight-viz--ai.is-ai-live .insight-viz-ai__flower,
+  .insight-viz--ai.is-ai-live .insight-viz-ai__sig,
+  .insight-viz-ai__sig.is-sig-hot,
+  .insight-viz-prov__bang.is-shake,
+  .insight-card__teaser.is-typing::after {
+    animation: none !important;
+  }
+
+  .insight-viz-br__pulse,
+  .insight-viz-prov__fill--ist {
+    transition: none !important;
+  }
+  .profil-hero__aside-frame,
+  .profil-page .profil-hero__aside-frame,
+  .profil-page .profil-hero__tilt-wrap .tilt-scene__layer,
+  .profil-page .profil-hero__mock-overlay {
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .profil-page .profil-hero__aside .mockup-glow {
+    animation: none !important;
+  }
+  .profil-page .profil-hero__deck-wrap {
+    transform: none !important;
+  }
+  .profil-page .profil-hero__mock-chrome__label {
+    animation: none !important;
+    letter-spacing: 0.1em;
+  }
+  .profil-page .profil-mockup-frame__overlay,
+  .profil-page .profil-mockup-frame__chrome-label {
+    animation: none !important;
+    transition: none !important;
+  }
+  .arch-diagram--static .arch-diagram__fallback,
+  .arch-diagram__layer,
+  .arch-diagram--hybrid .arch-diagram__connector-line--loop,
+  .arch-diagram--svg .arch-diagram__svg-layer,
+  .arch-diagram--svg .arch-diagram__connector-line,
+  .profil-page .arch-diagram--static .arch-diagram__fallback,
+  .profil-page .arch-diagram__layer,
+  .profil-page .arch-diagram--hybrid .arch-diagram__connector-line--loop,
+  .profil-page .arch-diagram--svg .arch-diagram__svg-layer,
+  .profil-page .arch-diagram--svg .arch-diagram__connector-line {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+  .profil-hero-signals__item,
+  .profil-hero-signals__item:hover,
+  .profil-page .profil-hero-signals__item,
+  .profil-page .profil-hero-signals__item:hover {
+    transition: none;
+    transform: none;
+    animation: none;
+  }
+  .profil-page .profil-projects-panel--motion,
+  .profil-page .insight-card__viz,
+  .profil-page .insight-viz {
+    animation: none !important;
+  }
+  .profil-page .ps-viz__editor--code .ps-viz__code-line,
+  .profil-page .profile-skill-block--biz .ps-viz__rail,
+  .profil-page .profile-skill-block--lang .ps-viz__bar i {
+    animation: none !important;
+  }
+  .profil-page .profile-skill-block {
+    transition: none;
+  }
+  .profil-page .profile-skill-block:hover {
+    transform: none;
+  }
+  .profil-page .profile-skill-block:hover::after {
+    opacity: 0;
+  }
+
+  .pp-board__card-btn:hover,
+  .pp-board__card-btn.is-active {
+    transform: none;
+  }
+
+  .pp-board__stub.is-pulsing span {
+    animation: none !important;
+  }
+
+  .profil-page .profile-skill-block.is-active,
+  .profil-page .profile-skill-block:hover {
+    transform: none;
+  }
+
+  .it-gain.is-active,
+  .it-gain:hover {
+    transform: none;
+  }
+
+  .it-gain__body.is-typing::after {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .pp-work-viz__scope-in,
+  .pp-work-viz__scope-out,
+  .pp-work-viz__bridge-arc,
+  .pp-work-viz__bridge-pulse,
+  .pp-work-viz__check {
+    transition: none;
+  }
+
+  .ps-viz__editor--code.is-typewriting .ps-viz__caret,
+  .ps-viz__editor--code.is-typed-complete .ps-viz__caret,
+  .ps-viz__code-line.is-typing code::after {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .ps-viz--biz .ps-viz__flow-dot,
+  .ps-viz__segment-fill,
+  .ps-viz__node,
+  .ps-viz__node-long {
+    transition: none !important;
+  }
+
+  .ps-viz--biz.is-flow-live .ps-viz__node.is-active {
+    animation: none !important;
+  }
+
+  .ps-viz__bar i {
+    transition: none !important;
+  }
+
+  .pp-flow__dot,
+  .pp-flow__segment-fill,
+  .pp-flow__node {
+    transition: none !important;
+  }
+
+  .profil-projects-panel__flow.is-flow-live .pp-flow__node.is-active {
+    animation: none !important;
+  }
+
+  .profil-page .profile-timeline::before {
+    transform: scaleY(1) !important;
+    transition: none !important;
+  }
+
+  .profil-page .profile-timeline__item.is-active .profile-timeline__marker {
+    animation: none !important;
+  }
+
+  .profil-page .profile-timeline__item.is-active .profile-timeline__content,
+  .profil-page .profile-timeline__item:hover .profile-timeline__content {
+    transform: none;
+  }
+}
