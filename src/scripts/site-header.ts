@@ -36,11 +36,21 @@ function initMobilePanel(root: HTMLElement): void {
     }
   };
 
-  toggle.addEventListener('click', () => setOpen(!open));
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setOpen(!open);
+  });
   backdrop.addEventListener('click', () => setOpen(false));
 
   panel.querySelectorAll('a[href]').forEach((link) => {
     link.addEventListener('click', () => setOpen(false));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!open) return;
+    const target = e.target as Node;
+    if (panel.contains(target) || toggle.contains(target) || backdrop.contains(target)) return;
+    setOpen(false);
   });
 
   document.addEventListener('keydown', (e) => {

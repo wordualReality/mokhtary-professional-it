@@ -22,8 +22,7 @@ const { locale = 'de' } = Astro.props;
 
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 const homeHref = locale === 'en' ? professionalItEnHref : professionalItDeHref;
-const homeLabel =
-  locale === 'en' ? 'Back to Professional IT page' : 'Zur Professional-IT-Seite';
+const homeLabel = locale === 'en' ? 'Back to home page' : 'Zur Startseite';
 const professionalNavItems = locale === 'en' ? professionalNavItemsEn : professionalNavItemsDe;
 const professionalBaseHref = locale === 'en' ? professionalItEnHref : professionalItDeHref;
 const langToggleHref = locale === 'en' ? professionalItDeHref : professionalItEnHref;
@@ -36,7 +35,7 @@ const mobileNavAria = locale === 'en' ? 'Page navigation mobile' : 'Seitennaviga
 
 <header
   data-site-header
-  class="sticky top-0 z-50 border-b border-[var(--color-border-soft)] bg-white/80 backdrop-blur-xl"
+  class="sticky top-0 z-50 w-full border-b border-[var(--color-border-soft)] bg-white/95"
 >
   <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
     <a
@@ -51,11 +50,8 @@ const mobileNavAria = locale === 'en' ? 'Page navigation mobile' : 'Seitennaviga
         <span class="h-4 w-4 rotate-45 rounded-[4px] border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10"></span>
       </span>
 
-      <span class="flex flex-col">
-        <span class="text-sm leading-none text-[var(--color-text-secondary)]">Aydin Mokhtary</span>
-        <span class="mt-1 text-base font-semibold leading-none tracking-tight text-[var(--color-base-dark)]">
-          Professional IT
-        </span>
+      <span class="text-base font-semibold leading-none tracking-tight text-[var(--color-base-dark)]">
+        Aydin Mokhtary
       </span>
     </a>
 
