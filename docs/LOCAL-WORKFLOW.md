@@ -1,5 +1,8 @@
 # Local Workflow — mokhtary-professional-it
 
+**Projektstand & nächste Schritte:** [`docs/PROJECT-STATE.md`](PROJECT-STATE.md)  
+**Alle Repos:** [webseiteMokhtary/docs/REPOS.md](https://github.com/wordualReality/webseiteMokhtary/blob/main/docs/REPOS.md)
+
 ## Source of truth (only folder to use)
 
 ```
@@ -9,6 +12,8 @@
 Remote: `https://github.com/wordualReality/mokhtary-professional-it.git`
 
 Do **not** use `Documents/GitHub/mokhtary-professional-it` — that copy is outdated.
+
+Sibling repo for **mokhtary.com** (EN-first): `/Users/aydin/mokhtary-professional-it-com` — [PROJECT-STATE.md](https://github.com/wordualReality/mokhtary-professional-it-com/blob/main/docs/PROJECT-STATE.md)
 
 ## Git
 
