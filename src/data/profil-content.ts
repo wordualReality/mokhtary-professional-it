@@ -232,7 +232,7 @@ export const profilContactInterests = [
 /** Kenntnisse-Section — Kicker, Headline, Skill-Blöcke. */
 export const skillsSection = {
   kicker: 'Kenntnisse',
-  headline: 'Methoden, Technik, Sprachen',
+  headline: 'Methoden, Technik, Arbeitssprachen',
   blocks: [
     {
       id: 'tech',
@@ -250,10 +250,10 @@ export const skillsSection = {
     },
     {
       id: 'lang',
-      title: 'Sprachen',
+      title: 'Arbeitssprachen',
       body:
         'Deutsch · Verhandlungssicher (C2) · Englisch · professionell (C1) · Persisch · Muttersprache · Französisch · Grundkenntnisse (A2)',
-      ariaLabel: 'Sprachen: Karte aktivieren',
+      ariaLabel: 'Arbeitssprachen: Karte aktivieren',
     },
   ],
 } as const;

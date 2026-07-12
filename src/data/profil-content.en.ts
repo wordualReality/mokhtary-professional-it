@@ -193,7 +193,7 @@ export const profilContactInterests = [
 
 export const skillsSection = {
   kicker: 'Skills',
-  headline: 'Methods, technology, languages',
+  headline: 'Methods, technology, working languages',
   blocks: [
     {
       id: 'tech',
@@ -211,10 +211,10 @@ export const skillsSection = {
     },
     {
       id: 'lang',
-      title: 'Languages',
+      title: 'Working languages',
       body:
         'German · negotiation level (C2) · English · professional (C1) · Persian · native · French · basic (A2)',
-      ariaLabel: 'Languages: activate card',
+      ariaLabel: 'Working languages: activate card',
     },
   ],
 } as const;
