@@ -199,7 +199,7 @@ export const skillsSection = {
       id: 'tech',
       title: 'Technology',
       body:
-        'Application engineering · Java (SE), Spring (MVC, JDBC), REST APIs, Python, SQL, data models · Web · JavaScript (ES6), Node.js, Vue.js, Astro, HTML5, CSS3 · Cloud & operations · Azure AD, Microsoft 365 · monitoring and support of production systems · IntelliJ, Eclipse, VS Code',
+        'Application engineering · Java (SE), Spring (MVC, JDBC), REST APIs, Webhooks, Python, SQL, data models · Web · JavaScript (ES6), Node.js, Vue.js, Astro, HTML5, CSS3 · Cloud & operations · Azure AD, Microsoft 365 · monitoring and support of production systems · IntelliJ, Eclipse, VS Code',
       ariaLabel: 'Technology: activate card',
     },
     {

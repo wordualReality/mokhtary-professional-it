@@ -238,7 +238,7 @@ export const skillsSection = {
       id: 'tech',
       title: 'Technik',
       body:
-        'Application Engineering · Java (SE), Spring (MVC, JDBC), REST-APIs, Python, SQL, Datenmodelle · Web · JavaScript (ES6), Node.js, Vue.js, Astro, HTML5, CSS3 · Cloud & Betrieb · Azure AD, Microsoft 365 · Monitoring und Support produktiver Systeme · IntelliJ, Eclipse, VS Code',
+        'Application Engineering · Java (SE), Spring (MVC, JDBC), REST-APIs, Webhooks, Python, SQL, Datenmodelle · Web · JavaScript (ES6), Node.js, Vue.js, Astro, HTML5, CSS3 · Cloud & Betrieb · Azure AD, Microsoft 365 · Monitoring und Support produktiver Systeme · IntelliJ, Eclipse, VS Code',
       ariaLabel: 'Technik: Karte aktivieren',
     },
     {
