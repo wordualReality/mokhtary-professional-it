@@ -27,6 +27,36 @@ export const professionalNavItemsEn: ProfessionalNavItem[] = [
 export const professionalItEnHref = '/en';
 export const professionalItDeHref = '/';
 
+/** Primary EN/DE site — cross-domain hreflang targets from mokhtary.de. */
+export const mokhtaryComOrigin = 'https://mokhtary.com';
+
+const crossDomainHreflangByDePath: Record<string, { de: string; en: string }> = {
+  '/': { de: `${mokhtaryComOrigin}/de`, en: `${mokhtaryComOrigin}/` },
+  '/en': { de: `${mokhtaryComOrigin}/de`, en: `${mokhtaryComOrigin}/` },
+  '/impressum': {
+    de: `${mokhtaryComOrigin}/de/impressum`,
+    en: `${mokhtaryComOrigin}/imprint`,
+  },
+  '/datenschutz': {
+    de: `${mokhtaryComOrigin}/de/datenschutz`,
+    en: `${mokhtaryComOrigin}/privacy`,
+  },
+  '/en/imprint': {
+    de: `${mokhtaryComOrigin}/de/impressum`,
+    en: `${mokhtaryComOrigin}/imprint`,
+  },
+  '/en/privacy': {
+    de: `${mokhtaryComOrigin}/de/datenschutz`,
+    en: `${mokhtaryComOrigin}/privacy`,
+  },
+};
+
+/** Resolve hreflang alternates on mokhtary.de → canonical mokhtary.com paths. */
+export function resolveMokhtaryComAlternates(pathname: string): { de: string; en: string } {
+  const path = pathname.replace(/\/$/, '') || '/';
+  return crossDomainHreflangByDePath[path] ?? crossDomainHreflangByDePath['/']!;
+}
+
 export const professionalLegalPaths = {
   impressum: '/impressum',
   datenschutz: '/datenschutz',
