@@ -84,8 +84,7 @@ sort -u "$PATHS_FILE" | while read -r rel; do
   fi
 done
 
-echo "==> Remove legacy .htaccess if present"
-rm -f "$RELEASE/.htaccess"
+echo "==> Keep public/.htaccess from dist (www to apex)"
 
 echo "==> Write robots.txt"
 cat > "$RELEASE/robots.txt" <<'EOF'
