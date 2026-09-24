@@ -6,7 +6,7 @@
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import SchedulingDialog from '../components/scheduling/SchedulingDialog.astro';
-import { resolveMokhtaryComAlternates } from '../config/professional-navigation';
+import { resolveSeoForMokhtaryDe } from '../config/seo-alternates';
 import type { ProfilLocale } from '../data/profil-content.locale';
 import '../styles/global.css';
 
@@ -27,14 +27,15 @@ const {
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://mokhtary.de';
-const canonical = new URL(Astro.url.pathname, `${siteUrl}/`).toString();
+const { canonical, de: alternateDe, en: alternateEn, xDefault } = resolveSeoForMokhtaryDe(
+  Astro.url.pathname,
+  locale,
+);
 const ogImage = new URL(image, `${siteUrl}/`).toString();
 const htmlLang = locale === 'en' ? 'en' : 'de';
 const ogLocale = locale === 'en' ? 'en_GB' : 'de_DE';
 const inLanguage = locale === 'en' ? 'en-GB' : 'de-DE';
 const skipLabel = locale === 'en' ? 'Skip to content' : 'Zum Inhalt springen';
-
-const { de: alternateDe, en: alternateEn } = resolveMokhtaryComAlternates(Astro.url.pathname);
 
 const organization = {
   '@context': 'https://schema.org',
@@ -116,7 +117,7 @@ const webpage = {
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="de" href={alternateDe} />
     <link rel="alternate" hreflang="en" href={alternateEn} />
-    <link rel="alternate" hreflang="x-default" href={alternateDe} />
+    <link rel="alternate" hreflang="x-default" href={xDefault} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
