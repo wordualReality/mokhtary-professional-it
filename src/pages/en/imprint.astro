@@ -6,6 +6,7 @@ export const prerender = true;
  */
 import ProfilLaunchLayout from '../../layouts/ProfilLaunchLayout.astro';
 import LegalImpressumArticle from '../../components/legal/LegalImpressumArticle.astro';
+import LegalImpressumArticleEn from '../../components/legal/LegalImpressumArticleEn.astro';
 
 const title = 'Imprint · Aydin Mokhtary · Professional IT';
 const description =
@@ -24,11 +25,14 @@ const description =
             Imprint
           </h1>
           <p class="mt-4 text-base leading-7 text-[var(--color-text-secondary)]">
-            Information pursuant to § 5 TMG and § 18 (2) MStV (German law).
+            Information pursuant to § 5 DDG and § 18 (2) MStV (German law).
           </p>
         </header>
 
-        <LegalImpressumArticle />
+        <div lang="de">
+          <LegalImpressumArticle />
+        </div>
+        <LegalImpressumArticleEn />
       </div>
     </section>
   </main>

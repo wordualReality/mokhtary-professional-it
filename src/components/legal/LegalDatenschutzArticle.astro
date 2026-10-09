@@ -32,13 +32,12 @@ const { privacyHref = '/datenschutz' } = Astro.props;
     technisch notwendige noch analytische oder Marketing-Cookies verwendet.
     Auch <code>localStorage</code> und <code>sessionStorage</code> werden
     nicht genutzt. Aus diesem Grund ist kein Einwilligungs-Banner nach
-    § 25 TTDSG notwendig.
+    § 25 TDDDG notwendig.
   </p>
 
-  <h2>3. Kein Tracking, keine externen Dienste</h2>
+  <h2>3. Kein Tracking, keine eingebundenen Dienste Dritter</h2>
   <p>
-    Die Seite verzichtet bewusst auf Tools, die personenbezogene Daten an
-    Dritte übertragen. Insbesondere werden nicht eingesetzt:
+    Die Seite bindet keine Tools ein, die beim Aufruf personenbezogene Daten an Dritte übertragen. Die Terminbuchung ist ein externer Link, siehe Abschnitt 7. Insbesondere werden nicht eingesetzt:
   </p>
   <ul>
     <li>Google Analytics, Matomo, Plausible oder vergleichbare Analyse-Tools</li>
@@ -132,23 +131,40 @@ const { privacyHref = '/datenschutz' } = Astro.props;
     wird innerhalb der EU betrieben.
   </p>
 
-  <h2>7. Empfänger von Daten</h2>
+  <h2>7. Terminbuchung über Google Kalender (externer Link)</h2>
   <p>
-    Eine Weitergabe Ihrer personenbezogenen Daten an Dritte findet nicht statt,
-    außer an die in dieser Erklärung genannten Auftragsverarbeiter (Hosting,
-    E-Mail) und in Fällen, in denen eine gesetzliche Verpflichtung zur
-    Weitergabe besteht (z. B. gegenüber Ermittlungsbehörden).
+    Für ein Erstgespräch verlinke ich auf meine Terminbuchungsseite bei Google Kalender. Die Seite ist nicht eingebunden; es werden keine Daten an Google übertragen, solange Sie den Link nicht anklicken.
+  </p>
+  <p>
+    Wenn Sie den Link öffnen und einen Termin buchen, verarbeitet Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, Ihre Angaben: Vorname, Nachname, E-Mail-Adresse, Thema, gewählter Termin und technische Verbindungsdaten. Die Telefonnummer nur, wenn Sie dieses Feld ausfüllen. Ich erhalte dieselben Angaben, um das Gespräch vorzubereiten und durchzuführen. Das Gespräch findet standardmäßig über Google Meet statt.
+  </p>
+  <p>
+    Eine Übermittlung an Google LLC in den USA ist möglich. Google LLC ist unter dem EU-US Data Privacy Framework zertifiziert; die Übermittlung stützt sich auf den Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO).
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Terminvereinbarung auf Ihre Anfrage).
+  </p>
+  <p>
+    <strong>Speicherdauer bei mir:</strong> Termindaten lösche ich spätestens sechs Monate nach dem Gespräch, sofern kein Auftrag entsteht.
+  </p>
+  <p>
+    <strong>Alternative:</strong> Wenn Sie Google nicht nutzen möchten, schreiben Sie mir einfach eine E-Mail.
+  </p>
+  <p>
+    Datenschutzhinweise von Google: <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">policies.google.com/privacy</a>
   </p>
 
-  <h2>8. Übermittlung in Drittländer</h2>
+  <h2>8. Empfänger von Daten</h2>
   <p>
-    Eine Übermittlung personenbezogener Daten in Drittländer außerhalb der EU
-    bzw. des EWR findet nicht statt. Sowohl der Hosting-Server als auch die
-    E-Mail-Infrastruktur sind innerhalb der Europäischen Union lokalisiert
-    (Server-Standort: Litauen).
+    Eine Weitergabe Ihrer personenbezogenen Daten an Dritte findet nicht statt, außer an die genannten Auftragsverarbeiter (Hosting, E-Mail), an Google, wenn Sie die Terminbuchung selbst nutzen (Abschnitt 7), und in Fällen, in denen eine gesetzliche Verpflichtung zur Weitergabe besteht.
   </p>
 
-  <h2>9. Ihre Rechte als betroffene Person</h2>
+  <h2>9. Übermittlung in Drittländer</h2>
+  <p>
+    Hosting und E-Mail laufen ausschließlich innerhalb der Europäischen Union (Server-Standort: Litauen). Eine Übermittlung in Drittländer ist nur möglich, wenn Sie die Google-Terminbuchung nutzen; Details in Abschnitt 7.
+  </p>
+
+  <h2>10. Ihre Rechte als betroffene Person</h2>
   <p>Nach der DSGVO stehen Ihnen insbesondere folgende Rechte zu:</p>
   <ul>
     <li><strong>Art. 15 DSGVO</strong> – Auskunft über die zu Ihrer Person gespeicherten Daten</li>
@@ -164,7 +180,7 @@ const { privacyHref = '/datenschutz' } = Astro.props;
     <a href="mailto:kontakt@mokhtary.de">kontakt@mokhtary.de</a>.
   </p>
 
-  <h2>10. Beschwerderecht bei der Aufsichtsbehörde</h2>
+  <h2>11. Beschwerderecht bei der Aufsichtsbehörde</h2>
   <p>
     Sie haben nach Art. 77 DSGVO das Recht, sich bei einer
     Datenschutz-Aufsichtsbehörde zu beschweren. Zuständig für den Verantwortlichen
@@ -187,13 +203,13 @@ const { privacyHref = '/datenschutz' } = Astro.props;
     >
   </p>
 
-  <h2>11. Keine automatisierte Entscheidungsfindung</h2>
+  <h2>12. Keine automatisierte Entscheidungsfindung</h2>
   <p>
     Es findet keine automatisierte Entscheidungsfindung einschließlich Profiling
     gemäß Art. 22 DSGVO statt.
   </p>
 
-  <h2>12. Aktualität und Änderung dieser Datenschutzerklärung</h2>
+  <h2>13. Aktualität und Änderung dieser Datenschutzerklärung</h2>
   <p>
     Diese Datenschutzerklärung gibt den aktuellen Stand wieder. Durch die
     Weiterentwicklung der Website oder geänderte gesetzliche bzw. behördliche
@@ -203,6 +219,6 @@ const { privacyHref = '/datenschutz' } = Astro.props;
   </p>
 
   <p class="legal__meta">
-    Stand: April 2026
+    Stand: Oktober 2026
   </p>
 </article>
