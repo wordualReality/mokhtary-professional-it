@@ -11,6 +11,7 @@ import ProfilStakeholderSection from '../components/profil/ProfilStakeholderSect
 import ProfilBioSection from '../components/profil/ProfilBioSection.astro';
 import ProfilSkillsSection from '../components/profil/ProfilSkillsSection.astro';
 import ProfilInsightsSection from '../components/profil/ProfilInsightsSection.astro';
+import ProfilCurrentWorkSection from '../components/profil/ProfilCurrentWorkSection.astro';
 import { getProfilContent } from '../data/profil-content.locale';
 
 const content = getProfilContent('de');
@@ -27,6 +28,7 @@ const { contact, contactForm } = content.profilPageCopy;
     <ProfilSkillsSection />
     <ProfilBioSection />
     <ProfilInsightsSection />
+    <ProfilCurrentWorkSection />
     <ProfilStakeholderSection />
     <ContactSection
       tone="systems"
