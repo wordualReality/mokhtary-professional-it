@@ -6,6 +6,7 @@ export const prerender = true;
  */
 import ProfilLaunchLayout from '../../layouts/ProfilLaunchLayout.astro';
 import LegalDatenschutzArticle from '../../components/legal/LegalDatenschutzArticle.astro';
+import LegalDatenschutzArticleEn from '../../components/legal/LegalDatenschutzArticleEn.astro';
 import { professionalLegalPathsEn } from '../../config/professional-navigation';
 
 const title = 'Privacy Policy · Aydin Mokhtary · Professional IT';
@@ -25,14 +26,14 @@ const description =
             Privacy Policy
           </h1>
           <p class="mt-4 text-base leading-7 text-[var(--color-text-secondary)]">
-            Transparent and concise. This site uses no cookies, no tracking
-            and no external services that transfer personal data to third parties.
-            The only active data processing arises from hosting operations
-            and emails you send to me.
+            Transparent and concise. This site uses no cookies, no tracking and no embedded third-party services. I process personal data for hosting and when you email me. Appointment booking is a link to Google and starts only when you click it.
           </p>
         </header>
 
-        <LegalDatenschutzArticle privacyHref={professionalLegalPathsEn.privacy} />
+        <div lang="de">
+          <LegalDatenschutzArticle privacyHref={professionalLegalPathsEn.privacy} />
+        </div>
+        <LegalDatenschutzArticleEn privacyHref={professionalLegalPathsEn.privacy} />
       </div>
     </section>
   </main>

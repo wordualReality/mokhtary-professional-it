@@ -14,6 +14,7 @@ export const professionalNavItemsDe: ProfessionalNavItem[] = [
   { label: 'Kompetenzen', hash: '#kenntnisse' },
   { label: 'Erfahrung', hash: '#erfahrung' },
   { label: 'Praxis', hash: '#praxis' },
+  { label: 'Aktuelles', hash: '#aktuelles' },
   { label: 'Kontakt', hash: '#kontakt' },
 ];
 
